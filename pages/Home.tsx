@@ -80,11 +80,13 @@ const Home: React.FC = () => {
                      </div>
                   </RevealOnScroll>
 
-                  <RevealOnScroll delay={0.2}>
-                     <h1 className="font-display font-black text-[2.5rem] leading-none sm:text-6xl md:text-8xl lg:text-9xl tracking-tight sm:tracking-tighter mb-8 mix-blend-difference break-words">
-                        <GlitchText text="QUANTUM" /> <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">CODE</span>
-                     </h1>
+                  <RevealOnScroll delay={0.2} width="100%">
+                     <div className="w-full flex flex-col items-center justify-center">
+                        <h1 className="font-display font-black text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter mb-8 mix-blend-difference text-center">
+                           <span className="block whitespace-nowrap"><GlitchText text="QUANTUM" /></span>
+                           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600 whitespace-nowrap">CODE</span>
+                        </h1>
+                     </div>
                   </RevealOnScroll>
 
                   <RevealOnScroll delay={0.4}>

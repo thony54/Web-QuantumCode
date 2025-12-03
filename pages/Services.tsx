@@ -53,20 +53,24 @@ const Services: React.FC = () => {
   return (
     <div className="pt-20 bg-dark min-h-screen text-white">
       {/* Header */}
-      <div className="py-24 border-b border-white/10 relative overflow-hidden">
+      <div className="py-16 md:py-24 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-4 relative z-10 flex flex-col md:flex-row items-end gap-8 overflow-hidden">
-          <RevealOnScroll>
-            <h1 className="text-xl sm:text-4xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-black leading-none text-white mix-blend-screen break-words tracking-tighter sm:tracking-normal">
-              <GlitchText text="SERVICIOS" />
-            </h1>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.2}>
-            <p className="font-mono text-sm text-gray-400 max-w-md border-l border-gold pl-4 mb-4">
-                 // CATALOG_ID: 2024 <br />
-              Soluciones integrales para la era digital. Desplegamos tecnología y creatividad para materializar tu visión.
-            </p>
-          </RevealOnScroll>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col items-center text-center gap-8">
+            <RevealOnScroll width="100%">
+              <div className="w-full flex justify-center">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-black leading-none text-white mix-blend-screen tracking-tighter">
+                  <GlitchText text="SERVICIOS" />
+                </h1>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.2}>
+              <p className="font-mono text-sm sm:text-base text-gray-400 max-w-2xl mx-auto border-l-0 border-t md:border-t-0 md:border-l border-gold pt-4 md:pt-0 md:pl-4">
+                // CATALOG_ID: 2024 <br />
+                Soluciones integrales para la era digital. Desplegamos tecnología y creatividad para materializar tu visión.
+              </p>
+            </RevealOnScroll>
+          </div>
         </div>
       </div>
 

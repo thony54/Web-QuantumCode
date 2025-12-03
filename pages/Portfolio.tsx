@@ -23,10 +23,12 @@ const Portfolio: React.FC = () => {
     <div className="pt-20 bg-dark min-h-screen">
       <div className="bg-black py-16 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <RevealOnScroll>
-            <h1 className="text-[1.75rem] leading-tight sm:text-4xl md:text-5xl font-display font-bold text-white mb-8 tracking-tight sm:tracking-normal">
-              ARCHIVO <GlitchText text="VISUAL" className="text-neon-blue" />
-            </h1>
+          <RevealOnScroll width="100%">
+            <div className="flex justify-center w-full">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-8 tracking-tight text-center">
+                ARCHIVO <GlitchText text="VISUAL" className="text-neon-blue" />
+              </h1>
+            </div>
           </RevealOnScroll>
 
           {/* Filters */}

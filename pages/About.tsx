@@ -13,13 +13,15 @@ const About: React.FC = () => {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-dark z-10"></div>
         <div className="max-w-4xl mx-auto text-center relative z-20">
-          <RevealOnScroll>
-            <h1 className="text-[2rem] leading-none sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 tracking-tight sm:tracking-normal">
-              SOMOS <br /><GlitchText text="QUANTUM CODE" className="text-gold" />
-            </h1>
+          <RevealOnScroll width="100%">
+            <div className="flex flex-col items-center w-full">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold text-white mb-6 tracking-tight text-center">
+                SOMOS <br /><GlitchText text="QUANTUM CODE" className="text-gold" />
+              </h1>
+            </div>
           </RevealOnScroll>
-          <RevealOnScroll delay={0.2}>
-            <p className="text-xl text-gray-300">Exploradores digitales. Creadores de realidades. Arquitectos del futuro.</p>
+          <RevealOnScroll delay={0.2} width="100%">
+            <p className="text-xl text-gray-300 text-center mx-auto max-w-2xl">Exploradores digitales. Creadores de realidades. Arquitectos del futuro.</p>
           </RevealOnScroll>
         </div>
       </div>
