@@ -7,11 +7,11 @@ const About: React.FC = () => {
       {/* Hero */}
       <div className="relative py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
-           <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop" alt="Space" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop" alt="Space" className="w-full h-full object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-dark z-10"></div>
         <div className="max-w-4xl mx-auto text-center relative z-20">
-          <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">SOMOS <br/><span className="text-gold">QUANTUM CODE</span></h1>
+          <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">SOMOS <br /><span className="text-gold">QUANTUM CODE</span></h1>
           <p className="text-xl text-gray-300">Exploradores digitales. Creadores de realidades. Arquitectos del futuro.</p>
         </div>
       </div>
@@ -46,22 +46,25 @@ const About: React.FC = () => {
       <div className="bg-black py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-display font-bold text-center text-white mb-16">EQUIPO <span className="text-neon-green">MULTIVERSAL</span></h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map((member) => (
-              <div key={member} className="group bg-dark-card border border-white/5 overflow-hidden relative">
-                <div className="h-64 bg-gray-900 relative overflow-hidden">
-                  <img 
-                    src={`https://images.unsplash.com/photo-${member === 1 ? '1506794778202-cad84cf45f1d' : member === 2 ? '1507003211169-0a1dd7228f2d' : member === 3 ? '1500648767791-00dcc994a43e' : '1534528741775-53994a69daeb'}?q=80&w=400&h=400&auto=format&fit=crop`} 
-                    alt="Team Member" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-80"
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              { name: 'KARTER', role: 'FUNDADOR', image: '/assets/images/karter.png' },
+              { name: 'EMA', role: 'DISEÑADOR', image: '/assets/images/ema.png' }
+            ].map((member, idx) => (
+              <div key={idx} className="group bg-dark-card border border-white/5 overflow-hidden relative">
+                <div className="aspect-[3/4] bg-gray-900 relative overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-80 object-center"
                   />
                   <div className="absolute inset-0 bg-neon-blue/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-white font-bold text-lg font-display">AGENTE {member}0{member}</h3>
-                  <p className="text-gold text-xs font-mono uppercase tracking-widest mt-1">
-                    {member === 1 ? 'Director Creativo' : member === 2 ? 'Lead Developer' : member === 3 ? 'UX Specialist' : 'Visual Artist'}
+                <div className="p-6 text-center">
+                  <h3 className="text-white font-bold text-2xl font-display">{member.name}</h3>
+                  <p className="text-gold text-sm font-mono uppercase tracking-widest mt-2">
+                    {member.role}
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gold to-neon-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
