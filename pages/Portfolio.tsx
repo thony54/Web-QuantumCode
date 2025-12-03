@@ -24,7 +24,7 @@ const Portfolio: React.FC = () => {
       <div className="bg-black py-16 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <RevealOnScroll>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-8">
               ARCHIVO <GlitchText text="VISUAL" className="text-neon-blue" />
             </h1>
           </RevealOnScroll>
