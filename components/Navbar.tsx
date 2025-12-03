@@ -6,7 +6,6 @@ import { NavItem } from '../types';
 const navItems: NavItem[] = [
   { label: 'Inicio', path: '/' },
   { label: 'Servicios', path: '/servicios' },
-  { label: 'Paquetes', path: '/paquetes' },
   { label: 'Portafolio', path: '/portafolio' },
   { label: 'Nosotros', path: '/nosotros' },
   { label: 'Contacto', path: '/contacto' },

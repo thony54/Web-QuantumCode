@@ -147,51 +147,7 @@ const Home: React.FC = () => {
          </section>
 
          {/* Horizontal Scroll / Marquee Style Section for Packages */}
-         <section className="py-24 bg-black relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
 
-            <div className="max-w-7xl mx-auto px-4 relative z-10">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                  <div>
-                     <h2 className="text-6xl md:text-8xl font-display font-black text-outline mb-6">ACCESO</h2>
-                     <h3 className="text-4xl font-display font-bold text-white mb-6">NIVELES DE SERVICIO</h3>
-                     <p className="font-mono text-gray-400 text-sm mb-8 leading-loose border-l border-neon-pink pl-4">
-                        SELECCIONA TU CONFIGURACIÓN.<br />
-                        DESDE LA MATERIA OSCURA HASTA LA LUZ PURA.<br />
-                        SOLUCIONES ESCALABLES.
-                     </p>
-                     <Link to="/paquetes" className="inline-flex items-center gap-3 font-mono text-gold uppercase text-xs tracking-widest hover:text-white transition-colors">
-                        <Hexagon size={12} className="fill-current" />
-                        Ver Todos los Paquetes
-                     </Link>
-                  </div>
-
-                  <div className="relative">
-                     {/* Card Stack Effect */}
-                     <div className="absolute top-0 left-0 w-full h-full border border-white/10 bg-dark-card rotate-6 z-0"></div>
-                     <div className="absolute top-0 left-0 w-full h-full border border-white/10 bg-dark-card -rotate-3 z-10"></div>
-
-                     <div className="relative z-20 bg-black border border-gold/50 p-8 clip-corner">
-                        <div className="flex justify-between items-start mb-8">
-                           <div>
-                              <span className="bg-gold text-black text-[10px] font-bold px-2 py-1 uppercase font-mono">Recomendado</span>
-                              <h4 className="text-2xl font-display font-bold text-white mt-4">NEXO INTERDIMENSIONAL</h4>
-                           </div>
-                           <div className="text-gold font-mono text-xl">$???</div>
-                        </div>
-                        <ul className="space-y-3 font-mono text-xs text-gray-400 mb-8">
-                           <li className="flex items-center gap-2"><div className="w-1 h-1 bg-neon-green"></div> SEO AVANZADO</li>
-                           <li className="flex items-center gap-2"><div className="w-1 h-1 bg-neon-green"></div> BLOG / NOTICIAS</li>
-                           <li className="flex items-center gap-2"><div className="w-1 h-1 bg-neon-green"></div> ANIMACIONES CSS</li>
-                        </ul>
-                        <button className="w-full py-3 border border-white/20 hover:bg-gold hover:text-black hover:border-gold transition-all uppercase font-bold text-xs tracking-widest">
-                           Adquirir
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
 
          {/* Testimonial Glitch */}
          <section className="py-32 bg-dark-card border-y border-white/10 relative">
