@@ -82,7 +82,7 @@ const Home: React.FC = () => {
 
                   <RevealOnScroll delay={0.2} width="100%">
                      <div className="w-full px-4 overflow-hidden">
-                        <h1 className="font-display font-black text-[8vw] md:text-[7vw] lg:text-[6rem] leading-[0.9] tracking-tighter mb-8 mix-blend-difference text-left">
+                        <h1 className="font-display font-black text-[7vw] md:text-[6vw] lg:text-[5.5rem] leading-[0.9] tracking-tighter mb-8 mix-blend-difference text-left">
                            <span className="block relative overflow-hidden"><GlitchText text="QUANTUM" /></span>
                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">CODE</span>
                         </h1>
