@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
 
           <RevealOnScroll>
-            <h1 className="text-5xl font-display font-bold text-white mb-8">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-8">
               INICIAR <br /><GlitchText text="TRANSMISIÓN" className="text-gold" />
             </h1>
           </RevealOnScroll>

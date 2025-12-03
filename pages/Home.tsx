@@ -48,21 +48,21 @@ const Home: React.FC = () => {
             <motion.img
                src="/assets/images/alien.svg"
                alt="Alien"
-               className="absolute top-20 right-[10%] w-24 h-24 md:w-32 md:h-32 opacity-80 z-20 pointer-events-none"
+               className="absolute top-20 right-[5%] md:right-[10%] w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 opacity-80 z-20 pointer-events-none"
                animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.img
                src="/assets/images/saturno.svg"
                alt="Saturno"
-               className="absolute bottom-32 left-[5%] w-32 h-32 md:w-48 md:h-48 opacity-60 z-20 pointer-events-none"
+               className="absolute bottom-32 left-[5%] w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 opacity-60 z-20 pointer-events-none"
                animate={{ y: [0, 30, 0], rotate: [0, -10, 10, 0] }}
                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             />
             <motion.img
                src="/assets/images/sistemasolar.svg"
                alt="Sistema Solar"
-               className="absolute top-1/3 left-[-50px] w-64 h-64 opacity-20 z-0 pointer-events-none blur-sm"
+               className="absolute top-1/3 -left-10 sm:left-[-50px] w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 opacity-20 z-0 pointer-events-none blur-sm"
                animate={{ rotate: 360 }}
                transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
             />
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
                   </RevealOnScroll>
 
                   <RevealOnScroll delay={0.2}>
-                     <h1 className="font-display font-black text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-8 mix-blend-difference">
+                     <h1 className="font-display font-black text-5xl sm:text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-8 mix-blend-difference break-words">
                         <GlitchText text="QUANTUM" /> <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">CODE</span>
                      </h1>

@@ -57,7 +57,7 @@ const Services: React.FC = () => {
         <div className="absolute inset-0 bg-noise opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col md:flex-row items-end gap-8">
           <RevealOnScroll>
-            <h1 className="text-7xl md:text-9xl font-display font-black leading-none text-white mix-blend-screen">
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-display font-black leading-none text-white mix-blend-screen break-words">
               <GlitchText text="SERVICIOS" />
             </h1>
           </RevealOnScroll>

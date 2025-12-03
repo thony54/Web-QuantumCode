@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
                 className="block group"
               >
                 <span className="text-gray-600 font-mono text-xs mb-1 block">0{idx + 1}</span>
-                <span className={`text-4xl font-display font-black uppercase tracking-tighter ${location.pathname === item.path ? 'text-gold' : 'text-white'
+                <span className={`text-3xl sm:text-4xl font-display font-black uppercase tracking-tighter ${location.pathname === item.path ? 'text-gold' : 'text-white'
                   }`}>
                   {item.label}
                 </span>

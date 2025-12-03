@@ -14,7 +14,7 @@ const About: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-dark z-10"></div>
         <div className="max-w-4xl mx-auto text-center relative z-20">
           <RevealOnScroll>
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold text-white mb-6">
               SOMOS <br /><GlitchText text="QUANTUM CODE" className="text-gold" />
             </h1>
           </RevealOnScroll>
