@@ -55,9 +55,9 @@ const Services: React.FC = () => {
       {/* Header */}
       <div className="py-24 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col md:flex-row items-end gap-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-4 relative z-10 flex flex-col md:flex-row items-end gap-8 overflow-hidden">
           <RevealOnScroll>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-black leading-none text-white mix-blend-screen break-words">
+            <h1 className="text-[2rem] leading-none sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-black text-white mix-blend-screen break-words tracking-tight sm:tracking-normal">
               <GlitchText text="SERVICIOS" />
             </h1>
           </RevealOnScroll>

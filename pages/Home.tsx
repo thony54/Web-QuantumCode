@@ -81,7 +81,7 @@ const Home: React.FC = () => {
                   </RevealOnScroll>
 
                   <RevealOnScroll delay={0.2}>
-                     <h1 className="font-display font-black text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-8 mix-blend-difference break-words">
+                     <h1 className="font-display font-black text-[2.5rem] leading-none sm:text-6xl md:text-8xl lg:text-9xl tracking-tight sm:tracking-tighter mb-8 mix-blend-difference break-words">
                         <GlitchText text="QUANTUM" /> <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">CODE</span>
                      </h1>
