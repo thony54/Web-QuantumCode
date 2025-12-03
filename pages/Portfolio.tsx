@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { PortfolioItem } from '../types';
+import GlitchText from '../components/ui/GlitchText';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 
 const portfolioData: PortfolioItem[] = [
   { id: 1, title: 'RAT UNIVERSE', category: 'Web', imageUrl: '/assets/images/rat-universe.jpeg' },
@@ -21,7 +23,11 @@ const Portfolio: React.FC = () => {
     <div className="pt-20 bg-dark min-h-screen">
       <div className="bg-black py-16 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-display font-bold text-white mb-8">ARCHIVO <span className="text-neon-blue">VISUAL</span></h1>
+          <RevealOnScroll>
+            <h1 className="text-5xl font-display font-bold text-white mb-8">
+              ARCHIVO <GlitchText text="VISUAL" className="text-neon-blue" />
+            </h1>
+          </RevealOnScroll>
 
           {/* Filters */}
           <div className="flex flex-wrap justify-center gap-4">
@@ -30,8 +36,8 @@ const Portfolio: React.FC = () => {
                 key={cat}
                 onClick={() => setFilter(cat as any)}
                 className={`px-6 py-2 text-sm font-bold uppercase tracking-wider border transition-all duration-300 ${filter === cat
-                    ? 'bg-white text-black border-white'
-                    : 'bg-transparent text-gray-400 border-white/20 hover:border-gold hover:text-gold'
+                  ? 'bg-white text-black border-white'
+                  : 'bg-transparent text-gray-400 border-white/20 hover:border-gold hover:text-gold'
                   }`}
               >
                 {cat}

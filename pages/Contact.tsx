@@ -1,16 +1,22 @@
 import React from 'react';
 import { Mail, Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
+import GlitchText from '../components/ui/GlitchText';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 
 const Contact: React.FC = () => {
   return (
     <div className="pt-20 bg-dark min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-        
+
         {/* Contact Info Side */}
         <div className="bg-black p-12 lg:p-24 flex flex-col justify-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-          
-          <h1 className="text-5xl font-display font-bold text-white mb-8">INICIAR <br/><span className="text-gold">TRANSMISIÓN</span></h1>
+
+          <RevealOnScroll>
+            <h1 className="text-5xl font-display font-bold text-white mb-8">
+              INICIAR <br /><GlitchText text="TRANSMISIÓN" className="text-gold" />
+            </h1>
+          </RevealOnScroll>
           <p className="text-gray-400 mb-12 text-lg">
             Estamos listos para recibir tu señal. Cuéntanos sobre tu proyecto y descodificaremos la mejor solución para ti.
           </p>
@@ -23,7 +29,7 @@ const Contact: React.FC = () => {
                 <p className="text-gray-400">+593 96 303 8666</p>
               </div>
             </div>
-            
+
             <div className="flex items-start space-x-4">
               <Mail className="text-neon-blue mt-1" />
               <div>
@@ -49,9 +55,9 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <a 
-            href="https://wa.me/593963038666" 
-            target="_blank" 
+          <a
+            href="https://wa.me/593963038666"
+            target="_blank"
             rel="noopener noreferrer"
             className="mt-12 inline-flex items-center bg-[#25D366] text-black font-bold py-3 px-6 hover:bg-white transition-colors w-fit"
           >
@@ -72,7 +78,7 @@ const Contact: React.FC = () => {
                 <input type="text" placeholder="Organización" className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors" />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-xs font-mono text-gold mb-2 uppercase">Punto de Contacto</label>
               <input type="email" placeholder="Email" className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors" />

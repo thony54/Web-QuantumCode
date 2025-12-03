@@ -1,5 +1,7 @@
 import React from 'react';
 import { Atom, User } from 'lucide-react';
+import GlitchText from '../components/ui/GlitchText';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 
 const About: React.FC = () => {
   return (
@@ -11,8 +13,14 @@ const About: React.FC = () => {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-dark z-10"></div>
         <div className="max-w-4xl mx-auto text-center relative z-20">
-          <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">SOMOS <br /><span className="text-gold">QUANTUM CODE</span></h1>
-          <p className="text-xl text-gray-300">Exploradores digitales. Creadores de realidades. Arquitectos del futuro.</p>
+          <RevealOnScroll>
+            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">
+              SOMOS <br /><GlitchText text="QUANTUM CODE" className="text-gold" />
+            </h1>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.2}>
+            <p className="text-xl text-gray-300">Exploradores digitales. Creadores de realidades. Arquitectos del futuro.</p>
+          </RevealOnScroll>
         </div>
       </div>
 
