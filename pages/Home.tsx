@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Zap, Video, PenTool, Globe, Cpu, Atom, Plus, Hexagon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import GlitchText from '../components/ui/GlitchText';
+import RevealOnScroll from '../components/ui/RevealOnScroll';
 
 const backgroundImages = [
    '/assets/images/FONDO1.jpg',
@@ -71,34 +73,44 @@ const Home: React.FC = () => {
             <div className="max-w-7xl mx-auto w-full relative z-30 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-20">
 
                <div className="lg:col-span-8">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 border border-neon-blue/30 rounded-full text-neon-blue text-xs font-mono mb-8 bg-neon-blue/5 backdrop-blur-sm">
-                     <div className="w-2 h-2 bg-neon-blue rounded-full animate-pulse"></div>
-                     SYSTEM READY // V.3.0
-                  </div>
+                  <RevealOnScroll>
+                     <div className="inline-flex items-center gap-2 px-3 py-1 border border-neon-blue/30 rounded-full text-neon-blue text-xs font-mono mb-8 bg-neon-blue/5 backdrop-blur-sm">
+                        <div className="w-2 h-2 bg-neon-blue rounded-full animate-pulse"></div>
+                        SYSTEM READY // V.3.0
+                     </div>
+                  </RevealOnScroll>
 
-                  <h1 className="font-display font-black text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-8 mix-blend-difference">
-                     QUANTUM <br />
-                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">CODE</span>
-                  </h1>
+                  <RevealOnScroll delay={0.2}>
+                     <h1 className="font-display font-black text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-8 mix-blend-difference">
+                        <GlitchText text="QUANTUM" /> <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">CODE</span>
+                     </h1>
+                  </RevealOnScroll>
 
-                  <p className="font-mono text-sm md:text-base text-gray-300 max-w-2xl leading-relaxed border-l border-gold pl-6 py-2 bg-black/30 backdrop-blur-sm">
-                     AGENCIA MULTIDISCIPLINARIA DE DISEÑO, DESARROLLO Y PRODUCCIÓN AUDIOVISUAL.
-                     <br /><span className="text-white">CONSTRUYENDO EL FUTURO DESDE EL VACÍO.</span>
-                  </p>
+                  <RevealOnScroll delay={0.4}>
+                     <p className="font-mono text-sm md:text-base text-gray-300 max-w-2xl leading-relaxed border-l border-gold pl-6 py-2 bg-black/30 backdrop-blur-sm">
+                        AGENCIA MULTIDISCIPLINARIA DE DISEÑO, DESARROLLO Y PRODUCCIÓN AUDIOVISUAL.
+                        <br /><span className="text-white">CONSTRUYENDO EL FUTURO DESDE EL VACÍO.</span>
+                     </p>
+                  </RevealOnScroll>
                </div>
 
                <div className="lg:col-span-4 flex flex-col justify-end items-start lg:items-end">
                   <div className="w-full h-px bg-white/20 mb-8"></div>
 
                   <div className="flex flex-col gap-4 w-full">
-                     <Link to="/servicios" className="group w-full border border-white/20 p-4 hover:bg-white hover:text-black transition-all duration-300 flex justify-between items-center backdrop-blur-sm bg-black/20">
-                        <span className="font-mono text-sm uppercase tracking-widest">Explorar Servicios</span>
-                        <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
-                     </Link>
-                     <Link to="/contacto" className="group w-full bg-gold text-black p-4 font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-between items-center clip-corner shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-                        <span>Iniciar Protocolo</span>
-                        <Plus className="group-hover:rotate-90 transition-transform" size={18} />
-                     </Link>
+                     <RevealOnScroll delay={0.6} width="100%">
+                        <Link to="/servicios" className="group w-full border border-white/20 p-4 hover:bg-white hover:text-black transition-all duration-300 flex justify-between items-center backdrop-blur-sm bg-black/20">
+                           <span className="font-mono text-sm uppercase tracking-widest">Explorar Servicios</span>
+                           <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
+                        </Link>
+                     </RevealOnScroll>
+                     <RevealOnScroll delay={0.7} width="100%">
+                        <Link to="/contacto" className="group w-full bg-gold text-black p-4 font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-between items-center clip-corner shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                           <span>Iniciar Protocolo</span>
+                           <Plus className="group-hover:rotate-90 transition-transform" size={18} />
+                        </Link>
+                     </RevealOnScroll>
                   </div>
                </div>
             </div>
@@ -119,8 +131,12 @@ const Home: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4">
                <div className="flex items-end justify-between mb-16">
                   <div>
-                     <h2 className="font-display font-bold text-5xl md:text-6xl text-white mb-2">CAPACIDADES</h2>
-                     <p className="font-mono text-gold text-xs uppercase tracking-[0.3em]">/// Classified Files</p>
+                     <RevealOnScroll>
+                        <GlitchText text="CAPACIDADES" as="h2" className="font-display font-bold text-5xl md:text-6xl text-white mb-2" />
+                     </RevealOnScroll>
+                     <RevealOnScroll delay={0.2}>
+                        <p className="font-mono text-gold text-xs uppercase tracking-[0.3em]">/// Classified Files</p>
+                     </RevealOnScroll>
                   </div>
                   <Atom className="text-white/20 w-24 h-24 absolute right-0 top-0 -translate-y-1/2 translate-x-1/4 animate-spin-slow pointer-events-none" />
                </div>
@@ -133,20 +149,20 @@ const Home: React.FC = () => {
                      { icon: Zap, title: "MARKETING", id: "04", desc: "Growth Hacking, SEO, Ads." },
                      { icon: Code, title: "BRANDING", id: "05", desc: "Identidad Visual, Naming." },
                      { icon: Cpu, title: "ART", id: "06", desc: "Ilustración Digital, 3D." }
-                  ].map((service) => (
-                     <div key={service.id} className="bg-black p-8 group hover:bg-neutral-900 transition-colors relative overflow-hidden">
-                        <div className="absolute top-4 right-4 font-mono text-xs text-gray-700 group-hover:text-gold transition-colors">FIG.{service.id}</div>
-                        <service.icon className="w-8 h-8 text-gray-500 mb-6 group-hover:text-neon-blue transition-colors" />
-                        <h3 className="font-display font-bold text-2xl mb-2">{service.title}</h3>
-                        <p className="text-gray-500 font-mono text-xs leading-relaxed">{service.desc}</p>
-                        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                     </div>
+                  ].map((service, index) => (
+                     <RevealOnScroll key={service.id} delay={index * 0.1} width="100%">
+                        <div className="bg-black p-8 group hover:bg-neutral-900 transition-colors relative overflow-hidden h-full">
+                           <div className="absolute top-4 right-4 font-mono text-xs text-gray-700 group-hover:text-gold transition-colors">FIG.{service.id}</div>
+                           <service.icon className="w-8 h-8 text-gray-500 mb-6 group-hover:text-neon-blue transition-colors" />
+                           <h3 className="font-display font-bold text-2xl mb-2">{service.title}</h3>
+                           <p className="text-gray-500 font-mono text-xs leading-relaxed">{service.desc}</p>
+                           <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        </div>
+                     </RevealOnScroll>
                   ))}
                </div>
             </div>
          </section>
-
-         {/* Horizontal Scroll / Marquee Style Section for Packages */}
 
 
          {/* Testimonial Glitch */}
@@ -158,10 +174,12 @@ const Home: React.FC = () => {
                      <Globe className="text-white" />
                   </div>
                </div>
-               <h2 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight mb-8">
-                  "UNA EXPERIENCIA <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-green">EXTRAORDINARIA</span>.
-                  QUANTUM CODE REESCRIBIÓ NUESTRO CÓDIGO GENÉTICO DIGITAL."
-               </h2>
+               <RevealOnScroll>
+                  <h2 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight mb-8">
+                     "UNA EXPERIENCIA <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-green">EXTRAORDINARIA</span>.
+                     QUANTUM CODE REESCRIBIÓ NUESTRO CÓDIGO GENÉTICO DIGITAL."
+                  </h2>
+               </RevealOnScroll>
                <div className="flex items-center justify-center gap-4">
                   <div className="h-px w-12 bg-gray-700"></div>
                   <cite className="font-mono text-xs text-gold uppercase not-italic">Thony Karter // CEO Nexus</cite>
@@ -178,10 +196,14 @@ const Home: React.FC = () => {
             </div>
 
             <div className="relative z-10 text-center px-4">
-               <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-8">¿LISTO PARA LA <br /> EVOLUCIÓN?</h2>
-               <Link to="/contacto" className="inline-block bg-white text-black font-bold font-mono text-sm py-4 px-10 uppercase tracking-widest hover:bg-gold transition-colors clip-corner">
-                  Iniciar Transmisión
-               </Link>
+               <RevealOnScroll>
+                  <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-8">¿LISTO PARA LA <br /> EVOLUCIÓN?</h2>
+               </RevealOnScroll>
+               <RevealOnScroll delay={0.2}>
+                  <Link to="/contacto" className="inline-block bg-white text-black font-bold font-mono text-sm py-4 px-10 uppercase tracking-widest hover:bg-gold transition-colors clip-corner">
+                     Iniciar Transmisión
+                  </Link>
+               </RevealOnScroll>
             </div>
          </section>
 
