@@ -1,7 +1,79 @@
-import React from 'react';
-import { Atom, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { Atom, User, Instagram, Globe } from 'lucide-react';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
+
+interface Social {
+  type: 'instagram' | 'tiktok' | 'web' | 'connexo';
+  url: string;
+}
+
+interface TeamMemberCardProps {
+  name: string;
+  role: string;
+  image: string;
+  hoverImage: string;
+  socials: Social[];
+}
+
+const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, role, image, hoverImage, socials }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const getSocialIcon = (type: Social['type']) => {
+    switch (type) {
+      case 'instagram':
+        return <Instagram size={18} />;
+      case 'tiktok':
+        return (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+          </svg>
+        );
+      case 'web':
+        return <Globe size={18} />;
+      case 'connexo':
+        return <img src="/assets/images/connexo-icon.png" alt="Connexo" className="w-[18px] h-[18px] object-contain" />;
+    }
+  };
+
+  return (
+    <div
+      className="group bg-dark-card border border-white/5 overflow-hidden relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="aspect-[3/4] bg-gray-900 relative overflow-hidden">
+        <img
+          src={isHovered ? hoverImage : image}
+          alt={name}
+          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 object-center"
+        />
+        <div className="absolute inset-0 bg-neon-blue/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      </div>
+      <div className="p-6 text-center">
+        <h3 className="text-white font-bold text-2xl font-display">{name}</h3>
+        <p className="text-gold text-sm font-mono uppercase tracking-widest mt-2 mb-4">
+          {role}
+        </p>
+        <div className="flex justify-center gap-4">
+          {socials.map((social, idx) => (
+            <a
+              key={idx}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+            >
+              {getSocialIcon(social.type)}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gold to-neon-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+    </div>
+  );
+};
+
 
 const About: React.FC = () => {
   return (
@@ -58,28 +130,28 @@ const About: React.FC = () => {
           <h2 className="text-3xl font-display font-bold text-center text-white mb-16">EQUIPO <span className="text-neon-green">MULTIVERSAL</span></h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              { name: 'KARTER', role: 'FUNDADOR', image: '/assets/images/karter.png' },
-              { name: 'EMA', role: 'DISEÑADOR', image: '/assets/images/ema.png' }
-            ].map((member, idx) => (
-              <div key={idx} className="group bg-dark-card border border-white/5 overflow-hidden relative">
-                <div className="aspect-[3/4] bg-gray-900 relative overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-80 object-center"
-                  />
-                  <div className="absolute inset-0 bg-neon-blue/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-white font-bold text-2xl font-display">{member.name}</h3>
-                  <p className="text-gold text-sm font-mono uppercase tracking-widest mt-2">
-                    {member.role}
-                  </p>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gold to-neon-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </div>
-            ))}
+            <TeamMemberCard
+              name="KARTER"
+              role="Fundador y Director"
+              image="/assets/images/karter.png"
+              hoverImage="/assets/images/karter-alien.png"
+              socials={[
+                { type: 'instagram', url: 'https://www.instagram.com/karter_code' },
+                { type: 'tiktok', url: 'https://www.tiktok.com/@karter_code' },
+                { type: 'connexo', url: 'https://app.connexo.tech/KarterCode' }
+              ]}
+            />
+            <TeamMemberCard
+              name="EMA"
+              role="Co-fundador y Diseñador"
+              image="/assets/images/ema.png"
+              hoverImage="/assets/images/ema-alien.png"
+              socials={[
+                { type: 'instagram', url: 'https://instagram.com/ema.visual' },
+                { type: 'web', url: 'https://www.emavisual.art/' },
+                { type: 'connexo', url: 'https://app.connexo.tech/ema' }
+              ]}
+            />
           </div>
         </div>
       </div>

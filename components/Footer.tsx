@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Linkedin, Atom, ArrowUpRight } from 'lucide-react';
+import { Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+
+const WhatsappIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
 
 const Footer: React.FC = () => {
   return (
@@ -22,11 +28,15 @@ const Footer: React.FC = () => {
               Agencia creativa interdimensional especializada en diseño post-apocalíptico y desarrollo web de alta fidelidad. Decodificamos el caos para construir el futuro.
             </p>
             <div className="flex gap-4">
-              {[Instagram, Twitter, Linkedin, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-gold hover:bg-gold/10 transition-all">
-                  <Icon size={18} />
-                </a>
-              ))}
+              <a href="https://www.instagram.com/quantumcode.art/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-gold hover:bg-gold/10 transition-all">
+                <Instagram size={18} />
+              </a>
+              <a href="https://www.linkedin.com/company/quantumcodeart/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-gold hover:bg-gold/10 transition-all">
+                <Linkedin size={18} />
+              </a>
+              <a href="https://wa.me/593963038666" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-gold hover:bg-gold/10 transition-all">
+                <WhatsappIcon />
+              </a>
             </div>
           </div>
 
@@ -85,7 +95,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-gray-600">
           <p>ID: 994-221-00 // © {new Date().getFullYear()} Quantum Code</p>
-          <p>Diseñado por Ema // Ejecutado en React</p>
+          <p>Diseñado por <a href="https://www.emavisual.art/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Ema</a> // Ejecutando el Código Cuántico</p>
         </div>
       </div>
     </footer>

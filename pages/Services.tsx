@@ -3,6 +3,7 @@ import { Layers, Monitor, Camera, Megaphone, PenTool, Layout, Image, HardDrive, 
 import { Link } from 'react-router-dom';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
+import VelocityText from '../components/ui/VelocityText';
 
 const Services: React.FC = () => {
   const servicesList = [
@@ -60,7 +61,7 @@ const Services: React.FC = () => {
             <RevealOnScroll width="100%">
               <div className="w-full flex justify-center">
                 <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-black leading-none text-white mix-blend-screen tracking-tighter">
-                  <GlitchText text="SERVICIOS" />
+                  <GlitchText text="SERVICIOS" as="span" />
                 </h1>
               </div>
             </RevealOnScroll>
@@ -90,16 +91,7 @@ const Services: React.FC = () => {
 
                 <div className="flex-grow">
                   <h3 className="text-3xl font-display font-bold text-white mb-4">{service.title}</h3>
-                  <p className="text-gray-400 mb-8 max-w-2xl font-light">{service.desc}</p>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {service.features.map((feature, fIdx) => (
-                      <div key={fIdx} className="flex items-center text-xs font-mono text-gold/80">
-                        <span className="mr-2 text-gray-600">[+]</span>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-gold max-w-2xl font-light">{service.desc}</p>
                 </div>
 
                 <div className="hidden md:block">
@@ -113,15 +105,25 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* Tech Stack Banner */}
-      <div className="py-20 border-t border-white/10 text-center bg-dark-card">
-        <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.3em] mb-12">Stack Tecnológico</p>
-        <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-40">
-          {['REACT', 'NEXT.JS', 'TAILWIND', 'ADOBE', 'FIGMA', 'THREE.JS'].map((tech) => (
-            <span key={tech} className="text-4xl font-display font-bold text-transparent text-outline hover:text-white hover:text-outline-none transition-all cursor-crosshair">
-              {tech}
-            </span>
-          ))}
+      {/* Skills Banner */}
+      <div className="py-20 border-t border-white/10 text-center bg-dark-card overflow-hidden">
+        <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.3em] mb-12">Habilidades</p>
+
+        <div className="opacity-40 hover:opacity-100 transition-opacity duration-500">
+          <VelocityText baseVelocity={1} className="py-4">
+            {['ACCESIBILIDAD DIGITAL', 'PRODUCCIÓN AUDIOVISUAL', 'DISEÑO GRÁFICO', 'FOTOGRAFÍA PROFESIONAL', 'DESARROLLO Y TECNOLOGÍA'].map((tech) => (
+              <span key={tech} className="text-4xl md:text-6xl font-display font-bold text-transparent text-outline hover:text-white hover:text-outline-none transition-all cursor-crosshair">
+                {tech}
+              </span>
+            ))}
+          </VelocityText>
+          <VelocityText baseVelocity={-1} className="py-4 mt-8">
+            {['PROGRAMACIÓN', 'MÚSICA', 'AUDIOVISUAL', 'COMMUNITY MANAGEMENT', 'SOCIAL MEDIA'].map((tech) => (
+              <span key={tech} className="text-4xl md:text-6xl font-display font-bold text-transparent text-outline hover:text-white hover:text-outline-none transition-all cursor-crosshair">
+                {tech}
+              </span>
+            ))}
+          </VelocityText>
         </div>
       </div>
     </div>

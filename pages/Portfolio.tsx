@@ -26,7 +26,7 @@ const Portfolio: React.FC = () => {
           <RevealOnScroll width="100%">
             <div className="flex justify-center w-full">
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-8 tracking-tight text-center">
-                ARCHIVO <GlitchText text="VISUAL" className="text-neon-blue" />
+                ARCHIVO <GlitchText text="VISUAL" className="text-neon-blue" as="span" />
               </h1>
             </div>
           </RevealOnScroll>

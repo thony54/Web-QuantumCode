@@ -94,7 +94,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Nav Overlay */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black pt-32 px-6">
+        <div className="md:hidden fixed inset-0 z-40 bg-neutral-950 pt-32 px-6 h-screen w-screen">
           <div className="border-l border-white/10 pl-6 space-y-6">
             {navItems.map((item, idx) => (
               <Link
