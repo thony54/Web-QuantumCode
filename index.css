@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    cursor: url('/assets/images/cursor-camera.svg') 16 16, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  .cursor-pointer {
+    cursor: url('/assets/images/cursor-camera-hover.svg') 16 16, pointer !important;
+  }
+}
+
 @layer utilities {
   .clip-path-1 {
     clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
@@ -121,4 +137,18 @@
 
 .animate-glitch-2 {
   animation: glitch-anim-2 2.3s infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }

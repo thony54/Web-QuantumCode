@@ -10,6 +10,20 @@ const backgroundImages = [
    '/assets/images/FONDO2.jpg'
 ];
 
+const brandsList = [
+   'Agendas Juveniles Imbabura.png',
+   'Connexo.png',
+   'DAEZ DIGITAL WEB.webp',
+   'EasyXplorer.svg',
+   'Fundacion Arupo.png',
+   'GIZ Ecuador.png',
+   'Semilla Solar (Sobre blanco).png',
+   'Semilla Solar (Sobre negro).png',
+   'Voluntariado Fundación Arupo.svg',
+   'Yellow House.svg',
+   'logo-ema1.png'
+];
+
 const Home: React.FC = () => {
    const [currentBgIndex, setCurrentBgIndex] = useState(0);
    const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -190,6 +204,44 @@ const Home: React.FC = () => {
             </div>
          </section>
 
+         {/* Brands Carousel */}
+         <section className="py-12 border-b border-white/10 bg-black overflow-hidden relative flex flex-col items-center">
+            <p className="font-mono text-xs text-gray-500 tracking-[0.2em] mb-8">/// MARCAS ASOCIADAS</p>
+            <div className="w-full relative flex overflow-hidden group">
+               {/* Fade overlays for the edges */}
+               <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+               <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+
+               {/* Marquee Container */}
+               <div className="flex animate-marquee hover:[animation-play-state:paused] w-max">
+                  {/* First Set */}
+                  <div className="flex gap-16 md:gap-24 items-center px-8 md:px-12">
+                     {brandsList.map((brand, idx) => (
+                        <div key={`brand-1-${idx}`} className="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
+                           <img
+                              src={`/assets/brands/${brand}`}
+                              alt={`Brand ${idx}`}
+                              className="max-w-full max-h-full object-contain brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-300"
+                           />
+                        </div>
+                     ))}
+                  </div>
+                  {/* Duplicate Set for Seamless Loop */}
+                  <div className="flex gap-16 md:gap-24 items-center px-8 md:px-12">
+                     {brandsList.map((brand, idx) => (
+                        <div key={`brand-2-${idx}`} className="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
+                           <img
+                              src={`/assets/brands/${brand}`}
+                              alt={`Brand ${idx}`}
+                              className="max-w-full max-h-full object-contain brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-300"
+                           />
+                        </div>
+                     ))}
+                  </div>
+               </div>
+            </div>
+         </section>
+
          {/* Services "File" Layout */}
          <section className="py-24 border-b border-white/10 bg-dark-card relative">
             <div className="max-w-7xl mx-auto px-4">
@@ -245,8 +297,11 @@ const Home: React.FC = () => {
                      </h2>
                   </RevealOnScroll>
                   <RevealOnScroll delay={0.2}>
-                     <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                     <p className="text-gray-400 text-lg leading-relaxed mb-6">
                         La innovación real incluye a todos. Orgullosamente aliados con <strong className="text-white">Fundación Arupo</strong>, somos la <span className="text-gold">primera agencia digital en Ecuador</span> que integra criterios de accesibilidad nativa como estándar.
+                     </p>
+                     <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                        Actualmente producimos el documental <strong className="text-white">"Voces de Resiliencia"</strong>, una obra que visibiliza historias de movilidad humana y discapacidad junto a Fundación Arupo. Además, incluimos en nuestra web un clip exclusivo del proyecto como muestra de nuestro compromiso audiovisual y social.
                      </p>
                      <div className="flex flex-col gap-4 border-l-2 border-white/10 pl-6">
                         <p className="text-gray-500 font-mono text-sm">
@@ -259,23 +314,26 @@ const Home: React.FC = () => {
                   </RevealOnScroll>
                </div>
 
-               <div className="relative order-1 md:order-2">
-                  <RevealOnScroll delay={0.3}>
+               <div className="relative order-1 md:order-2 w-full">
+                  <RevealOnScroll delay={0.3} width="100%">
                      {/* Image Frame */}
-                     <div className="aspect-[4/3] relative group overflow-hidden border border-white/10 bg-dark-card">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-black via-transparent to-transparent z-10 opactiy-60"></div>
-                        <img
-                           src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
-                           alt="Accesibilidad Digital"
-                           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
-                        />
+                     <div className="w-full aspect-[4/3] relative group overflow-hidden border border-white/10 bg-dark-card">
+                        <iframe
+                           className="absolute top-0 left-0 w-full h-full scale-100 group-hover:scale-105 transition-all duration-700 pointer-events-auto border-0"
+                           src="https://www.youtube.com/embed/R10MXgw13co?si=rFvSmIcf2_4GM8PX"
+                           title="YouTube video player"
+                           frameBorder="0"
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                           referrerPolicy="strict-origin-when-cross-origin"
+                           allowFullScreen
+                        ></iframe>
 
                         {/* Overlay Tech Elements */}
                         <div className="absolute top-4 right-4 z-20 p-2 bg-black/50 backdrop-blur border border-white/20">
                            <Hexagon className="text-gold w-6 h-6 animate-pulse" />
                         </div>
 
-                        <div className="absolute bottom-0 left-0 w-full p-6 z-20 bg-gradient-to-t from-black to-transparent">
+                        <div className="absolute bottom-0 left-0 w-full p-6 z-20 bg-gradient-to-t from-black to-transparent pointer-events-none">
                            <h3 className="text-2xl font-display font-bold text-white">FUNDACIÓN ARUPO</h3>
                            <p className="text-xs font-mono text-gold uppercase tracking-wider mt-1">Partnership Oficial 2024</p>
                         </div>
@@ -332,10 +390,10 @@ const Home: React.FC = () => {
                   ))}
                </div>
             </div>
-         </section>
+         </section >
 
          {/* Big Footer CTA */}
-         <section className="min-h-[50vh] flex flex-col items-center justify-center bg-black relative overflow-hidden">
+         < section className="min-h-[50vh] flex flex-col items-center justify-center bg-black relative overflow-hidden" >
             <div className="absolute inset-0 bg-noise opacity-20"></div>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
                <h2 className="text-[20vw] font-display font-black text-white leading-none tracking-tighter">START</h2>
@@ -351,9 +409,9 @@ const Home: React.FC = () => {
                   </Link>
                </RevealOnScroll>
             </div>
-         </section>
+         </section >
 
-      </div>
+      </div >
    );
 };
 
