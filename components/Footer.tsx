@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Instagram, Linkedin } from 'lucide-react';
 
 const WhatsappIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 font-sans">
-                // SYSTEM_STATUS: OPERATIONAL <br />
-              Agencia creativa interdimensional especializada en diseño post-apocalíptico y desarrollo web de alta fidelidad. Decodificamos el caos para construir el futuro.
+              AGENCIA MULTIDISCIPLINARIA DE PRODUCCIÓN AUDIOVISUAL, DISEÑO Y DESARROLLO.<br />
+              <span className="text-gray-500">Transformamos ideas complejas en sistemas digitales sólidos con accesibilidad digital nativa.</span>
             </p>
             <div className="flex gap-4">
               <a href="https://www.instagram.com/quantumcode.art/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-gold hover:bg-gold/10 transition-all">
@@ -40,22 +40,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-12 md:mt-0">
-            <h3 className="text-gold text-xs uppercase tracking-[0.2em] mb-6">Suscríbete al feed</h3>
-            <form className="flex border-b border-white/30 pb-2 max-w-sm group focus-within:border-gold transition-colors">
-              <input
-                type="email"
-                placeholder="INGRESA TU EMAIL"
-                className="bg-transparent border-none text-white w-full focus:outline-none text-sm placeholder-gray-600"
-              />
-              <button className="text-white hover:text-gold uppercase text-xs font-bold tracking-widest flex items-center">
-                Enviar <ArrowUpRight size={14} className="ml-1" />
-              </button>
-            </form>
-            <p className="text-gray-600 text-[10px] mt-4 uppercase max-w-xs">
-              Al unirte aceptas recibir transmisiones cifradas y ofertas interdimensionales.
-            </p>
-          </div>
+
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
@@ -87,7 +72,7 @@ const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="block text-gray-600 text-[10px] uppercase">Ubicación</span>
-                Multiverso Digital, Sector 7G
+                Ibarra, Ecuador
               </div>
             </div>
           </div>

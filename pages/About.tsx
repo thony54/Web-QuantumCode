@@ -93,33 +93,62 @@ const About: React.FC = () => {
             </div>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2} width="100%">
-            <p className="text-xl text-gray-300 text-center mx-auto max-w-2xl">Exploradores digitales. Creadores de realidades. Arquitectos del futuro.</p>
+            <p className="text-xl text-gray-300 text-center mx-auto max-w-2xl">Estrategia, código y lenguaje audiovisual. Diseñados como un mismo sistema.</p>
           </RevealOnScroll>
         </div>
       </div>
 
-      {/* Story */}
+      {/* Quiénes Somos */}
       <div className="max-w-5xl mx-auto px-4 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-3xl font-display font-bold text-white mb-6 border-l-4 border-neon-blue pl-4">NUESTRA HISTORIA</h2>
+            <h2 className="text-3xl font-display font-bold text-white mb-6 border-l-4 border-neon-blue pl-4">QUIÉNES SOMOS</h2>
             <div className="prose prose-invert text-gray-400">
               <p className="mb-4">
-                Nacidos en la singularidad del ciberespacio, Quantum Code surgió como una respuesta a la uniformidad digital. En un mundo donde todo parece igual, nosotros decidimos mirar hacia las estrellas y traer de vuelta lo extraordinario.
+                Quantum Code no es solo una agencia creativa. Es un estudio donde la estrategia, el código y el lenguaje audiovisual se diseñan como un mismo sistema.
               </p>
               <p className="mb-4">
-                Comenzamos como un pequeño nodo de resistencia creativa, experimentando con códigos y píxeles en un sótano iluminado por neón. Hoy, somos una fuerza interdimensional que colabora con marcas visionarias para romper las barreras de lo posible.
+                Nos diferenciamos porque no separamos diseño de desarrollo, ni estética de funcionalidad, ni narrativa de tecnología. Pensamos como ingenieros, dirigimos como cineastas y ejecutamos como estrategas digitales.
+              </p>
+              <p className="mb-4">
+                Integramos accesibilidad nativa, arquitectura digital sólida y dirección visual cinematográfica como estándar, no como extra.
               </p>
               <p>
-                Creemos que cada clic cuenta una historia y que cada píxel tiene el potencial de inspirar una emoción.
+                No hacemos contenido por tendencia. Construimos activos digitales con intención, precisión y visión a largo plazo.
               </p>
             </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-neon-blue to-neon-pink opacity-20 blur-xl"></div>
             <div className="relative bg-black border border-white/10 p-2">
-              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop" alt="Cyberpunk office" className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500" />
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop" alt="Quantum Code studio" className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500" />
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Misión y Visión */}
+      <div className="bg-black border-t border-white/10 py-20">
+        <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="border border-white/10 p-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-gold to-transparent"></div>
+            <h3 className="font-display font-bold text-2xl text-white mb-4 pl-4">MISIÓN</h3>
+            <p className="text-gray-400 leading-relaxed pl-4">
+              Desarrollar y potenciar marcas, organizaciones y proyectos mediante un ecosistema integral que une estrategia, diseño, tecnología, producción audiovisual, música, accesibilidad digital y gestión de comunicación.
+            </p>
+            <p className="text-gray-400 leading-relaxed pl-4 mt-4">
+              Transformamos ideas en sistemas funcionales: identidades con dirección, plataformas digitales sólidas, narrativas audiovisuales con intención y experiencias accesibles para todos.
+            </p>
+          </div>
+          <div className="border border-white/10 p-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-neon-blue to-transparent"></div>
+            <h3 className="font-display font-bold text-2xl text-white mb-4 pl-4">VISIÓN</h3>
+            <p className="text-gray-400 leading-relaxed pl-4">
+              Consolidarnos como una agencia creativa y tecnológica de referencia en Latinoamérica, reconocida por integrar ingeniería, dirección audiovisual y estrategia digital bajo un mismo estándar de calidad.
+            </p>
+            <p className="text-gray-400 leading-relaxed pl-4 mt-4">
+              Nuestra visión no es crecer por volumen, sino por relevancia: construir proyectos que perduren, evolucionen y se conviertan en activos estratégicos para quienes confían en nosotros.
+            </p>
           </div>
         </div>
       </div>

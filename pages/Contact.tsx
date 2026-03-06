@@ -14,11 +14,11 @@ const Contact: React.FC = () => {
 
           <RevealOnScroll>
             <h1 className="text-[1.75rem] leading-tight sm:text-4xl md:text-5xl font-display font-bold text-white mb-8 tracking-tight sm:tracking-normal">
-              INICIAR <br /><GlitchText text="TRANSMISIÓN" className="text-gold" />
+              INICIAR <br /><GlitchText text="PROYECTO" className="text-gold" />
             </h1>
           </RevealOnScroll>
           <p className="text-gray-400 mb-12 text-lg">
-            Estamos listos para recibir tu señal. Cuéntanos sobre tu proyecto y descodificaremos la mejor solución para ti.
+            Estábamos esperando esta señal. Cuéntanos sobre tu proyecto y construiremos juntos la mejor solución.
           </p>
 
           <div className="space-y-8">
@@ -50,7 +50,8 @@ const Contact: React.FC = () => {
               <MapPin className="text-neon-blue mt-1" />
               <div>
                 <h3 className="text-white font-bold uppercase tracking-wider">Base de Operaciones</h3>
-                <p className="text-gray-400">Coordenadas del Multiverso Digital</p>
+                <p className="text-gray-400">Ibarra, Ecuador</p>
+                <p className="text-gray-400">Barquisimeto, Venezuela</p>
               </div>
             </div>
           </div>

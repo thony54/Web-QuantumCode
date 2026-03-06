@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Zap, Video, PenTool, Globe, Cpu, Atom, Plus, Hexagon, Heart } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
 
@@ -17,14 +17,112 @@ const brandsList = [
    'EasyXplorer.svg',
    'Fundacion Arupo.png',
    'GIZ Ecuador.png',
-   'Semilla Solar (Sobre blanco).png',
    'Semilla Solar (Sobre negro).png',
    'Voluntariado Fundación Arupo.svg',
    'Yellow House.svg',
    'logo-ema1.png'
 ];
 
+interface CapabilityService {
+   icon: React.ElementType;
+   title: string;
+   id: string;
+   desc: string;
+   accent: string;
+}
+
+const cardVariants = {
+   hidden: { opacity: 0, y: 28 },
+   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
+};
+
+const CapabilityCard: React.FC<{ service: CapabilityService }> = ({ service }) => {
+   const cardRef = useRef<HTMLDivElement>(null);
+   const mouseX = useMotionValue(0);
+   const mouseY = useMotionValue(0);
+
+   const springX = useSpring(mouseX, { stiffness: 200, damping: 30 });
+   const springY = useSpring(mouseY, { stiffness: 200, damping: 30 });
+
+   const spotlight = useMotionTemplate`radial-gradient(180px circle at ${springX}px ${springY}px, ${service.accent}18, transparent 80%)`;
+
+   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      mouseX.set(e.clientX - rect.left);
+      mouseY.set(e.clientY - rect.top);
+   };
+
+   return (
+      <motion.div variants={cardVariants}>
+         <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            className="relative overflow-hidden h-full flex flex-col p-6 bg-black border border-white/[0.06] cursor-default group"
+            whileHover={{ y: -5, borderColor: `${service.accent}40` }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+         >
+            {/* Mouse-tracking spotlight */}
+            <motion.div
+               className="pointer-events-none absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+               style={{ background: spotlight }}
+            />
+
+            {/* Top shimmer line */}
+            <div
+               className="absolute top-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500 ease-out z-10"
+               style={{ background: `linear-gradient(90deg, ${service.accent}, transparent)` }}
+            />
+
+            {/* Ghost number */}
+            <span className="absolute -bottom-2 -right-1 font-display font-black text-[5.5rem] leading-none select-none pointer-events-none text-white/[0.03] group-hover:text-white/[0.06] transition-all duration-500 group-hover:scale-105 origin-bottom-right z-0">
+               {service.id}
+            </span>
+
+            {/* Icon container */}
+            <div className="relative w-10 h-10 mb-5 flex items-center justify-center z-10">
+               <div
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-md"
+                  style={{ backgroundColor: service.accent }}
+               />
+               <service.icon className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors duration-300 relative z-10" />
+            </div>
+
+            {/* File label */}
+            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-gray-700 mb-2 relative z-10">
+               FILE_{service.id}
+            </p>
+
+            {/* Title */}
+            <h3 className="font-display font-bold text-lg text-white mb-3 leading-tight relative z-10">
+               {service.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-gray-600 font-mono text-[11px] leading-relaxed flex-1 group-hover:text-gray-400 transition-colors duration-300 relative z-10">
+               {service.desc}
+            </p>
+
+            {/* Bottom accent */}
+            <div className="mt-5 flex items-center gap-2 pt-4 border-t border-white/5 relative z-10">
+               <div
+                  className="w-2 h-2 rounded-full flex-shrink-0 opacity-40 group-hover:opacity-100 transition-all duration-300"
+                  style={{ backgroundColor: service.accent }}
+               />
+               <span
+                  className="font-mono text-[9px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ color: service.accent }}
+               >
+                  Ver más
+               </span>
+            </div>
+         </motion.div>
+      </motion.div>
+   );
+};
+
 const Home: React.FC = () => {
+
    const [currentBgIndex, setCurrentBgIndex] = useState(0);
    const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
@@ -167,7 +265,7 @@ const Home: React.FC = () => {
                         className="font-mono text-sm md:text-base text-gray-300 max-w-2xl leading-relaxed border-l border-gold pl-6 py-2 bg-black/30 backdrop-blur-sm"
                         style={{ opacity: textOpacity }}
                      >
-                        AGENCIA MULTIDISCIPLINARIA DE DISEÑO, DESARROLLO Y PRODUCCIÓN AUDIOVISUAL.
+                        AGENCIA MULTIDISCIPLINARIA DE PRODUCCIÓN AUDIOVISUAL, DISEÑO Y DESARROLLO.
                         <br /><span className="text-white">CONSTRUYENDO EL FUTURO DESDE EL VACÍO.</span>
                      </motion.p>
                   </RevealOnScroll>
@@ -245,38 +343,38 @@ const Home: React.FC = () => {
          {/* Services "File" Layout */}
          <section className="py-24 border-b border-white/10 bg-dark-card relative">
             <div className="max-w-7xl mx-auto px-4">
-               <div className="flex items-end justify-between mb-16">
+               <div className="flex items-end justify-between mb-16 relative">
                   <div>
                      <RevealOnScroll>
                         <GlitchText text="CAPACIDADES" as="h2" className="font-display font-bold text-5xl md:text-6xl text-white mb-2" />
                      </RevealOnScroll>
                      <RevealOnScroll delay={0.2}>
-                        <p className="font-mono text-gold text-xs uppercase tracking-[0.3em]">/// Classified Files</p>
+                        <p className="font-mono text-gold text-xs uppercase tracking-[0.3em]">/// Lo que construimos</p>
                      </RevealOnScroll>
                   </div>
                   <Atom className="text-white/20 w-24 h-24 absolute right-0 top-0 -translate-y-1/2 translate-x-1/4 animate-spin-slow pointer-events-none" />
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+               <motion.div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
+                  variants={{ show: { transition: { staggerChildren: 0.07 } } }}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.1 }}
+               >
                   {[
-                     { icon: PenTool, title: "DISEÑO", id: "01", desc: "UI/UX, Interfaces, Gráfico." },
-                     { icon: Globe, title: "WEB DEV", id: "02", desc: "Full Stack, Web3, E-commerce." },
-                     { icon: Video, title: "MEDIA", id: "03", desc: "VFX, Motion, Edición 4K." },
-                     { icon: Zap, title: "MARKETING", id: "04", desc: "Growth Hacking, SEO, Ads." },
-                     { icon: Code, title: "BRANDING", id: "05", desc: "Identidad Visual, Naming." },
-                     { icon: Cpu, title: "ART", id: "06", desc: "Ilustración Digital, 3D." }
-                  ].map((service, index) => (
-                     <RevealOnScroll key={service.id} delay={index * 0.1} width="100%">
-                        <div className="bg-black p-8 group hover:bg-neutral-900 transition-colors relative overflow-hidden h-full">
-                           <div className="absolute top-4 right-4 font-mono text-xs text-gray-700 group-hover:text-gold transition-colors">FIG.{service.id}</div>
-                           <service.icon className="w-8 h-8 text-gray-500 mb-6 group-hover:text-neon-blue transition-colors" />
-                           <h3 className="font-display font-bold text-2xl mb-2">{service.title}</h3>
-                           <p className="text-gray-500 font-mono text-xs leading-relaxed">{service.desc}</p>
-                           <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                        </div>
-                     </RevealOnScroll>
+                     { icon: Globe, title: "ACCESIBILIDAD", id: "01", desc: "Accesibilidad digital nativa como estándar en cada proyecto.", accent: "#00BFFF" },
+                     { icon: Video, title: "AUDIOVISUAL", id: "02", desc: "Producción audiovisual y Cine de alta fidelidad.", accent: "#D4AF37" },
+                     { icon: PenTool, title: "DISEÑO", id: "03", desc: "Diseño gráfico, identidad visual y dirección de arte.", accent: "#FF6B9D" },
+                     { icon: Zap, title: "FOTOGRAFÍA", id: "04", desc: "Fotografía profesional para marcas y contenido.", accent: "#A78BFA" },
+                     { icon: Cpu, title: "DESARROLLO", id: "05", desc: "Desarrollo web, plataformas digitales y tecnología.", accent: "#00BFFF" },
+                     { icon: Code, title: "PROGRAMACIÓN", id: "06", desc: "Software a medida, APIs y automatización.", accent: "#34D399" },
+                     { icon: Atom, title: "MÚSICA", id: "07", desc: "Producción musical, audio y post-producción sonora.", accent: "#FF6B9D" },
+                     { icon: Heart, title: "SOCIAL MEDIA", id: "08", desc: "Community manager, estrategia y gestión de redes sociales.", accent: "#D4AF37" }
+                  ].map((service) => (
+                     <CapabilityCard key={service.id} service={service} />
                   ))}
-               </div>
+               </motion.div>
             </div>
          </section>
 
