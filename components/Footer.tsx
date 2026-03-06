@@ -54,9 +54,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-6 text-xs uppercase tracking-widest border-l-2 border-neon-blue pl-3">Legal</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-white">Términos de Servicio</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Política de Privacidad</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Protocolos de Seguridad</a></li>
+              <li><Link to="/terminos" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-neon-blue">-</span> Términos de Servicio</Link></li>
+              <li><Link to="/privacidad" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-neon-blue">-</span> Política de Privacidad</Link></li>
+              <li><Link to="/seguridad" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-neon-blue">-</span> Protocolos de Seguridad</Link></li>
+              <li><Link to="/cookies" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-neon-blue">-</span> Política de Cookies</Link></li>
             </ul>
           </div>
           <div className="col-span-2">

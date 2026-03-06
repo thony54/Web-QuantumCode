@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
           <span>System: Quantum_OS_v2.4</span>
           <div className="flex gap-4">
             <span className="flex items-center gap-1"><div className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></div> SERVER: ONLINE</span>
-            <span>LAT: 00.000 / LON: 00.000</span>
+            <span>LAT: 47°9′S / LON: 126°43′O</span>
           </div>
         </div>
       </div>

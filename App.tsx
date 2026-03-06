@@ -9,6 +9,13 @@ import Services from './pages/Services';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import Security from './pages/Security';
+import NotFound from './pages/NotFound';
+import CookiesPolicy from './pages/CookiesPolicy';
+import CookieBanner from './components/CookieBanner';
+import BackToTop from './components/BackToTop';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -38,6 +45,8 @@ const App: React.FC = () => {
         </AnimatePresence>
 
         <Navbar />
+        <CookieBanner />
+        <BackToTop />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -45,6 +54,11 @@ const App: React.FC = () => {
             <Route path="/nosotros" element={<About />} />
             <Route path="/portafolio" element={<Portfolio />} />
             <Route path="/contacto" element={<Contact />} />
+            <Route path="/terminos" element={<Terms />} />
+            <Route path="/privacidad" element={<Privacy />} />
+            <Route path="/seguridad" element={<Security />} />
+            <Route path="/cookies" element={<CookiesPolicy />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
