@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Linkedin } from 'lucide-react';
+import Galaxy from './Galaxy';
 
 const WhatsappIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -11,8 +12,29 @@ const WhatsappIcon = () => (
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black border-t border-white/10 pt-20 pb-8 relative overflow-hidden font-mono">
-      {/* Grid Background */}
-      <div className="absolute inset-0 border-grid opacity-20 pointer-events-none"></div>
+      {/* Galaxy background */}
+      <div className="absolute inset-0">
+        <Galaxy
+          mouseInteraction={true}
+          mouseRepulsion={false}
+          density={0.7}
+          glowIntensity={0.18}
+          saturation={0.9}
+          hueShift={210}
+          twinkleIntensity={0.4}
+          rotationSpeed={0.02}
+          repulsionStrength={0}
+          autoCenterRepulsion={0}
+          starSpeed={0.3}
+          speed={0.6}
+          transparent={true}
+          style={{ opacity: 0.55 }}
+        />
+      </div>
+      {/* Subtle vignette to blend galaxy edges with black */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 120% 100% at 50% 100%, transparent 30%, black 85%)'
+      }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start mb-20 border-b border-white/10 pb-12">

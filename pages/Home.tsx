@@ -4,6 +4,7 @@ import { ArrowRight, Code, Zap, Video, PenTool, Globe, Cpu, Atom, Plus, Hexagon,
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
+import GooeyButton from '../components/ui/GooeyButton';
 
 const backgroundImages = [
    '/assets/images/FONDO1.jpg',
@@ -276,16 +277,23 @@ const Home: React.FC = () => {
 
                   <div className="flex flex-col gap-4 w-full">
                      <RevealOnScroll delay={0.6} width="100%">
-                        <Link to="/servicios" className="group w-full border border-white/20 p-4 hover:bg-white hover:text-black transition-all duration-300 flex justify-between items-center backdrop-blur-sm bg-black/20">
-                           <span className="font-mono text-sm uppercase tracking-widest">Explorar Servicios</span>
-                           <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
-                        </Link>
+                        <GooeyButton
+                           label="Explorar Servicios"
+                           href="/servicios"
+                           icon={<ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />}
+                           className="w-full border border-white/20 hover:border-white transition-colors h-14"
+                           colors={[1, 2, 3, 4]}
+                        />
                      </RevealOnScroll>
                      <RevealOnScroll delay={0.7} width="100%">
-                        <Link to="/contacto" className="group w-full bg-gold text-black p-4 font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-between items-center clip-corner shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-                           <span>Iniciar Protocolo</span>
-                           <Plus className="group-hover:rotate-90 transition-transform" size={18} />
-                        </Link>
+                        <GooeyButton
+                           label="Iniciar Protocolo"
+                           href="/contacto"
+                           variant="gold"
+                           icon={<Plus className="group-hover:rotate-90 transition-transform" size={18} />}
+                           className="w-full bg-gold text-black h-14"
+                           colors={[4]}
+                        />
                      </RevealOnScroll>
                   </div>
                </div>
@@ -502,9 +510,12 @@ const Home: React.FC = () => {
                   <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-8">¿LISTO PARA LA <br /> EVOLUCIÓN?</h2>
                </RevealOnScroll>
                <RevealOnScroll delay={0.2} width="100%">
-                  <Link to="/contacto" className="inline-block bg-white text-black font-bold font-mono text-sm py-4 px-10 uppercase tracking-widest hover:bg-gold transition-colors clip-corner">
-                     Iniciar Transmisión
-                  </Link>
+                  <GooeyButton
+                     label="Iniciar Transmisión"
+                     href="/contacto"
+                     className="bg-white text-black py-4 px-10 h-16 inline-block mx-auto"
+                     colors={[1, 2, 3, 4]}
+                  />
                </RevealOnScroll>
             </div>
          </section >

@@ -2,6 +2,7 @@ import React from 'react';
 import { Mail, Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
+import GooeyButton from '../components/ui/GooeyButton';
 
 const Contact: React.FC = () => {
   return (
@@ -102,9 +103,16 @@ const Contact: React.FC = () => {
               <textarea rows={5} placeholder="Detalles del proyecto..." className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors"></textarea>
             </div>
 
-            <button type="submit" className="w-full bg-white text-black font-bold py-4 uppercase tracking-widest hover:bg-gold transition-colors">
-              Enviar Mensaje
-            </button>
+            <GooeyButton
+              label="Enviar Mensaje"
+              className="w-full bg-white text-black h-14"
+              onClick={() => {
+                // In a real app, we'd handle submit here. 
+                // For now, let's just trigger the effect.
+                const form = document.querySelector('form');
+                if (form) form.requestSubmit();
+              }}
+            />
           </form>
         </div>
       </div>

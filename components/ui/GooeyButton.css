@@ -1,0 +1,84 @@
+.gooey-button-container {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+
+.gooey-button {
+    display: flex;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: visible;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.gooey-button-container .effect {
+    position: absolute;
+    /* top and left will be set via JS */
+    opacity: 1;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+}
+
+.gooey-button-container .effect.text {
+    opacity: 0;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gooey-button.active~.effect.text {
+    opacity: 1;
+    color: black;
+}
+
+.gooey-button-container .effect.filter {
+    filter: blur(7px) contrast(100) blur(0);
+    mix-blend-mode: lighten;
+}
+
+.gooey-button-container .effect.filter::before {
+    content: '';
+    position: absolute;
+    inset: -50px;
+    z-index: -2;
+    background: black;
+}
+
+.gooey-button-container .effect.filter::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    transform: scale(0);
+    opacity: 0;
+    z-index: -1;
+    border-radius: 100vw;
+}
+
+/* Variant styles for the pill */
+.gooey-button.variant-gold~.effect.filter::after {
+    background: #C9A84C;
+}
+
+.gooey-button.variant-secondary~.effect.filter::after {
+    background: #FF2D78;
+}
+
+.gooey-button.active~.effect.filter::after {
+    animation: pill 0.3s ease both;
+}
+
+/* Ensure main button text turns black too */
+.gooey-button.active {
+    color: black !important;
+}
