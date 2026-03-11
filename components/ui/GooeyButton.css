@@ -42,16 +42,7 @@
 }
 
 .gooey-button-container .effect.filter {
-    filter: blur(7px) contrast(100) blur(0);
-    mix-blend-mode: lighten;
-}
-
-.gooey-button-container .effect.filter::before {
-    content: '';
-    position: absolute;
-    inset: -50px;
-    z-index: -2;
-    background: black;
+    filter: url('#gooey-filter');
 }
 
 .gooey-button-container .effect.filter::after {
