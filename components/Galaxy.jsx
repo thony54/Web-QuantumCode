@@ -215,7 +215,7 @@ export default function Galaxy({
     let program;
 
     function resize() {
-      const scale = 1;
+      const scale = Math.min(window.devicePixelRatio || 1, 2);
       renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
       if (program) {
         program.uniforms.uResolution.value = new Color(

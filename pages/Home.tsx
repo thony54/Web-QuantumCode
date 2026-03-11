@@ -1,28 +1,84 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Zap, Video, PenTool, Globe, Cpu, Atom, Plus, Hexagon, Heart } from 'lucide-react';
+import { ArrowRight, Code, Zap, Video, PenTool, Globe, Cpu, Atom, Plus, Hexagon, Heart, Play } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
 import GooeyButton from '../components/ui/GooeyButton';
 
 const backgroundImages = [
-   '/assets/images/FONDO1.webp',
-   '/assets/images/FONDO2.webp'
+   '/assets/images/FONDO1.jpg',
+   '/assets/images/FONDO2.jpg'
+];
+
+// Moved outside component so the reference never changes between renders
+const testimonials = [
+   {
+      quote: "Excelente servicio y calidad!",
+      author: "María Perez",
+      role: "Actriz"
+   },
+   {
+      quote: "Si hablamos de aplicar criterios de accesibilidad, eres el mejor el ello! Saludos, recomendado Karter...",
+      author: "Pablo Garcia",
+      role: "Diseño grafico"
+   },
+   {
+      quote: "Como nuestro 'Director de Comunicación' tenemos un pilar fundamental con nosotros! POR NUESTROS DERECHOS, AQUÍ ESTAMOS!",
+      author: "Fundación Arupo",
+      role: "ONG"
+   }
 ];
 
 const brandsList = [
-   'Agendas Juveniles Imbabura.webp',
-   'Connexo.webp',
+   'Agendas Juveniles Imbabura.png',
+   'Connexo.png',
    'DAEZ DIGITAL WEB.webp',
-   'EasyXplorer.webp',
-   'Fundacion Arupo.webp',
-   'GIZ Ecuador.webp',
-   'Semilla Solar (Sobre negro).webp',
-   'Voluntariado Fundación Arupo.webp',
-   'Yellow House.webp',
-   'logo-ema1.webp'
+   'EasyXplorer.svg',
+   'Fundacion Arupo.png',
+   'GIZ Ecuador.png',
+   'Semilla Solar (Sobre negro).png',
+   'Voluntariado Fundación Arupo.svg',
+   'Yellow House.svg',
+   'logo-ema1.png'
 ];
+
+/** Lazy-load YouTube: shows thumbnail until user clicks play */
+const YouTubeFacade: React.FC<{ videoId: string }> = ({ videoId }) => {
+   const [active, setActive] = useState(false);
+   const thumbUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+   if (active) {
+      return (
+         <iframe
+            className="absolute top-0 left-0 w-full h-full border-0"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+         />
+      );
+   }
+
+   return (
+      <button
+         type="button"
+         onClick={() => setActive(true)}
+         className="absolute inset-0 w-full h-full group flex items-center justify-center cursor-pointer"
+         aria-label="Reproducir video"
+      >
+         <img
+            src={thumbUrl}
+            alt="Portada del video"
+            className="absolute inset-0 w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+         />
+         <div className="relative z-10 w-16 h-16 rounded-full bg-black/70 border-2 border-white/50 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-300">
+            <Play className="text-white w-6 h-6 ml-1" fill="white" />
+         </div>
+      </button>
+   );
+};
 
 interface CapabilityService {
    icon: React.ElementType;
@@ -127,30 +183,12 @@ const Home: React.FC = () => {
    const [currentBgIndex, setCurrentBgIndex] = useState(0);
    const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-   const testimonials = [
-      {
-         quote: "Excelente servicio y calidad!",
-         author: "María Perez",
-         role: "Actriz"
-      },
-      {
-         quote: "Si hablamos de aplicar criterios de accesibilidad, eres el mejor el ello! Saludos, recomendado Karter...",
-         author: "Pablo Garcia",
-         role: "Diseño grafico"
-      },
-      {
-         quote: "Como nuestro 'Director de Comunicación' tenemos un pilar fundamental con nosotros! POR NUESTROS DERECHOS, AQUI ESTAMOS!",
-         author: "Fundación Arupo",
-         role: "ONG"
-      }
-   ];
-
    useEffect(() => {
       const interval = setInterval(() => {
          setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
       }, 6000);
       return () => clearInterval(interval);
-   }, [testimonials.length]);
+   }, []);
 
    // Scroll Animation Hooks
    const { scrollY } = useScroll();
@@ -424,15 +462,9 @@ const Home: React.FC = () => {
                   <RevealOnScroll delay={0.3} width="100%">
                      {/* Image Frame */}
                      <div className="w-full aspect-[4/3] relative group overflow-hidden border border-white/10 bg-dark-card">
-                        <iframe
-                           className="absolute top-0 left-0 w-full h-full scale-100 group-hover:scale-105 transition-all duration-700 pointer-events-auto border-0"
-                           src="https://www.youtube.com/embed/R10MXgw13co?si=rFvSmIcf2_4GM8PX"
-                           title="YouTube video player"
-                           frameBorder="0"
-                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                           referrerPolicy="strict-origin-when-cross-origin"
-                           allowFullScreen
-                        ></iframe>
+                        {/* Lazy-loaded YouTube facade */}
+                        <YouTubeFacade videoId="R10MXgw13co" />
+
 
                         {/* Overlay Tech Elements */}
                         <div className="absolute top-4 right-4 z-20 p-2 bg-black/50 backdrop-blur border border-white/20">
@@ -496,10 +528,10 @@ const Home: React.FC = () => {
                   ))}
                </div>
             </div>
-         </section >
+         </section>
 
          {/* Big Footer CTA */}
-         < section className="min-h-[50vh] flex flex-col items-center justify-center bg-black relative overflow-hidden" >
+         <section className="min-h-[50vh] flex flex-col items-center justify-center bg-black relative overflow-hidden">
             <div className="absolute inset-0 bg-noise opacity-20"></div>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
                <h2 className="text-[20vw] font-display font-black text-white leading-none tracking-tighter">START</h2>
@@ -518,9 +550,9 @@ const Home: React.FC = () => {
                   />
                </RevealOnScroll>
             </div>
-         </section >
+         </section>
 
-      </div >
+      </div>
    );
 };
 
