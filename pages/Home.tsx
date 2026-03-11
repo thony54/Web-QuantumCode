@@ -41,7 +41,7 @@ const brandsList = [
    'GIZ Ecuador.png',
    'Semilla Solar.png',
    'Voluntariado Fundacion Arupo.svg',
-   'Yellow House.svg',
+   'YellowHouse.svg',
    'logo-ema1.png',
    'Glam Open Mind.png',
    'Arupo Centro Terapeutico.png',
