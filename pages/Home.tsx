@@ -31,25 +31,27 @@ const testimonials = [
 ];
 
 const brandsList = [
+   // Named logos
    'Agendas Juveniles Imbabura.png',
    'Connexo.png',
-   'DAEZ DIGITAL WEB.png',
+   'DAEZ DIGITAL WEB.webp',
    'EasyXplorer.svg',
    'Fundacion Arupo.png',
    'GIZ Ecuador.png',
-   'Semilla Solar.png',
+   'Semilla Solar (Sobre negro).png',
    'Voluntariado Fundación Arupo.svg',
    'Yellow House.svg',
    'logo-ema1.png',
-   'Ayuda en Accion.png',
-   'Asociacion Asiris.png',
-   'Venezuela en Ecuador.png',
-   'Traveling Brokers.png',
-   'Orgullo LGBTIQ Ibarra.png',
-   'Maswady.png',
-   'Glam Open Mind.png',
-   'Arupo Centro Terapeutico.png',
-   'Baruk Beauty.png',
+   'Photoroom-20241002_165721.png',       // Glam Open Mind
+   'Recurso 1ARUPOCTI LOGO.png',          // Arupo Centro Terapéutico
+   'fssCapa 1-2TP.png',                   // Baruk Beauty
+   // New logos added by client
+   '1f6b097b-0c4d-4102-9d32-af9a1358b547.png',      // Venezuela en Ecuador AC
+   '243854290_6675469512494860_5734317204627001245_n.png',  // Ayuda en Acción
+   '418462740_346730618138087_8329027722032067481_n.png',   // Traveling Brokers
+   'c04bc6ac-c671-4d1f-bfed-60dc3f87606b.png',             // Orgullo LGBTIQ+ Ibarra
+   'cc1208ae-1ec8-4dc0-ba44-669c8b281d01.png',             // Maswady
+   'f9fd37f2-3fa4-49cb-abcf-bd49981ac2b2.png',             // Asociación ASIRIS
 ];
 
 
