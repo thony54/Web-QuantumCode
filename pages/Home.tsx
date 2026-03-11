@@ -380,7 +380,7 @@ const Home: React.FC = () => {
                      {brandsList.map((brand, idx) => (
                         <div key={`brand-1-${idx}`} className="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
                            <img
-                              src={`/assets/brands/${brand}?v=${Date.now()}`}
+                              src={`/assets/brands/${brand}?v=3`}
                               alt={`Brand ${idx}`}
                               className="max-w-full max-h-full object-contain brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-300"
                            />
@@ -392,7 +392,7 @@ const Home: React.FC = () => {
                      {brandsList.map((brand, idx) => (
                         <div key={`brand-2-${idx}`} className="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
                            <img
-                              src={`/assets/brands/${brand}?v=${Date.now()}`}
+                              src={`/assets/brands/${brand}?v=3`}
                               alt={`Brand ${idx}`}
                               className="max-w-full max-h-full object-contain brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-300"
                            />
