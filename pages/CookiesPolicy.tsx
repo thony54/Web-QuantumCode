@@ -1,9 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SEO } from '../components/SEO';
 
 const CookiesPolicy: React.FC = () => {
     return (
         <div className="pt-32 pb-20 min-h-screen relative overflow-hidden">
+            <SEO 
+                title="Política de Cookies | Quantum Code"
+                description="Información sobre el uso de cookies y tecnologías de rastreo en Quantum Code."
+                canonicalUrl="/cookies"
+            />
             <div className="absolute inset-0 border-grid opacity-20 pointer-events-none"></div>
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Atom, User, Instagram, Globe } from 'lucide-react';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
+import { SEO } from '../components/SEO';
 
 interface Social {
   type: 'instagram' | 'tiktok' | 'web' | 'connexo';
@@ -78,6 +79,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, role, image, hove
 const About: React.FC = () => {
   return (
     <div className="pt-20 bg-dark min-h-screen">
+      <SEO 
+        title="Agencia Creativa & Tecnológica | Quantum Code"
+        description="Conoce al equipo detrás de Quantum Code. Estrategia, código y dirección audiovisual fusionados en un mismo sistema tecnológico."
+        canonicalUrl="/agencia"
+      />
       {/* Hero */}
       <div className="relative py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">

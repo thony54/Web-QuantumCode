@@ -3,10 +3,16 @@ import { Mail, Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
 import GooeyButton from '../components/ui/GooeyButton';
+import { SEO } from '../components/SEO';
 
 const Contact: React.FC = () => {
   return (
     <div className="pt-20 bg-dark min-h-screen">
+      <SEO 
+        title="Contacto | Iniciar Proyecto | Quantum Code"
+        description="Ponte en contacto con Quantum Code en Ibarra, Ecuador y Barquisimeto, Venezuela. Inicia tu proyecto de desarrollo web, marketing o diseño UI/UX."
+        canonicalUrl="/contacto"
+      />
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
 
         {/* Contact Info Side */}

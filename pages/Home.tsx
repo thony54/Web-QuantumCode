@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSp
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
 import GooeyButton from '../components/ui/GooeyButton';
+import { SEO } from '../components/SEO';
 
 const backgroundImages = [
    '/assets/images/FONDO1.jpg',
@@ -229,7 +230,12 @@ const Home: React.FC = () => {
    }, []);
 
    return (
-      <div className="w-full bg-black text-white overflow-hidden">
+      <div className="bg-black text-white min-h-screen font-sans overflow-x-hidden selection:bg-gold selection:text-black">
+         <SEO 
+            title="Quantum Code | Agencia Creativa Interdimensional"
+            description="Llevamos tu marca a la singularidad. Quantum Code es una agencia de desarrollo web, marketing digital y diseño UI/UX que transforma ideas en experiencias interdimensionales."
+            canonicalUrl="/"
+         />
 
          {/* Hero Section - Poster Style */}
          <section className="relative min-h-screen flex flex-col justify-center px-4 pt-20 border-b border-white/10 overflow-hidden perspective-1000">

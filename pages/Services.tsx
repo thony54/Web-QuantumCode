@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
 import VelocityText from '../components/ui/VelocityText';
+import { SEO } from '../components/SEO';
 
 const Services: React.FC = () => {
   const servicesList = [
@@ -53,6 +54,11 @@ const Services: React.FC = () => {
 
   return (
     <div className="pt-20 bg-dark min-h-screen text-white">
+      <SEO 
+        title="Nuestros Servicios Digitales y Creativos | Quantum Code"
+        description="Soluciones integrales para la era digital: Desarrollo Web, Diseño UI/UX, Producción Audiovisual, Marketing y Gigantografía."
+        canonicalUrl="/servicios"
+      />
       {/* Header */}
       <div className="py-16 md:py-24 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-10"></div>

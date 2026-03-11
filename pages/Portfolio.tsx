@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PortfolioItem } from '../types';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
+import { SEO } from '../components/SEO';
 
 const portfolioData: PortfolioItem[] = [
   { id: 1, title: 'RAT UNIVERSE', category: 'Web', imageUrl: '/assets/images/rat-universe.jpeg' },
@@ -21,6 +22,11 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="pt-20 bg-dark min-h-screen">
+      <SEO 
+        title="Archivo Visual & Portafolio | Quantum Code"
+        description="Explora nuestro archivo visual. Trabajos recientes en Diseño Web, Branding, Producción Audiovisual y UI/UX por Quantum Code."
+        canonicalUrl="/portafolio"
+      />
       <div className="bg-black py-16 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <RevealOnScroll width="100%">
