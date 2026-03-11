@@ -33,24 +33,25 @@ const testimonials = [
 const brandsList = [
    'Agendas Juveniles Imbabura.png',
    'Connexo.png',
-   'DAEZ DIGITAL WEB.webp',
+   'DAEZ DIGITAL WEB.png',
    'EasyXplorer.svg',
    'Fundacion Arupo.png',
    'GIZ Ecuador.png',
-   'Semilla Solar (Sobre negro).png',
+   'Semilla Solar.png',
    'Voluntariado Fundación Arupo.svg',
    'Yellow House.svg',
    'logo-ema1.png',
-   'Photoroom-20241002_165721.png',
-   'Recurso 1ARUPOCTI LOGO.png',
-   'fssCapa 1-2TP.png',
-   'NUEVO.jpg',
-   '243854290_6675469512494860_5734317204627001245_n.png',
-   '278681821_3243250795947059_8224958622463429401_n.jpg',
-   '348453140_652881669997057_2673307103294144083_n.png',
-   '418462740_346730618138087_8329027722032067481_n.jpg',
-   '494671808_985412743749459_8552937234668465118_n.jpg',
+   'Ayuda en Accion.png',
+   'Asociacion Asiris.png',
+   'Venezuela en Ecuador.png',
+   'Traveling Brokers.png',
+   'Orgullo LGBTIQ Ibarra.png',
+   'Maswady.png',
+   'Glam Open Mind.png',
+   'Arupo Centro Terapeutico.png',
+   'Baruk Beauty.png',
 ];
+
 
 /** Lazy-load YouTube: shows thumbnail until user clicks play */
 const YouTubeFacade: React.FC<{ videoId: string }> = ({ videoId }) => {
