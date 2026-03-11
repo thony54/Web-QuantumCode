@@ -369,7 +369,7 @@ const Home: React.FC = () => {
                <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
 
                {/* Marquee Container */}
-               <div className="flex animate-marquee hover:[animation-play-state:paused] w-max">
+               <div className="flex animate-marquee w-max">
                   {/* First Set */}
                   <div className="flex gap-16 md:gap-24 items-center px-8 md:px-12">
                      {brandsList.map((brand, idx) => (

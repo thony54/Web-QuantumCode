@@ -158,7 +158,12 @@
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 50s linear infinite;
+}
+
+/* Pause marquee when hovering the carousel container */
+.group:hover .animate-marquee {
+  animation-play-state: paused;
 }
 
 /* Gooey Effect Global Styles */
