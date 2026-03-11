@@ -40,7 +40,16 @@ const brandsList = [
    'Semilla Solar (Sobre negro).png',
    'Voluntariado Fundación Arupo.svg',
    'Yellow House.svg',
-   'logo-ema1.png'
+   'logo-ema1.png',
+   'Photoroom-20241002_165721.png',
+   'Recurso 1ARUPOCTI LOGO.png',
+   'fssCapa 1-2TP.png',
+   'NUEVO.jpg',
+   '243854290_6675469512494860_5734317204627001245_n.png',
+   '278681821_3243250795947059_8224958622463429401_n.jpg',
+   '348453140_652881669997057_2673307103294144083_n.png',
+   '418462740_346730618138087_8329027722032067481_n.jpg',
+   '494671808_985412743749459_8552937234668465118_n.jpg',
 ];
 
 /** Lazy-load YouTube: shows thumbnail until user clicks play */
