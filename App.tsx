@@ -31,12 +31,8 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Reduced from 2500ms – the artificial delay was blocking FCP
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
+    // Artificial delay removed completely for faster FCP
+    setIsLoading(false);
   }, []);
 
   return (

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Linkedin } from 'lucide-react';
+import { useInView } from 'framer-motion';
 import Galaxy from './Galaxy';
 
 const WhatsappIcon = () => (
@@ -10,11 +11,16 @@ const WhatsappIcon = () => (
 );
 
 const Footer: React.FC = () => {
+  const footerRef = useRef(null);
+  // Trigger loading slightly before it enters the viewport (200px margin)
+  const isInView = useInView(footerRef, { once: true, margin: "200px" });
+
   return (
-    <footer className="bg-black border-t border-white/10 pt-20 pb-8 relative overflow-hidden font-mono">
+    <footer ref={footerRef} className="bg-black border-t border-white/10 pt-20 pb-8 relative overflow-hidden font-mono">
       {/* Galaxy background */}
       <div className="absolute inset-0">
-        <Galaxy
+        {isInView && (
+          <Galaxy
           mouseInteraction={true}
           mouseRepulsion={false}
           density={0.7}
@@ -30,6 +36,7 @@ const Footer: React.FC = () => {
           transparent={true}
           style={{ opacity: 0.55 }}
         />
+        )}
       </div>
       {/* Subtle vignette to blend galaxy edges with black */}
       <div className="absolute inset-0 pointer-events-none" style={{
