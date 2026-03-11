@@ -7,21 +7,21 @@ import RevealOnScroll from '../components/ui/RevealOnScroll';
 import GooeyButton from '../components/ui/GooeyButton';
 
 const backgroundImages = [
-   '/assets/images/FONDO1.jpg',
-   '/assets/images/FONDO2.jpg'
+   '/assets/images/FONDO1.webp',
+   '/assets/images/FONDO2.webp'
 ];
 
 const brandsList = [
-   'Agendas Juveniles Imbabura.png',
-   'Connexo.png',
+   'Agendas Juveniles Imbabura.webp',
+   'Connexo.webp',
    'DAEZ DIGITAL WEB.webp',
-   'EasyXplorer.svg',
-   'Fundacion Arupo.png',
-   'GIZ Ecuador.png',
-   'Semilla Solar (Sobre negro).png',
-   'Voluntariado Fundación Arupo.svg',
-   'Yellow House.svg',
-   'logo-ema1.png'
+   'EasyXplorer.webp',
+   'Fundacion Arupo.webp',
+   'GIZ Ecuador.webp',
+   'Semilla Solar (Sobre negro).webp',
+   'Voluntariado Fundación Arupo.webp',
+   'Yellow House.webp',
+   'logo-ema1.webp'
 ];
 
 interface CapabilityService {
