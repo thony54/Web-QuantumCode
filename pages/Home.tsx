@@ -33,25 +33,25 @@ const testimonials = [
 
 const brandsList = [
    // Named logos
-   'Agendas Juveniles Imbabura.png',
-   'Connexo.png',
+   'Agendas Juveniles Imbabura.webp',
+   'Connexo.webp',
    'DAEZ DIGITAL WEB.webp',
-   'EasyXplorer.svg',
-   'Fundacion Arupo.png',
-   'GIZ Ecuador.png',
-   'Semilla Solar.png',
-   'Voluntariado Fundacion Arupo.svg',
-   'YellowHouse.svg',
-   'logo-ema1.png',
-   'Glam Open Mind.png',
-   'Arupo Centro Terapeutico.png',
-   'Baruk Beauty.png',
-   'Venezuela en Ecuador AC.png',
-   'Ayuda en Accion.png',
-   'Traveling Brokers.png',
-   'Orgullo LGBTIQ Ibarra.png',
-   'Maswady.png',
-   'Asociacion ASIRIS.png',
+   'EasyXplorer.webp',
+   'Fundacion Arupo.webp',
+   'GIZ Ecuador.webp',
+   'Semilla Solar.webp',
+   'Voluntariado Fundacion Arupo.webp',
+   'YellowHouse.webp',
+   'logo-ema1.webp',
+   'Glam Open Mind.webp',
+   'Arupo Centro Terapeutico.webp',
+   'Baruk Beauty.webp',
+   'Venezuela en Ecuador AC.webp',
+   'Ayuda en Accion.webp',
+   'Traveling Brokers.webp',
+   'Orgullo LGBTIQ Ibarra.webp',
+   'Maswady.webp',
+   'Asociacion ASIRIS.webp',
 ];
 
 
@@ -380,8 +380,10 @@ const Home: React.FC = () => {
                      {brandsList.map((brand, idx) => (
                         <div key={`brand-1-${idx}`} className="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
                            <img
-                              src={`/assets/brands/${brand}?v=3`}
+                              src={`/assets/brands/${brand}?v=4`}
                               alt={`Brand ${idx}`}
+                              loading="lazy"
+                              decoding="async"
                               className="max-w-full max-h-full object-contain brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-300"
                            />
                         </div>
@@ -392,8 +394,10 @@ const Home: React.FC = () => {
                      {brandsList.map((brand, idx) => (
                         <div key={`brand-2-${idx}`} className="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
                            <img
-                              src={`/assets/brands/${brand}?v=3`}
+                              src={`/assets/brands/${brand}?v=4`}
                               alt={`Brand ${idx}`}
+                              loading="lazy"
+                              decoding="async"
                               className="max-w-full max-h-full object-contain brightness-0 invert opacity-50 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-300"
                            />
                         </div>
