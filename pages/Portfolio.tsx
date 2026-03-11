@@ -5,10 +5,10 @@ import RevealOnScroll from '../components/ui/RevealOnScroll';
 import { SEO } from '../components/SEO';
 
 const portfolioData: PortfolioItem[] = [
-  { id: 1, title: 'RAT UNIVERSE', category: 'Web', imageUrl: '/assets/images/rat-universe.jpeg' },
-  { id: 2, title: 'ALIEN PROFILE', category: 'Design', imageUrl: '/assets/images/perfilalien.jpg' },
-  { id: 3, title: 'KOTO', category: 'Audiovisual', imageUrl: '/assets/images/koto.jpg' },
-  { id: 4, title: 'TIWWTM', category: 'Branding', imageUrl: '/assets/images/TIWWTM.jpg' },
+  { id: 1, title: 'RAT UNIVERSE', category: 'Web', imageUrl: '/assets/images/rat-universe.webp' },
+  { id: 2, title: 'ALIEN PROFILE', category: 'Design', imageUrl: '/assets/images/perfilalien.webp' },
+  { id: 3, title: 'KOTO', category: 'Audiovisual', imageUrl: '/assets/images/koto.webp' },
+  { id: 4, title: 'TIWWTM', category: 'Branding', imageUrl: '/assets/images/TIWWTM.webp' },
   { id: 5, title: 'VOID E-COMMERCE', category: 'Web', imageUrl: 'https://images.unsplash.com/photo-1555421689-492a1880deb6?q=80&w=800&auto=format&fit=crop' },
   { id: 6, title: 'GLITCH MAGAZINE', category: 'Design', imageUrl: 'https://images.unsplash.com/photo-1558655146-d09347e0b7a9?q=80&w=800&auto=format&fit=crop' },
 ];

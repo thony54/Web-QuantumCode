@@ -33,7 +33,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, role, image, hove
       case 'web':
         return <Globe size={18} />;
       case 'connexo':
-        return <img src="/assets/images/connexo-icon.png" alt="Connexo" className="w-[18px] h-[18px] object-contain" />;
+        return <img src="/assets/images/connexo-icon.webp" alt="Connexo" className="w-[18px] h-[18px] object-contain" />;
     }
   };
 
@@ -168,8 +168,8 @@ const About: React.FC = () => {
             <TeamMemberCard
               name="KARTER"
               role="Fundador y Director"
-              image="/assets/images/karter.png"
-              hoverImage="/assets/images/karter-alien.png"
+              image="/assets/images/karter.webp"
+              hoverImage="/assets/images/karter-alien.webp"
               socials={[
                 { type: 'instagram', url: 'https://www.instagram.com/karter_code' },
                 { type: 'tiktok', url: 'https://www.tiktok.com/@karter_code' },
@@ -179,8 +179,8 @@ const About: React.FC = () => {
             <TeamMemberCard
               name="EMA"
               role="Co-fundador y Diseñador"
-              image="/assets/images/ema.png"
-              hoverImage="/assets/images/ema-alien.png"
+              image="/assets/images/ema.webp"
+              hoverImage="/assets/images/ema-alien.webp"
               socials={[
                 { type: 'instagram', url: 'https://instagram.com/ema.visual' },
                 { type: 'web', url: 'https://www.emavisual.art/' },

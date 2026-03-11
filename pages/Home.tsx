@@ -8,8 +8,8 @@ import GooeyButton from '../components/ui/GooeyButton';
 import { SEO } from '../components/SEO';
 
 const backgroundImages = [
-   '/assets/images/FONDO1.jpg',
-   '/assets/images/FONDO2.jpg'
+   '/assets/images/FONDO1.webp',
+   '/assets/images/FONDO2.webp'
 ];
 
 // Moved outside component so the reference never changes between renders
