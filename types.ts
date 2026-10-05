@@ -1,5 +1,15 @@
 import { LucideIcon } from "lucide-react";
 
+declare global {
+  interface Window {
+    /** Connexo accessibility widget, loaded from the CDN in index.html */
+    A11yWidget?: {
+      open: () => void;
+      close: () => void;
+    };
+  }
+}
+
 export interface NavItem {
   label: string;
   path: string;
