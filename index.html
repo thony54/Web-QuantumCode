@@ -62,6 +62,15 @@
       pointer-events: none;
     }
 
+    /* The a11y widget's contrast modes paint every element black, which turns these
+       full-screen decorative overlays into an opaque curtain over the page. */
+    .a11y-high-contrast .bg-noise,
+    .a11y-high-contrast .scanlines,
+    .a11y-visual-total .bg-noise,
+    .a11y-visual-total .scanlines {
+      display: none !important;
+    }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -118,6 +127,11 @@
   <div class="bg-noise"></div>
   <div class="scanlines"></div>
   <script type="module" src="/index.tsx"></script>
+  <!-- Accessibility widget (Connexo × Fundación Arupo). Bottom-left so it doesn't cover the BackToTop UFO. -->
+  <script src="https://cdn.jsdelivr.net/npm/connexo-accessibility-widget@1/a11y-widget.min.js"
+          data-accent="#D4AF37"
+          data-position="bottom-left"
+          defer></script>
 </body>
 
 </html>
