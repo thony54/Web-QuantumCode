@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Radio } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavItem } from '../types';
 import GooeyNav from './GooeyNav';
 import GooeyButton from './ui/GooeyButton';
+
+/** Same universal-access figure the accessibility widget uses in its panel */
+const AccessibilityIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="4.2" r="1.6" />
+    <path d="M4.5 8.2c2.4 1 4.8 1.5 7.5 1.5s5.1-.5 7.5-1.5" />
+    <path d="M12 8.5v6" />
+    <path d="m8.5 21 3.5-6.5 3.5 6.5" />
+  </svg>
+);
+
+const openAccessibility = () => window.A11yWidget?.open();
 
 const navItems: NavItem[] = [
   { label: 'Inicio', path: '/' },
@@ -92,19 +114,29 @@ const Navbar: React.FC = () => {
               onNavigate={(href: string) => navigate(href)}
             />
 
-            {/* CTA Button */}
+            {/* Accessibility panel (the widget's floating launcher is hidden in index.html) */}
             <GooeyButton
-              label="Iniciar_Misión"
-              href="/contacto"
-              icon={<Radio size={14} className="group-hover:animate-pulse" />}
+              label="Accesibilidad"
+              onClick={openAccessibility}
+              ariaLabel="Abrir opciones de accesibilidad"
+              ariaHasPopup="dialog"
+              icon={<AccessibilityIcon size={14} />}
               className="border border-white/20 font-mono text-xs uppercase tracking-widest hover:border-gold transition-colors"
               animationTime={600}
               colors={[1, 2, 3, 4]}
             />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile: accessibility + menu buttons */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={openAccessibility}
+              aria-label="Abrir opciones de accesibilidad"
+              aria-haspopup="dialog"
+              className="text-white hover:text-gold transition-colors focus:outline-none p-2 border border-white/10"
+            >
+              <AccessibilityIcon size={24} />
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white hover:text-gold transition-colors focus:outline-none p-2 border border-white/10"
@@ -132,12 +164,13 @@ const Navbar: React.FC = () => {
                 </span>
               </Link>
             ))}
-            <Link
-              to="/contacto"
-              className="block mt-12 py-4 border-t border-b border-white/20 text-center font-mono text-gold uppercase tracking-widest"
+            <button
+              onClick={openAccessibility}
+              aria-haspopup="dialog"
+              className="flex items-center justify-center gap-2 w-full mt-12 py-4 border-t border-b border-white/20 text-center font-mono text-gold uppercase tracking-widest"
             >
-              [ INICIAR_MISIÓN ]
-            </Link>
+              [ <AccessibilityIcon size={16} /> Accesibilidad ]
+            </button>
           </div>
         </div>
       )}

@@ -15,6 +15,8 @@ interface GooeyButtonProps {
     colors?: number[];
     variant?: 'primary' | 'secondary' | 'gold';
     icon?: React.ReactNode;
+    ariaLabel?: string;
+    ariaHasPopup?: 'dialog' | 'menu';
 }
 
 const GooeyButton: React.FC<GooeyButtonProps> = ({
@@ -30,6 +32,8 @@ const GooeyButton: React.FC<GooeyButtonProps> = ({
     colors = [1, 2, 3, 1, 2, 3, 1, 4],
     icon,
     variant,
+    ariaLabel,
+    ariaHasPopup,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLDivElement>(null);
@@ -110,7 +114,7 @@ const GooeyButton: React.FC<GooeyButtonProps> = ({
         Object.assign(textRef.current.style, styles);
     };
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = () => {
         if (isActive) return;
 
         setIsActive(true);
@@ -136,6 +140,14 @@ const GooeyButton: React.FC<GooeyButtonProps> = ({
         }, animationTime);
     };
 
+    // The clickable element is a div, so give it the keyboard behaviour of a real button/link
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || (!href && e.key === ' ')) {
+            e.preventDefault();
+            handleClick();
+        }
+    };
+
     useEffect(() => {
         updateEffectPosition();
         window.addEventListener('resize', updateEffectPosition);
@@ -148,14 +160,19 @@ const GooeyButton: React.FC<GooeyButtonProps> = ({
                 className={`gooey-button ${isActive ? 'active' : ''} ${variant ? `variant-${variant}` : ''}`}
                 ref={buttonRef}
                 onClick={handleClick}
+                onKeyDown={handleKeyDown}
+                role={href ? 'link' : 'button'}
+                tabIndex={0}
+                aria-label={ariaLabel}
+                aria-haspopup={ariaHasPopup}
             >
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                     {label}
-                    {icon && <span className="ml-2">{icon}</span>}
+                    {icon && <span className="ml-2" aria-hidden="true">{icon}</span>}
                 </div>
             </div>
-            <span className="effect filter" ref={filterRef} />
-            <span className="effect text" ref={textRef}>
+            <span className="effect filter" ref={filterRef} aria-hidden="true" />
+            <span className="effect text" ref={textRef} aria-hidden="true">
                 {label}
                 {icon && <span className="ml-2">{icon}</span>}
             </span>
