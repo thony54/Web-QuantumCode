@@ -166,6 +166,42 @@
   animation-play-state: paused;
 }
 
+/* Inner pages: scan line sweeping a full-height wrapper (transform only, stays on the compositor) */
+@keyframes hud-scan {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.hud-scan {
+  animation: hud-scan 7s linear infinite;
+}
+
+.signal-sweep {
+  animation: hud-scan 3.5s linear infinite;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hud-scan,
+  .signal-sweep {
+    animation: none;
+    display: none;
+  }
+}
+
 /* Gooey Effect Global Styles */
 :root {
   /* Quantum Code brand particle colors */

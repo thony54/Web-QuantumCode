@@ -1,127 +1,163 @@
-import React from 'react';
-import { Mail, Phone, MapPin, MessageCircle, Clock } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Mail, Phone, MapPin, MessageCircle, Clock, ChevronDown } from 'lucide-react';
 import GlitchText from '../components/ui/GlitchText';
-import RevealOnScroll from '../components/ui/RevealOnScroll';
 import GooeyButton from '../components/ui/GooeyButton';
+import PageHeader from '../components/ui/PageHeader';
+import SectionLabel from '../components/ui/SectionLabel';
+import SpotlightCard from '../components/ui/SpotlightCard';
+import HudCorners from '../components/ui/HudCorners';
 import { SEO } from '../components/SEO';
 
+const channels = [
+  { icon: Phone, label: 'Línea Directa', lines: ['+593 96 303 8666'], href: 'tel:+593963038666' },
+  { icon: Mail, label: 'Frecuencia Email', lines: ['global@quantumcode.art'], href: 'mailto:global@quantumcode.art' },
+  { icon: Clock, label: 'Horario Operativo', lines: ['Abierto, todos los días (24/7 Virtual)'] },
+  { icon: MapPin, label: 'Base de Operaciones', lines: ['Ibarra, Ecuador', 'Barquisimeto, Venezuela'] },
+];
+
+const inputClass =
+  'w-full bg-black/70 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3.5 font-sans transition-[border-color,box-shadow] duration-300 focus:outline-none focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.15)]';
+
+const FieldLabel: React.FC<{ htmlFor: string; index: string; children: React.ReactNode }> = ({ htmlFor, index, children }) => (
+  <label htmlFor={htmlFor} className="flex items-center gap-2 mb-2 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-gold">
+    <span className="text-gray-600">{index}</span>
+    {children}
+  </label>
+);
+
 const Contact: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
   return (
-    <div className="pt-20 bg-dark min-h-screen">
-      <SEO 
+    <div className="bg-dark min-h-screen text-white">
+      <SEO
         title="Contacto | Iniciar Proyecto | Quantum Code"
         description="Ponte en contacto con Quantum Code en Ibarra, Ecuador y Barquisimeto, Venezuela. Inicia tu proyecto de desarrollo web, marketing o diseño UI/UX."
         canonicalUrl="/contacto"
       />
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
 
-        {/* Contact Info Side */}
-        <div className="bg-black p-12 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+      <PageHeader
+        path="contacto"
+        index="05"
+        title={<>INICIAR <br /><GlitchText text="PROYECTO" className="text-gold" as="span" /></>}
+        description="Estábamos esperando esta señal. Cuéntanos sobre tu proyecto y construiremos juntos la mejor solución."
+        meta={['CANAL: ABIERTO', 'HORARIO: 24/7 VIRTUAL']}
+      />
 
-          <RevealOnScroll>
-            <h1 className="text-[1.75rem] leading-tight sm:text-4xl md:text-5xl font-display font-bold text-white mb-8 tracking-tight sm:tracking-normal">
-              INICIAR <br /><GlitchText text="PROYECTO" className="text-gold" />
-            </h1>
-          </RevealOnScroll>
-          <p className="text-gray-400 mb-12 text-lg">
-            Estábamos esperando esta señal. Cuéntanos sobre tu proyecto y construiremos juntos la mejor solución.
-          </p>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
+        {/* Contact channels */}
+        <div className="lg:col-span-5">
+          <SectionLabel index="01" as="h2" className="mb-8">Canales directos</SectionLabel>
 
-          <div className="space-y-8">
-            <div className="flex items-start space-x-4">
-              <Phone className="text-neon-blue mt-1" />
-              <div>
-                <h3 className="text-white font-bold uppercase tracking-wider">Línea Directa</h3>
-                <p className="text-gray-400">+593 96 303 8666</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <Mail className="text-neon-blue mt-1" />
-              <div>
-                <h3 className="text-white font-bold uppercase tracking-wider">Frecuencia Email</h3>
-                <p className="text-gray-400">global@quantumcode.art</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <Clock className="text-neon-blue mt-1" />
-              <div>
-                <h3 className="text-white font-bold uppercase tracking-wider">Horario Operativo</h3>
-                <p className="text-gray-400">Abierto, todos los días (24/7 Virtual)</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <MapPin className="text-neon-blue mt-1" />
-              <div>
-                <h3 className="text-white font-bold uppercase tracking-wider">Base de Operaciones</h3>
-                <p className="text-gray-400">Ibarra, Ecuador</p>
-                <p className="text-gray-400">Barquisimeto, Venezuela</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
+            {channels.map(({ icon: Icon, label, lines, href }) => {
+              const body = (
+                <>
+                  <span className="relative z-10 mb-5 flex h-10 w-10 items-center justify-center border border-neon-blue/30 text-neon-blue group-hover:border-neon-blue transition-colors duration-300">
+                    <Icon size={18} />
+                  </span>
+                  <h3 className="relative z-10 mb-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-white">{label}</h3>
+                  {lines.map((line) => (
+                    <p key={line} className="relative z-10 text-sm text-gray-400 break-words">{line}</p>
+                  ))}
+                </>
+              );
+              return (
+                <SpotlightCard key={label} color="0,240,255" className="h-full border border-white/10 bg-black hover:border-neon-blue/30 transition-colors duration-300">
+                  <HudCorners className="border-white/15 group-hover:border-neon-blue/70" size="w-2.5 h-2.5" />
+                  {href ? (
+                    <a href={href} className="block h-full p-6">{body}</a>
+                  ) : (
+                    <div className="h-full p-6">{body}</div>
+                  )}
+                </SpotlightCard>
+              );
+            })}
           </div>
 
           <a
             href="https://wa.me/593963038666"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-12 inline-flex items-center bg-[#25D366] text-black font-bold py-3 px-6 hover:bg-white transition-colors w-fit"
+            className="group mt-3 flex items-center justify-between gap-4 border border-[#25D366]/40 bg-[#25D366]/10 px-6 py-5 hover:bg-[#25D366] transition-colors duration-300"
           >
-            <MessageCircle className="mr-2" /> CHATEAR EN WHATSAPP
+            <span className="flex items-center gap-3 font-bold text-[#25D366] group-hover:text-black transition-colors duration-300">
+              <MessageCircle /> CHATEAR EN WHATSAPP
+            </span>
+            <span className="flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] text-[#25D366] group-hover:text-black transition-colors duration-300">
+              <span className="h-2 w-2 rounded-full bg-[#25D366] group-hover:bg-black animate-pulse" />
+              ONLINE
+            </span>
           </a>
         </div>
 
-        {/* Form Side */}
-        <div className="bg-dark-card border-l border-white/5 p-12 lg:p-24 flex flex-col justify-center">
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-xs font-mono text-gold mb-2 uppercase">Identificación</label>
-                <input type="text" placeholder="Nombre" className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors" />
+        {/* Form console */}
+        <div className="lg:col-span-7">
+          <div className="relative border border-white/10 bg-dark-card">
+            <HudCorners className="border-gold/60" size="w-4 h-4" />
+
+            <div className="flex items-center justify-between gap-4 border-b border-white/10 bg-black/70 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.3em] text-gray-500">
+              <span className="flex items-center gap-2" aria-hidden="true">
+                <span className="h-2.5 w-2.5 rounded-full bg-neon-pink/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-gold/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-neon-green/70" />
+              </span>
+              <span className="truncate">Nueva transmisión</span>
+              <span className="hidden sm:flex items-center gap-2 text-neon-green">
+                <span className="h-1.5 w-1.5 rounded-full bg-neon-green animate-pulse" /> LIVE
+              </span>
+            </div>
+
+            <form ref={formRef} className="space-y-6 p-6 md:p-10">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <FieldLabel htmlFor="contact-name" index="01">Identificación</FieldLabel>
+                  <input id="contact-name" type="text" placeholder="Nombre" className={inputClass} />
+                </div>
+                <div>
+                  <FieldLabel htmlFor="contact-org" index="02">Empresa / Entidad</FieldLabel>
+                  <input id="contact-org" type="text" placeholder="Organización" className={inputClass} />
+                </div>
               </div>
+
               <div>
-                <label className="block text-xs font-mono text-gold mb-2 uppercase">Empresa / Entidad</label>
-                <input type="text" placeholder="Organización" className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors" />
+                <FieldLabel htmlFor="contact-email" index="03">Punto de Contacto</FieldLabel>
+                <input id="contact-email" type="email" placeholder="Email" className={inputClass} />
               </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-mono text-gold mb-2 uppercase">Punto de Contacto</label>
-              <input type="email" placeholder="Email" className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors" />
-            </div>
+              <div>
+                <FieldLabel htmlFor="contact-service" index="04">Tipo de Misión</FieldLabel>
+                <div className="relative">
+                  <select id="contact-service" className={`${inputClass} appearance-none pr-12 text-gray-300`}>
+                    <option>Seleccionar Servicio</option>
+                    <option>Diseño Web</option>
+                    <option>Branding</option>
+                    <option>Audiovisual</option>
+                    <option>Marketing</option>
+                    <option>Otro</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gold" />
+                </div>
+              </div>
 
-            <div>
-              <label className="block text-xs font-mono text-gold mb-2 uppercase">Tipo de Misión</label>
-              <select className="w-full bg-black border border-white/10 text-gray-300 p-4 focus:border-neon-blue focus:outline-none transition-colors">
-                <option>Seleccionar Servicio</option>
-                <option>Diseño Web</option>
-                <option>Branding</option>
-                <option>Audiovisual</option>
-                <option>Marketing</option>
-                <option>Otro</option>
-              </select>
-            </div>
+              <div>
+                <FieldLabel htmlFor="contact-details" index="05">Datos de la Misión</FieldLabel>
+                <textarea id="contact-details" rows={5} placeholder="Detalles del proyecto..." className={`${inputClass} resize-y`}></textarea>
+              </div>
 
-            <div>
-              <label className="block text-xs font-mono text-gold mb-2 uppercase">Datos de la Misión</label>
-              <textarea rows={5} placeholder="Detalles del proyecto..." className="w-full bg-black border border-white/10 text-white p-4 focus:border-neon-blue focus:outline-none transition-colors"></textarea>
-            </div>
-
-            <GooeyButton
-              label="Enviar Mensaje"
-              className="w-full bg-white text-black h-14"
-              onClick={() => {
-                // In a real app, we'd handle submit here. 
-                // For now, let's just trigger the effect.
-                const form = document.querySelector('form');
-                if (form) form.requestSubmit();
-              }}
-            />
-          </form>
+              <GooeyButton
+                label="Enviar Mensaje"
+                className="w-full bg-white text-black h-14"
+                onClick={() => {
+                  // In a real app, we'd handle submit here.
+                  // For now, let's just trigger the effect.
+                  formRef.current?.requestSubmit();
+                }}
+              />
+            </form>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
