@@ -7,6 +7,19 @@
   <meta name="theme-color" content="#030303" />
   <title>Quantum Code | Agencia Creativa Interdimensional</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=2" />
+  <!-- Home hero background (LCP): fetch it in parallel with the JS instead of after the Home chunk renders.
+       Injected only on "/" because every route is served from this same file. -->
+  <script>
+    if (location.pathname === '/') {
+      const lcp = document.createElement('link');
+      lcp.rel = 'preload';
+      lcp.as = 'image';
+      lcp.type = 'image/webp';
+      lcp.href = '/assets/images/FONDO1.webp';
+      lcp.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(lcp);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
