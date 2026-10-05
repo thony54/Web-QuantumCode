@@ -47,7 +47,10 @@ const App: React.FC = () => {
         <CookieBanner />
         <BackToTop />
         <main className="flex-grow">
-          <Suspense fallback={<Loader />}>
+          {/* The spacer keeps the footer well below the fold (and outside its 200px
+              in-view margin) while a route chunk loads: avoids a huge layout shift
+              and stops the Galaxy WebGL from booting at page load. */}
+          <Suspense fallback={<div className="min-h-[200vh]"><Loader /></div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/servicios" element={<Services />} />

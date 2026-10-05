@@ -170,9 +170,14 @@ void main() {
 }
 `;
 
+// Stable defaults: inline array literals would change identity on every render
+// and make the effect below tear down and rebuild the WebGL context each time.
+const DEFAULT_FOCAL = [0.5, 0.5];
+const DEFAULT_ROTATION = [1.0, 0.0];
+
 export default function Galaxy({
-  focal = [0.5, 0.5],
-  rotation = [1.0, 0.0],
+  focal = DEFAULT_FOCAL,
+  rotation = DEFAULT_ROTATION,
   starSpeed = 0.5,
   density = 1,
   hueShift = 140,
@@ -187,6 +192,7 @@ export default function Galaxy({
   rotationSpeed = 0.1,
   autoCenterRepulsion = 0,
   transparent = true,
+  resolutionScale = 1,
   ...rest
 }) {
   const ctnDom = useRef(null);
@@ -200,7 +206,8 @@ export default function Galaxy({
     const ctn = ctnDom.current;
     const renderer = new Renderer({
       alpha: transparent,
-      premultipliedAlpha: false
+      premultipliedAlpha: false,
+      dpr: Math.min(window.devicePixelRatio || 1, 2) * resolutionScale
     });
     const gl = renderer.gl;
 
@@ -215,8 +222,8 @@ export default function Galaxy({
     let program;
 
     function resize() {
-      const scale = Math.min(window.devicePixelRatio || 1, 2);
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+      // CSS size = container size; the backing buffer is scaled by the renderer's dpr
+      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
       if (program) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
@@ -259,7 +266,7 @@ export default function Galaxy({
     });
 
     const mesh = new Mesh(gl, { geometry, program });
-    let animateId;
+    let animateId = null;
 
     function update(t) {
       animateId = requestAnimationFrame(update);
@@ -280,7 +287,23 @@ export default function Galaxy({
 
       renderer.render({ scene: mesh });
     }
-    animateId = requestAnimationFrame(update);
+
+    // Only render while the container is on screen: the shader is heavy enough
+    // to drag the whole page down to ~20fps on integrated GPUs.
+    function start() {
+      if (animateId === null) animateId = requestAnimationFrame(update);
+    }
+    function stop() {
+      if (animateId !== null) {
+        cancelAnimationFrame(animateId);
+        animateId = null;
+      }
+    }
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+      else stop();
+    });
+    visibilityObserver.observe(ctn);
     ctn.appendChild(gl.canvas);
 
     function handleMouseMove(e) {
@@ -301,7 +324,8 @@ export default function Galaxy({
     }
 
     return () => {
-      cancelAnimationFrame(animateId);
+      stop();
+      visibilityObserver.disconnect();
       window.removeEventListener('resize', resize);
       if (mouseInteraction) {
         ctn.removeEventListener('mousemove', handleMouseMove);
@@ -326,7 +350,8 @@ export default function Galaxy({
     rotationSpeed,
     repulsionStrength,
     autoCenterRepulsion,
-    transparent
+    transparent,
+    resolutionScale
   ]);
 
   return <div ref={ctnDom} className="galaxy-container" {...rest} />;
