@@ -30,12 +30,12 @@ const Terms: React.FC = () => {
 
                         <h2 className="text-2xl text-white mt-12 mb-6 font-display tracking-tight border-l-2 border-gold pl-4">1. Aceptación de los Términos</h2>
                         <p className="mb-6">
-                            Al acceder y utilizar el sitio web de Quantum Code ("la Agencia"), usted acepta estar sujeto a estos términos de servicio, a todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables.
+                            Al acceder y utilizar el sitio web de Quantum Code ("el Estudio"), usted acepta estar sujeto a estos términos de servicio, a todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables.
                         </p>
 
                         <h2 className="text-2xl text-white mt-12 mb-6 font-display tracking-tight border-l-2 border-gold pl-4">2. Uso de la Licencia</h2>
                         <p className="mb-6">
-                            Se concede permiso para descargar temporalmente una copia de los materiales (información o software) en el sitio web de la Agencia para visualización transitoria personal y no comercial.
+                            Se concede permiso para descargar temporalmente una copia de los materiales (información o software) en el sitio web del Estudio para visualización transitoria personal y no comercial.
                         </p>
                         <ul className="list-disc pl-6 mb-6">
                             <li className="mb-2">Modificar o copiar los materiales.</li>

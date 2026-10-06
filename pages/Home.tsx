@@ -232,8 +232,8 @@ const Home: React.FC = () => {
    return (
       <div className="bg-black text-white min-h-screen font-sans overflow-x-hidden selection:bg-gold selection:text-black">
          <SEO 
-            title="Quantum Code | Agencia Creativa Interdimensional"
-            description="Llevamos tu marca a la singularidad. Quantum Code es una agencia de desarrollo web, marketing digital y diseño UI/UX que transforma ideas en experiencias interdimensionales."
+            title="Quantum Code Studio | Estudio Creativo Interdimensional"
+            description="Quantum Code Studio es un estudio creativo con múltiples universos: música propia, producción audiovisual, videojuegos, diseño, desarrollo web y tecnología con accesibilidad nativa. Cada área es una dimensión; todas, una misma visión."
             canonicalUrl="/"
          />
 
@@ -321,7 +321,7 @@ const Home: React.FC = () => {
                         className="font-mono text-sm md:text-base text-gray-300 max-w-2xl leading-relaxed border-l border-gold pl-6 py-2 bg-black/30 backdrop-blur-sm"
                         style={{ opacity: textOpacity }}
                      >
-                        AGENCIA MULTIDISCIPLINARIA DE PRODUCCIÓN AUDIOVISUAL, DISEÑO Y DESARROLLO.
+                        ESTUDIO MULTIDISCIPLINARIO DE MÚSICA, AUDIOVISUAL, VIDEOJUEGOS, DISEÑO Y DESARROLLO.
                         <br /><span className="text-white">CONSTRUYENDO EL FUTURO DESDE EL VACÍO.</span>
                      </motion.p>
                   </RevealOnScroll>
@@ -463,7 +463,7 @@ const Home: React.FC = () => {
                   </RevealOnScroll>
                   <RevealOnScroll delay={0.2}>
                      <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                        La innovación real incluye a todos. Orgullosamente aliados con <strong className="text-white">Fundación Arupo</strong>, somos la <span className="text-gold">primera agencia digital en Ecuador</span> que integra criterios de accesibilidad nativa como estándar.
+                        La innovación real incluye a todos. Orgullosamente aliados con <strong className="text-white">Fundación Arupo</strong>, somos la <span className="text-gold">primer estudio digital en Ecuador</span> que integra criterios de accesibilidad nativa como estándar.
                      </p>
                      <p className="text-gray-400 text-lg leading-relaxed mb-8">
                         Actualmente producimos el documental <strong className="text-white">"Voces de Resiliencia"</strong>, una obra que visibiliza historias de movilidad humana y discapacidad junto a Fundación Arupo. Además, incluimos en nuestra web un clip exclusivo del proyecto como muestra de nuestro compromiso audiovisual y social.

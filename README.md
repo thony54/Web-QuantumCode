@@ -18,9 +18,9 @@ View your app in AI Studio: https://ai.studio/apps/drive/1I8QWZ4dOs7Tba_C3Arwk31
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
-<div# Quantum Code Agency
+<div# Quantum Code Studio
 
-Proyecto de agencia creativa interdimensional.
+Proyecto de estudio creativo interdimensional.
 
 ## Deploy
 Despliegue automático en Vercel.

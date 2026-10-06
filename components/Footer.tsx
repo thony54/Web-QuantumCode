@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 font-sans">
-              AGENCIA MULTIDISCIPLINARIA DE PRODUCCIÓN AUDIOVISUAL, DISEÑO Y DESARROLLO.<br />
+              ESTUDIO MULTIDISCIPLINARIO DE MÚSICA, AUDIOVISUAL, VIDEOJUEGOS, DISEÑO Y DESARROLLO.<br />
               <span className="text-gray-500">Transformamos ideas complejas en sistemas digitales sólidos con accesibilidad digital nativa.</span>
             </p>
             <div className="flex gap-4">

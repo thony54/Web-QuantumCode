@@ -144,7 +144,7 @@ const directives = [
     accentLine: 'from-neon-blue',
     codeClass: 'text-neon-blue border-neon-blue/30',
     paragraphs: [
-      'Consolidarnos como una agencia creativa y tecnológica de referencia en Latinoamérica, reconocida por integrar ingeniería, dirección audiovisual y estrategia digital bajo un mismo estándar de calidad.',
+      'Consolidarnos como un estudio creativo y tecnológico de referencia en Latinoamérica, reconocida por integrar ingeniería, dirección audiovisual y estrategia digital bajo un mismo estándar de calidad.',
       'Nuestra visión no es crecer por volumen, sino por relevancia: construir proyectos que perduren, evolucionen y se conviertan en activos estratégicos para quienes confían en nosotros.',
     ],
   },
@@ -156,7 +156,7 @@ const About: React.FC = () => {
   return (
     <div className="bg-dark min-h-screen text-white">
       <SEO
-        title="Agencia Creativa & Tecnológica | Quantum Code"
+        title="Estudio Creativo & Tecnológico | Quantum Code Studio"
         description="Conoce al equipo detrás de Quantum Code. Estrategia, código y dirección audiovisual fusionados en un mismo sistema tecnológico."
         canonicalUrl="/nosotros"
       />
@@ -181,7 +181,7 @@ const About: React.FC = () => {
           <div className="lg:col-span-7">
             <RevealOnScroll width="100%">
               <p className="font-display font-bold text-2xl md:text-4xl leading-tight text-white mb-8">
-                Quantum Code no es solo una agencia creativa. Es un estudio donde la estrategia, el código y el lenguaje audiovisual se diseñan como un mismo sistema.
+                Quantum Code no es una agencia. Es un estudio con múltiples universos, donde la música, la estrategia, el código y el lenguaje audiovisual se diseñan como un mismo sistema.
               </p>
             </RevealOnScroll>
             <div className="space-y-5 text-gray-400 leading-relaxed md:text-lg border-l border-white/10 pl-6">

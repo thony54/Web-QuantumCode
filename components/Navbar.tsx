@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
                 QUANTUM
               </span>
               <span className="font-mono text-[0.6rem] tracking-[0.3em] text-gold leading-none">
-                CODE AGENCY
+                CODE STUDIO
               </span>
             </div>
           </Link>
