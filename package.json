@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fotos": "node scripts/make-photos.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -34,6 +35,7 @@
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.23",
+    "exifr": "^7.1.3",
     "postcss": "^8.5.6",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.18",

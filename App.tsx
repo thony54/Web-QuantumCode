@@ -19,6 +19,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Security = lazy(() => import('./pages/Security'));
 const MusicUniverse = lazy(() => import('./pages/universes/Music'));
 const AudiovisualUniverse = lazy(() => import('./pages/universes/Audiovisual'));
+const PhotographyUniverse = lazy(() => import('./pages/universes/Photography'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const CookiesPolicy = lazy(() => import('./pages/CookiesPolicy'));
 
@@ -64,6 +65,7 @@ const App: React.FC = () => {
               <Route path="/universos" element={<Navigate to="/" replace />} />
               <Route path="/universos/musica" element={<MusicUniverse />} />
               <Route path="/universos/audiovisual" element={<AudiovisualUniverse />} />
+              <Route path="/universos/fotografia" element={<PhotographyUniverse />} />
               <Route path="/terminos" element={<Terms />} />
               <Route path="/privacidad" element={<Privacy />} />
               <Route path="/seguridad" element={<Security />} />

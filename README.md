@@ -24,3 +24,8 @@ Proyecto de estudio creativo.
 
 ## Deploy
 Despliegue automático en Vercel.
+
+## Fotografía (universo `/universos/fotografia`)
+1. Pon las fotos originales en `fotos-originales/<categoria>/` (la carpeta es la categoría; esa carpeta no se sube a git).
+2. Corre `npm run fotos`: genera las versiones ligeras (`public/assets/photography/`), quita los metadatos privados y actualiza `lib/photos.generated.ts`.
+3. Títulos, descripciones y fotos destacadas: `lib/photography.ts` (`PHOTO_NOTES`). Guía completa: `fotos-originales/LEEME.md`.

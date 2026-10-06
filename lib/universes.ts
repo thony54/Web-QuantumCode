@@ -1,7 +1,7 @@
 import { Music, Clapperboard, Code, PenTool, Camera, Accessibility, LucideIcon } from 'lucide-react';
 
 /** Each kind has its own "magic" screen transition (see UniverseTransition). */
-export type TransitionKind = 'sound' | 'comic' | 'quantum';
+export type TransitionKind = 'sound' | 'comic' | 'quantum' | 'shutter';
 
 export interface Universe {
   slug: string;
@@ -75,8 +75,9 @@ export const universes: Universe[] = [
     tagline: 'Luz, lente y archivo visual',
     accent: '#FF6B00',
     icon: Camera,
-    transition: 'quantum',
-    ready: false,
+    transition: 'shutter',
+    ready: true,
+    preload: () => import('../pages/universes/Photography'),
   },
   {
     slug: 'accesibilidad',

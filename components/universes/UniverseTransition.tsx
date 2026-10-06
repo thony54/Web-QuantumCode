@@ -88,11 +88,51 @@ const QuantumWipe: React.FC<{ accent: string }> = ({ accent }) => (
   </div>
 );
 
+/** Camera iris: eight blades close on the centre, a flash fires at the click, then they open on the new page. */
+const IRIS_OPEN = '62vmax';
+
+const ShutterWipe: React.FC<{ accent: string }> = ({ accent }) => (
+  <div className="absolute inset-0">
+    <motion.div
+      className="absolute inset-0"
+      initial={{ rotate: -14 }}
+      animate={{ rotate: [-14, 0, 0, 14] }}
+      transition={{ duration: DURATION, times: TIMES, ease: 'easeInOut' }}
+    >
+      {Array.from({ length: 8 }, (_, i) => (
+        <div key={i} className="absolute left-1/2 top-1/2 h-0 w-0" style={{ transform: `rotate(${i * 45}deg)` }}>
+          <motion.div
+            className="absolute"
+            style={{
+              left: '-150vmax',
+              top: 0,
+              width: '300vmax',
+              height: '150vmax',
+              background: 'linear-gradient(180deg, #2a2a2a 0%, #0b0b0b 6%, #050505 100%)',
+              borderTop: `2px solid ${accent}`,
+            }}
+            initial={{ y: IRIS_OPEN }}
+            animate={{ y: [IRIS_OPEN, '0vmax', '0vmax', IRIS_OPEN] }}
+            transition={{ duration: DURATION, times: TIMES, ease: 'easeInOut' }}
+          />
+        </div>
+      ))}
+    </motion.div>
+    <motion.div
+      className="absolute inset-0 bg-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 0, 0.92, 0, 0] }}
+      transition={{ duration: DURATION, times: [0, 0.4, 0.48, 0.66, 1] }}
+    />
+  </div>
+);
+
 const TransitionOverlay: React.FC<{ travel: ActiveTravel }> = ({ travel }) => (
   <div aria-hidden="true" className="fixed inset-0 z-[120] overflow-hidden">
     {travel.kind === 'sound' && <SoundWipe accent={travel.accent} />}
     {travel.kind === 'comic' && <ComicWipe />}
     {travel.kind === 'quantum' && <QuantumWipe accent={travel.accent} />}
+    {travel.kind === 'shutter' && <ShutterWipe accent={travel.accent} />}
     {travel.kind !== 'comic' && (
       <motion.div
         className="absolute inset-0 flex items-center justify-center px-6 text-center"

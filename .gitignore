@@ -40,3 +40,11 @@ public/assets/audio/
 
 # Temas COMPLETOS (nunca se publican; en la web solo van fragmentos de 30 s)
 audio-completo/
+
+# Fotos ORIGINALES del Universo Fotografía (pesadas y con metadatos): nunca a git.
+# Solo se sube lo que genera `npm run fotos` (public/assets/photography y lib/photos.generated.ts)
+fotos-originales/*
+!fotos-originales/LEEME.md
+
+# Carpeta de fotos sin procesar que el usuario copia al proyecto (457 MB): NUNCA a git
+Fotografias/

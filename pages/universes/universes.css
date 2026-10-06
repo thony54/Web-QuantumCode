@@ -183,3 +183,173 @@
     transform: scaleY(0.5);
   }
 }
+
+/* ───────── LIGHT_VAULT (Fotografía · visor de cámara) ───────── */
+
+/* The photos must be seen clean: the site's full-screen scanline/noise overlays (index.html) are switched off
+   while the photography page is open (it adds this class to <html>). */
+html.photo-clean .scanlines,
+html.photo-clean .bg-noise {
+  display: none !important;
+}
+
+/* Gallery tiles and sample frames fade in one after another (--i = position) */
+@keyframes photo-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.photo-in {
+  animation: photo-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+/* Slow drifting out-of-focus lights behind the hero (when there is no featured photo) */
+@keyframes bokeh-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(var(--dx, 18px), var(--dy, -26px), 0) scale(1.08); }
+}
+
+.bokeh {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(var(--b, 18px));
+  animation: bokeh-drift var(--t, 14s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform;
+}
+
+/* Viewfinder: autofocus box, exposure meter and shutter flash */
+.vf-focus {
+  position: absolute;
+  z-index: 5;
+  width: 4.5rem;
+  height: 4.5rem;
+  transform: translate(-50%, -50%) scale(1.35);
+  opacity: 0.9;
+  transition: left 0.5s cubic-bezier(0.2, 0.9, 0.2, 1), top 0.5s cubic-bezier(0.2, 0.9, 0.2, 1),
+    transform 0.25s ease, opacity 0.25s ease;
+  color: #ff6b00;
+  pointer-events: none;
+}
+
+.vf-focus[data-locked='true'] {
+  transform: translate(-50%, -50%) scale(1);
+  color: #00ff41;
+}
+
+.vf-focus > i {
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 0 solid currentColor;
+}
+
+.vf-focus > i:nth-child(1) { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.vf-focus > i:nth-child(2) { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.vf-focus > i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.vf-focus > i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+@keyframes lens-spin {
+  to { transform: rotate(360deg); }
+}
+
+.lens-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lens-spin 120s linear infinite;
+}
+
+.iris-hole {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@keyframes vf-flash {
+  0% { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+
+.vf-flash {
+  animation: vf-flash 0.22s ease-out forwards;
+}
+
+@keyframes vf-needle {
+  0%, 100% { left: 50%; }
+  18% { left: 61%; }
+  36% { left: 44%; }
+  58% { left: 53%; }
+  80% { left: 48%; }
+}
+
+.vf-needle {
+  animation: vf-needle 5.5s ease-in-out infinite;
+}
+
+@keyframes vf-rec {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* Exposure lab */
+@keyframes lab-pass {
+  from { transform: translateX(-30%); }
+  to { transform: translateX(520%); }
+}
+
+.lab-pass {
+  animation: lab-pass 3.4s linear infinite;
+}
+
+.lab-range {
+  appearance: none;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.lab-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 22px;
+  background: #ff6b00;
+  border: 0;
+}
+
+.lab-range::-moz-range-thumb {
+  width: 14px;
+  height: 22px;
+  border-radius: 0;
+  background: #ff6b00;
+  border: 0;
+}
+
+.lab-range:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-in,
+  .vf-flash,
+  .vf-needle,
+  .lens-spin,
+  .bokeh {
+    animation: none;
+  }
+
+  .iris-hole {
+    transition: none;
+  }
+
+  .vf-focus {
+    transition: none;
+  }
+
+  /* The ball stands still, but its motion blur still shows what the shutter does */
+  .lab-pass {
+    animation: none;
+    transform: translateX(150%);
+  }
+}
