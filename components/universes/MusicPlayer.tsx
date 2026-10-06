@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Pause, Play, SkipBack, SkipForward } from 'lucide-react';
+import { ExternalLink, Pause, Play, SkipBack, SkipForward } from 'lucide-react';
 import HudCorners from '../ui/HudCorners';
 import ShareMenu from './ShareMenu';
 import Wave from './Wave';
@@ -226,6 +226,17 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
                 <span>{fmt(time)}</span>
                 <span>{fmt(duration)}</span>
               </div>
+              <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
+                <span className="border border-gold/40 px-2 py-1 text-gold">Fragmento</span>
+                {track.duration && <span>Tema completo · {track.duration}</span>}
+                {track.fullLink ? (
+                  <a href={track.fullLink.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-gold px-3 py-2 text-gold transition-colors hover:bg-gold hover:text-black">
+                    {track.fullLink.label} <ExternalLink size={12} />
+                  </a>
+                ) : (
+                  <span>Completo próximamente</span>
+                )}
+              </p>
             </div>
           )}
 
@@ -334,7 +345,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
 
 /** Subtitle of the deck: where the song comes from */
 function subtitle(t: Track) {
-  if (t.source.kind === 'file') return `Reproduciendo desde Quantum Code${t.year ? ` · ${t.year}` : ''}`;
+  if (t.source.kind === 'file') return `Fragmento${t.year ? ` · ${t.year}` : ''}`;
   if (t.source.kind === 'embed') return `${embedInfo(t.source)?.providerLabel ?? 'Enlace externo'}${t.year ? ` · ${t.year}` : ''}`;
   return `Sin publicar${t.year ? ` · ${t.year}` : ''}`;
 }

@@ -23,6 +23,8 @@ export interface Track {
   duration?: string;
   description?: string;
   source: TrackSource;
+  /** Where to listen to the FULL song (YouTube, Spotify, a paid/unlock page...). Shows a button in the player when set. */
+  fullLink?: { label: string; url: string };
 }
 
 export interface Member {
@@ -63,18 +65,23 @@ export const band = {
  * public/assets/audio; in production set VITE_AUDIO_BASE_URL (Vercel > Settings > Environment Variables)
  * to the address of the storage that hosts them. Without it, production shows the tracks as "próximamente".
  */
+/**
+ * The site only ever serves 30-second PREVIEWS (files named NN-slug-preview.mp3). The full songs are NOT published
+ * anywhere: they stay on the owner's computer (audio-completo/, ignored by git). Never upload full tracks to the
+ * public store; a future premium unlock must serve them from a private store.
+ */
 const AUDIO_BASE = import.meta.env.VITE_AUDIO_BASE_URL?.replace(/\/$/, '') ?? (import.meta.env.DEV ? '/assets/audio' : '');
 const audio = (file: string): TrackSource => (AUDIO_BASE ? { kind: 'file', src: `${AUDIO_BASE}/${file}` } : { kind: 'soon' });
 
 export const tracks: Track[] = [
-  { slug: 'neural-awakening', title: 'Neural Awakening', year: '2026', duration: '4:07', source: audio('01-neural-awakening.mp3') }, // provisional title
-  { slug: 'synapse', title: 'Synapse', year: '2026', duration: '3:39', source: audio('02-synapse.mp3') }, // provisional title
-  { slug: 'threshold', title: 'Threshold', year: '2026', duration: '4:14', source: audio('03-threshold.mp3') }, // provisional title
-  { slug: 'latency', title: 'Latency', year: '2026', duration: '3:17', source: audio('04-latency.mp3') }, // provisional title
-  { slug: 'quantum-pulse', title: 'Quantum Pulse', year: '2026', duration: '4:38', source: audio('05-quantum-pulse.mp3') }, // provisional title
-  { slug: 'digital-echo', title: 'Digital Echo', year: '2026', duration: '2:45', source: audio('06-digital-echo.mp3') }, // provisional title
-  { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon.mp3') }, // provisional title
-  { slug: 'latent-code', title: 'Latent Code', year: '2026', duration: '4:46', source: audio('08-latent-code.mp3') }, // provisional title
+  { slug: 'neural-awakening', title: 'Neural Awakening', year: '2026', duration: '4:07', source: audio('01-neural-awakening-preview.mp3') }, // provisional title
+  { slug: 'synapse', title: 'Synapse', year: '2026', duration: '3:39', source: audio('02-synapse-preview.mp3') }, // provisional title
+  { slug: 'threshold', title: 'Threshold', year: '2026', duration: '4:14', source: audio('03-threshold-preview.mp3') }, // provisional title
+  { slug: 'latency', title: 'Latency', year: '2026', duration: '3:17', source: audio('04-latency-preview.mp3') }, // provisional title
+  { slug: 'quantum-pulse', title: 'Quantum Pulse', year: '2026', duration: '4:38', source: audio('05-quantum-pulse-preview.mp3') }, // provisional title
+  { slug: 'digital-echo', title: 'Digital Echo', year: '2026', duration: '2:45', source: audio('06-digital-echo-preview.mp3') }, // provisional title
+  { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon-preview.mp3') }, // provisional title
+  { slug: 'latent-code', title: 'Latent Code', year: '2026', duration: '4:46', source: audio('08-latent-code-preview.mp3') }, // provisional title
 ];
 
 export const projects: Project[] = [

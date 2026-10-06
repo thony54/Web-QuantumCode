@@ -34,3 +34,9 @@ public/assets/audio/
 *.wav
 *.m4a
 *.flac
+
+.vercel
+.env*
+
+# Temas COMPLETOS (nunca se publican; en la web solo van fragmentos de 30 s)
+audio-completo/
