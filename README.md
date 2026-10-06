@@ -20,7 +20,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1I8QWZ4dOs7Tba_C3Arwk31
    `npm run dev`
 <div# Quantum Code Studio
 
-Proyecto de estudio creativo interdimensional.
+Proyecto de estudio creativo.
 
 ## Deploy
 Despliegue automático en Vercel.

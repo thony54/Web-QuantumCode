@@ -232,7 +232,7 @@ const Home: React.FC = () => {
    return (
       <div className="bg-black text-white min-h-screen font-sans overflow-x-hidden selection:bg-gold selection:text-black">
          <SEO 
-            title="Quantum Code Studio | Estudio Creativo Interdimensional"
+            title="Quantum Code Studio | Estudio Creativo"
             description="Quantum Code Studio es un estudio creativo con múltiples universos: música propia, producción audiovisual, videojuegos, diseño, desarrollo web y tecnología con accesibilidad nativa. Cada área es una dimensión; todas, una misma visión."
             canonicalUrl="/"
          />

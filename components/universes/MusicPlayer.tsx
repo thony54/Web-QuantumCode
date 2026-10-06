@@ -157,7 +157,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!playing || !beats || calm) {
       el.style.transition = 'opacity 700ms ease-out';
-      el.style.opacity = playing && calm ? '0.07' : '0';
+      el.style.opacity = playing && calm ? '0.035' : '0';
       el.style.transform = 'none';
       return;
     }
@@ -170,8 +170,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
       last = now;
       const target = (beats[Math.floor(audio.currentTime * BEAT_FPS)] ?? 0) / 255;
       level = Math.max(target, level - dt * 3.4); // instant attack, ~300 ms decay
-      el.style.opacity = String(0.03 + level * 0.3);
-      el.style.transform = `scale(${1 + level * 0.012})`;
+      el.style.opacity = String(0.015 + level * 0.115);
+      el.style.transform = `scale(${1 + level * 0.006})`;
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
