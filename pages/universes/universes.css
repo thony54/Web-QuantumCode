@@ -1,0 +1,185 @@
+/* ───────── Shared by the universe pages (loaded with their lazy chunks) ───────── */
+
+/* ───────── SONIC_LAB (Música) ───────── */
+@keyframes studio-playhead {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+.studio-playhead {
+  animation: studio-playhead 12s linear infinite;
+}
+
+/* Vertical faders: the native range input rotated through writing-mode */
+.studio-fader {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  appearance: none;
+  background: transparent;
+  width: 28px;
+  height: 130px;
+  cursor: pointer;
+}
+
+.studio-fader::-webkit-slider-runnable-track {
+  width: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.studio-fader::-moz-range-track {
+  width: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.studio-fader::-webkit-slider-thumb {
+  appearance: none;
+  width: 26px;
+  height: 12px;
+  margin-left: -11.5px;
+  background: #0a0a0a;
+  border: 1px solid #d4af37;
+  box-shadow: inset 0 0 0 3px #0a0a0a, inset 0 -1px 0 3px #d4af37;
+}
+
+.studio-fader::-moz-range-thumb {
+  width: 24px;
+  height: 10px;
+  border-radius: 0;
+  background: #0a0a0a;
+  border: 1px solid #d4af37;
+}
+
+.studio-fader:focus-visible {
+  outline: 1px solid #d4af37;
+  outline-offset: 4px;
+}
+
+.studio-range {
+  appearance: none;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.studio-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 18px;
+  background: #d4af37;
+  border: 0;
+}
+
+.studio-range::-moz-range-thumb {
+  width: 12px;
+  height: 18px;
+  border-radius: 0;
+  background: #d4af37;
+  border: 0;
+}
+
+.studio-range:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 6px;
+}
+
+/* ───────── PANEL_ZERO (Audiovisual · cómic futurista) ───────── */
+/* In the components layer so Tailwind utilities (bg-*, etc.) can still override these */
+@layer components {
+  .halftone {
+    background-image: radial-gradient(currentColor 1.1px, transparent 1.7px);
+    background-size: 8px 8px;
+  }
+
+  .halftone-lg {
+    background-image: radial-gradient(currentColor 2px, transparent 2.6px);
+    background-size: 14px 14px;
+  }
+
+  .comic-panel {
+    position: relative;
+    border: 3px solid #fff;
+    background: #000;
+    box-shadow: 7px 7px 0 0 var(--c, #d4af37);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .comic-panel:hover {
+    transform: translate(-3px, -3px) rotate(-0.4deg);
+    box-shadow: 10px 10px 0 0 var(--c, #d4af37);
+  }
+
+  .comic-title {
+    -webkit-text-stroke: 2px #000;
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0 #000, 7px 7px 0 var(--c, #d4af37);
+  }
+
+  .comic-caption {
+    background: var(--c, #d4af37);
+    color: #000;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 0 #fff;
+  }
+
+  .comic-balloon {
+    position: relative;
+    background: #fff;
+    color: #000;
+    border: 3px solid #000;
+    border-radius: 50% / 60%;
+    box-shadow: 5px 5px 0 0 var(--c, #d4af37);
+  }
+
+  .comic-balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 22%;
+    width: 26px;
+    height: 22px;
+    background: #fff;
+    clip-path: polygon(0 0, 100% 0, 20% 100%);
+    filter: drop-shadow(0 3px 0 #000);
+  }
+}
+
+@keyframes comic-pop {
+  0%, 100% { transform: rotate(-4deg) scale(1); }
+  50% { transform: rotate(-2deg) scale(1.07); }
+}
+
+.comic-pop {
+  animation: comic-pop 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-playhead,
+  .comic-pop {
+    animation: none;
+  }
+
+  .comic-panel,
+  .comic-panel:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Decorative spectrum bars (header of SONIC_LAB) */
+@keyframes eq-bar {
+  from { transform: scaleY(0.12); }
+  to { transform: scaleY(1); }
+}
+
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq-bar var(--d, 1s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar {
+    animation: none;
+    transform: scaleY(0.5);
+  }
+}

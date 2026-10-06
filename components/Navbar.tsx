@@ -4,6 +4,9 @@ import { Menu, X } from 'lucide-react';
 import { NavItem } from '../types';
 import GooeyNav from './GooeyNav';
 import GooeyButton from './ui/GooeyButton';
+import UniversesMenu from './universes/UniversesMenu';
+import { useUniverseTravel } from './universes/UniverseTransition';
+import { isUniversePath, universes } from '../lib/universes';
 
 /** Same universal-access figure the accessibility widget uses in its panel */
 const AccessibilityIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
@@ -45,6 +48,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { travel } = useUniverseTravel();
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -53,6 +57,8 @@ const Navbar: React.FC = () => {
 
   /** Resolve the active nav index from the current pathname */
   const activeIndex = (() => {
+    // Inside a universe the "Universos" tab is the active one, not Inicio
+    if (isUniversePath(location.pathname)) return -1;
     const exact = navItems.findIndex((i) => i.path === location.pathname);
     if (exact !== -1) return exact;
     // Fallback: match by prefix (e.g. /servicios/foo → Servicios)
@@ -114,6 +120,8 @@ const Navbar: React.FC = () => {
               onNavigate={(href: string) => navigate(href)}
             />
 
+            <UniversesMenu />
+
             {/* Accessibility panel (the widget's floating launcher is hidden in index.html) */}
             <GooeyButton
               label="Accesibilidad"
@@ -149,7 +157,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Nav Overlay */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-neutral-950 pt-32 px-6 h-screen w-screen">
+        <div className="md:hidden fixed inset-0 z-40 bg-neutral-950 pt-28 pb-10 px-6 h-screen w-screen overflow-y-auto">
           <div className="border-l border-white/10 pl-6 space-y-6">
             {navItems.map((item, idx) => (
               <Link key={item.path} to={item.path} className="block group">
@@ -164,10 +172,41 @@ const Navbar: React.FC = () => {
                 </span>
               </Link>
             ))}
+            <div>
+              <span className="text-gray-600 font-mono text-xs mb-3 block">
+                // UNIVERSOS
+              </span>
+              <ul className="space-y-1">
+                {universes.map((u) => (
+                  <li key={u.slug}>
+                    {u.ready ? (
+                      <button
+                        type="button"
+                        onClick={() => travel(u.path, u)}
+                        className={`flex w-full items-center gap-3 py-2 text-left font-display text-xl font-bold uppercase tracking-tight ${
+                          location.pathname === u.path ? 'text-gold' : 'text-white'
+                        }`}
+                      >
+                        <u.icon size={18} style={{ color: u.accent }} />
+                        {u.name}
+                      </button>
+                    ) : (
+                      <span className="flex items-center gap-3 py-2 font-display text-xl font-bold uppercase tracking-tight text-gray-600">
+                        <u.icon size={18} />
+                        {u.name}
+                        <span className="border border-white/15 px-1.5 py-0.5 font-mono text-[8px] font-normal tracking-[0.2em]">
+                          PRONTO
+                        </span>
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <button
               onClick={openAccessibility}
               aria-haspopup="dialog"
-              className="flex items-center justify-center gap-2 w-full mt-12 py-4 border-t border-b border-white/20 text-center font-mono text-gold uppercase tracking-widest"
+              className="flex items-center justify-center gap-2 w-full mt-8 py-4 border-t border-b border-white/20 text-center font-mono text-gold uppercase tracking-widest"
             >
               [ <AccessibilityIcon size={16} /> Accesibilidad ]
             </button>

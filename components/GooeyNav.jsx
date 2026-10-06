@@ -143,6 +143,12 @@ const GooeyNav = ({
     if (activeLi) {
       updateEffectPosition(activeLi);
       textRef.current?.classList.add('active');
+    } else if (textRef.current && filterRef.current) {
+      // No tab is active (e.g. inside a universe): hide the pill and its label
+      textRef.current.innerText = '';
+      textRef.current.classList.remove('active');
+      Object.assign(textRef.current.style, { width: '0px', height: '0px' });
+      Object.assign(filterRef.current.style, { width: '0px', height: '0px' });
     }
 
     const resizeObserver = new ResizeObserver(() => {

@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Originales de audio/portada copiados a mano (con etiquetas de cuenta): NO publicar. La web usa public/assets/audio
+public/assets/Quantum Code Temas/
+
+# Audio de la banda: NUNCA en git (se aloja aparte, ver VITE_AUDIO_BASE_URL en lib/music.ts)
+public/assets/audio/
+*.mp3
+*.mpeg
+*.aac
+*.wav
+*.m4a
+*.flac
