@@ -228,6 +228,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
               </div>
               <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
                 <span className="border border-gold/40 px-2 py-1 text-gold">Fragmento</span>
+                {track.tag && <span className="border border-neon-blue/50 px-2 py-1 text-neon-blue">{track.tag}</span>}
                 {track.duration && <span>Tema completo · {track.duration}</span>}
                 {track.fullLink ? (
                   <a href={track.fullLink.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-gold px-3 py-2 text-gold transition-colors hover:bg-gold hover:text-black">
@@ -327,7 +328,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
                 <span className="min-w-0 flex-1">
                   <span className={`block truncate font-display text-sm font-bold uppercase tracking-tight ${active ? 'text-gold' : 'text-gray-200'}`}>{t.title}</span>
                   <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-gray-600">
-                    {t.year}{t.year ? ' · ' : ''}{sourceLabel(t)}
+                    {t.year}{t.year ? ' · ' : ''}{t.tag ?? sourceLabel(t)}
                   </span>
                 </span>
               </button>

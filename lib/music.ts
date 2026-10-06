@@ -25,6 +25,8 @@ export interface Track {
   source: TrackSource;
   /** Where to listen to the FULL song (YouTube, Spotify, a paid/unlock page...). Shows a button in the player when set. */
   fullLink?: { label: string; url: string };
+  /** Small badge next to the title, e.g. "Videojuego" */
+  tag?: string;
 }
 
 export interface Member {
@@ -74,14 +76,15 @@ const AUDIO_BASE = import.meta.env.VITE_AUDIO_BASE_URL?.replace(/\/$/, '') ?? (i
 const audio = (file: string): TrackSource => (AUDIO_BASE ? { kind: 'file', src: `${AUDIO_BASE}/${file}` } : { kind: 'soon' });
 
 export const tracks: Track[] = [
-  { slug: 'neural-awakening', title: 'Neural Awakening', year: '2026', duration: '4:07', source: audio('01-neural-awakening-preview.mp3') }, // provisional title
-  { slug: 'synapse', title: 'Synapse', year: '2026', duration: '3:39', source: audio('02-synapse-preview.mp3') }, // provisional title
-  { slug: 'threshold', title: 'Threshold', year: '2026', duration: '4:14', source: audio('03-threshold-preview.mp3') }, // provisional title
-  { slug: 'latency', title: 'Latency', year: '2026', duration: '3:17', source: audio('04-latency-preview.mp3') }, // provisional title
+  { slug: 'neural-awakening', title: 'Neural Awakening', year: '2026', duration: '4:07', source: audio('01-neural-awakening-preview-v2.mp3') }, // provisional title
+  { slug: 'synapse', title: 'Synapse', year: '2026', duration: '3:39', source: audio('02-synapse-preview-v2.mp3') }, // provisional title
+  { slug: 'threshold', title: 'Threshold', year: '2026', duration: '4:14', source: audio('03-threshold-preview-v2.mp3') }, // provisional title
+  { slug: 'latency', title: 'Latency', year: '2026', duration: '3:17', tag: 'Videojuego', description: 'Tema original de Project Chaos Dominion, nuestro videojuego en desarrollo.', source: audio('04-latency-preview.mp3') }, // provisional title
   { slug: 'quantum-pulse', title: 'Quantum Pulse', year: '2026', duration: '4:38', source: audio('05-quantum-pulse-preview.mp3') }, // provisional title
   { slug: 'digital-echo', title: 'Digital Echo', year: '2026', duration: '2:45', source: audio('06-digital-echo-preview.mp3') }, // provisional title
-  { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon-preview.mp3') }, // provisional title
-  { slug: 'latent-code', title: 'Latent Code', year: '2026', duration: '4:46', source: audio('08-latent-code-preview.mp3') }, // provisional title
+  { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon-preview-v2.mp3') }, // provisional title
+  { slug: 'latent-code', title: 'Latent Code', year: '2026', duration: '4:46', source: audio('08-latent-code-preview-v2.mp3') }, // provisional title
+  { slug: 'player-one', title: 'Player One', year: '2026', duration: '3:29', tag: 'Videojuego', description: 'Tema original de Project Chaos Dominion, nuestro videojuego en desarrollo.', source: audio('09-player-one-preview.mp3') }, // provisional title
 ];
 
 export const projects: Project[] = [
