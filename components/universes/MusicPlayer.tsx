@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ExternalLink, Pause, Play, SkipBack, SkipForward } from 'lucide-react';
 import HudCorners from '../ui/HudCorners';
 import ShareMenu from './ShareMenu';
 import Wave from './Wave';
 import { embedInfo, Track, trackShareUrl } from '../../lib/music';
+import { BEAT_FPS, beatMaps } from '../../lib/beats';
 
 interface MusicPlayerProps {
   tracks: Track[];
@@ -42,6 +43,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
   const audioRef = useRef<HTMLAudioElement>(null);
   const wantPlay = useRef(false);
   const loadedSrc = useRef<string | null>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
 
   const track = tracks[index];
@@ -139,6 +141,43 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
     };
   }, [track, isFile, artist, cover]);
 
+  // Beat map of the current fragment (one byte of hit strength every 20 ms), used to pulse the LED behind the deck
+  const beats = useMemo(() => {
+    const b64 = beatMaps[track.slug];
+    if (!b64) return null;
+    const bin = atob(b64);
+    return Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  }, [track.slug]);
+
+  // The LED reads audio.currentTime every frame and writes straight to the DOM (no React renders)
+  useEffect(() => {
+    const el = glowRef.current;
+    const audio = audioRef.current;
+    if (!el || !audio) return;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!playing || !beats || calm) {
+      el.style.transition = 'opacity 700ms ease-out';
+      el.style.opacity = playing && calm ? '0.07' : '0';
+      el.style.transform = 'none';
+      return;
+    }
+    el.style.transition = 'none';
+    let raf = 0;
+    let level = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      const target = (beats[Math.floor(audio.currentTime * BEAT_FPS)] ?? 0) / 255;
+      level = Math.max(target, level - dt * 3.4); // instant attack, ~300 ms decay
+      el.style.opacity = String(0.03 + level * 0.3);
+      el.style.transform = `scale(${1 + level * 0.012})`;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [playing, beats]);
+
   const seek = (value: number) => {
     const audio = audioRef.current;
     if (audio && duration > 0) audio.currentTime = (value / 100) * duration;
@@ -170,7 +209,14 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
       />
 
       {/* ───────── Deck ───────── */}
-      <div className="relative border border-white/15 bg-black p-5 sm:p-8 lg:col-span-7">
+      <div className="relative flex min-w-0 lg:col-span-7">
+      {/* Soft, low LED behind the player, pulsing with the hits of the fragment (same height as the deck) */}
+      <div
+        ref={glowRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-1.5 rounded-sm bg-gradient-to-r from-gold to-neon-blue opacity-0 blur-xl will-change-[opacity,transform]"
+      />
+      <div className="relative z-10 min-w-0 flex-1 border border-white/15 bg-black p-5 sm:p-8">
         <HudCorners className="border-gold/60" size="w-4 h-4" />
         <div className="mb-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">
           <span className="flex items-center gap-2">
@@ -182,18 +228,20 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
           </span>
         </div>
 
-        <div className="flex items-start gap-5">
+        {/* Cover on top on phones, beside the title from `sm` up */}
+        <div className="flex flex-col items-start gap-4 sm:flex-row sm:gap-5">
           {cover && (
             <img
               src={cover}
               alt={artist ? `Portada de ${artist}` : 'Portada'}
               width={160}
               height={160}
-              className="h-24 w-24 shrink-0 border border-white/20 object-cover sm:h-36 sm:w-36"
+              className="h-20 w-20 shrink-0 border border-white/20 object-cover sm:h-36 sm:w-36"
             />
           )}
-          <div className="min-w-0">
-            <h3 className="font-display text-[clamp(1.5rem,3.5vw,2.5rem)] font-black uppercase leading-[1.05] tracking-tight text-white">
+          {/* Container: the title size follows THIS box (cqw), so the widest words (AWAKENING, THRESHOLD) always fit */}
+          <div className="w-full min-w-0 flex-1 [container-type:inline-size]">
+            <h3 className="font-display text-[clamp(1.1rem,8.4cqw,2.5rem)] font-black uppercase leading-[1.05] tracking-tight text-white [overflow-wrap:anywhere]">
               {track.title}
             </h3>
             <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.25em] text-gold">{subtitle(track)}</p>
@@ -308,6 +356,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
             {error}
           </p>
         )}
+      </div>
       </div>
 
       {/* ───────── Playlist ───────── */}
