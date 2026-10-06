@@ -82,7 +82,7 @@ export const tracks: Track[] = [
   { slug: 'latency', title: 'Latency', year: '2026', duration: '3:17', tag: 'Videojuego', description: 'Tema original de Project Chaos Dominion, nuestro videojuego en desarrollo.', source: audio('04-latency-preview.mp3') }, // provisional title
   { slug: 'quantum-pulse', title: 'Quantum Pulse', year: '2026', duration: '4:38', source: audio('05-quantum-pulse-preview.mp3') }, // provisional title
   { slug: 'digital-echo', title: 'Digital Echo', year: '2026', duration: '2:45', source: audio('06-digital-echo-preview.mp3') }, // provisional title
-  { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon-preview-v2.mp3') }, // provisional title
+  { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon-preview-v3.mp3') }, // provisional title
   { slug: 'latent-code', title: 'Latent Code', year: '2026', duration: '4:46', source: audio('08-latent-code-preview-v2.mp3') }, // provisional title
   { slug: 'player-one', title: 'Player One', year: '2026', duration: '3:29', tag: 'Videojuego', description: 'Tema original de Project Chaos Dominion, nuestro videojuego en desarrollo.', source: audio('09-player-one-preview.mp3') }, // provisional title
 ];
