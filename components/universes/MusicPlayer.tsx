@@ -41,36 +41,67 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
   const [loadedEmbed, setLoadedEmbed] = useState<string | null>(null); // slug of the embed the visitor chose to load
   const audioRef = useRef<HTMLAudioElement>(null);
   const wantPlay = useRef(false);
+  const loadedSrc = useRef<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const track = tracks[index];
   const isFile = track.source.kind === 'file';
   const embed = track.source.kind === 'embed' ? embedInfo(track.source) : null;
   const progress = duration > 0 ? (time / duration) * 100 : 0;
 
-  // Load / start the audio file whenever the selected track changes
+  /**
+   * Points the <audio> at a track's file (idempotent). Returns false when the track has no file.
+   * IMPORTANT for phones: this and play() must run synchronously inside the tap handler. iOS Safari
+   * ignores play() calls made later (e.g. from a React effect) because they no longer count as user-initiated.
+   */
+  const attach = (audio: HTMLAudioElement, source: Track['source']) => {
+    if (source.kind !== 'file') {
+      audio.pause();
+      audio.removeAttribute('src');
+      loadedSrc.current = null;
+      return false;
+    }
+    if (loadedSrc.current !== source.src) {
+      audio.src = source.src;
+      loadedSrc.current = source.src;
+    }
+    return true;
+  };
+
+  const startPlayback = (audio: HTMLAudioElement) => {
+    setError(null);
+    audio.play().catch((e: DOMException) => {
+      if (e.name === 'AbortError') return; // interrupted by a quick track change: not an error
+      setPlaying(false);
+      setError('No se pudo reproducir este tema. Toca de nuevo o revisa tu conexión.');
+    });
+  };
+
+  // Reset the display when the selected track changes (the actual loading/playing happens in the tap handlers)
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.pause();
     setTime(0);
     setDuration(0);
-    if (track.source.kind === 'file') {
-      audio.src = track.source.src;
-      audio.load();
-      if (wantPlay.current) void audio.play().catch(() => setPlaying(false));
-    } else {
-      audio.removeAttribute('src');
-      audio.load();
-      setPlaying(false);
-    }
+    setError(null);
+    if (!attach(audio, track.source)) setPlaying(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [track]);
 
   const select = useCallback(
     (i: number, autoplay: boolean) => {
+      const audio = audioRef.current;
+      const next = tracks[i];
       wantPlay.current = autoplay;
+      if (audio) {
+        const playable = attach(audio, next.source);
+        if (playable && autoplay) startPlayback(audio);
+        else audio.pause();
+      }
       setIndex(i);
-      onSelect?.(tracks[i].slug);
+      onSelect?.(next.slug);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [onSelect, tracks]
   );
 
@@ -79,7 +110,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
     if (!audio || !isFile) return;
     if (audio.paused) {
       wantPlay.current = true;
-      void audio.play().catch(() => setPlaying(false));
+      attach(audio, track.source);
+      startPlayback(audio);
     } else {
       wantPlay.current = false;
       audio.pause();
@@ -120,6 +152,10 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
         preload="none"
         controlsList="nodownload noplaybackrate"
         onContextMenu={(e) => e.preventDefault()}
+        onError={() => {
+          setPlaying(false);
+          setError('No se pudo cargar este tema. Revisa tu conexión e inténtalo de nuevo.');
+        }}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
@@ -255,6 +291,11 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
             />
           </div>
         </div>
+        {error && (
+          <p role="alert" className="mt-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.2em] text-neon-pink">
+            {error}
+          </p>
+        )}
       </div>
 
       {/* ───────── Playlist ───────── */}
