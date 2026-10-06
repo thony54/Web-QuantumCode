@@ -228,20 +228,20 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, initialSlug, onSelect
           </span>
         </div>
 
-        {/* Cover on top on phones, beside the title from `sm` up */}
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:gap-5">
+        {/* Cover always beside the title; smaller on phones */}
+        <div className="flex items-start gap-3 sm:gap-5">
           {cover && (
             <img
               src={cover}
               alt={artist ? `Portada de ${artist}` : 'Portada'}
               width={160}
               height={160}
-              className="h-20 w-20 shrink-0 border border-white/20 object-cover sm:h-36 sm:w-36"
+              className="h-16 w-16 shrink-0 border border-white/20 object-cover sm:h-36 sm:w-36"
             />
           )}
           {/* Container: the title size follows THIS box (cqw), so the widest words (AWAKENING, THRESHOLD) always fit */}
           <div className="w-full min-w-0 flex-1 [container-type:inline-size]">
-            <h3 className="font-display text-[clamp(1.1rem,8.4cqw,2.5rem)] font-black uppercase leading-[1.05] tracking-tight text-white [overflow-wrap:anywhere]">
+            <h3 className="font-display text-[clamp(0.8rem,8.4cqw,2.5rem)] font-black uppercase leading-[1.05] tracking-tight text-white [overflow-wrap:anywhere]">
               {track.title}
             </h3>
             <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.25em] text-gold">{subtitle(track)}</p>
