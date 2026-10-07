@@ -38,7 +38,7 @@ const Contact: React.FC = () => {
 
       <PageHeader
         path="contacto"
-        index="05"
+        index="04"
         title={<>INICIAR <br /><GlitchText text="PROYECTO" className="text-gold" as="span" /></>}
         description="Estábamos esperando esta señal. Cuéntanos sobre tu proyecto y construiremos juntos la mejor solución."
         meta={['CANAL: ABIERTO', 'HORARIO: 24/7 VIRTUAL']}

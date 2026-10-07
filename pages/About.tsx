@@ -114,9 +114,9 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ id, name, role, image, 
         </div>
       </div>
 
-      <div className="relative flex flex-wrap items-end justify-between gap-4 p-6 border-t border-white/10">
+      <div className="relative flex flex-wrap items-end justify-between gap-4 p-5 lg:p-6 border-t border-white/10">
         <div>
-          <h3 className="font-display font-bold text-3xl text-white leading-none">{name}</h3>
+          <h3 className="font-display font-bold text-2xl lg:text-3xl text-white leading-none">{name}</h3>
           <p className="mt-3 font-mono text-xs uppercase tracking-[0.25em] text-gold">{role}</p>
         </div>
         <div className="flex gap-2">
@@ -183,7 +183,7 @@ const About: React.FC = () => {
 
       <PageHeader
         path="nosotros"
-        index="04"
+        index="03"
         backgroundImage={{
           src: `${heroImage}&w=1920`,
           srcSet: `${heroImage}&w=800 800w, ${heroImage}&w=1280 1280w, ${heroImage}&w=1920 1920w`,
@@ -281,21 +281,22 @@ const About: React.FC = () => {
 
       {/* Team */}
       <section className="py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-36">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading on top and the three members side by side underneath */}
+          <div className="mb-12 md:mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
               <SectionLabel index="03" className="mb-10">Tripulación</SectionLabel>
-              <h2 className="font-display font-bold text-4xl md:text-6xl lg:text-4xl xl:text-5xl text-white leading-none">
-                EQUIPO <br className="hidden lg:block" /><span className="text-neon-green">MULTIVERSAL</span>
+              <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-none">
+                EQUIPO <br /><span className="text-neon-green">MULTIVERSAL</span>
               </h2>
-              <p className="mt-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">
-                <span className="h-1.5 w-1.5 rounded-full bg-neon-green animate-pulse" />
-                Pasa el cursor o toca para cambiar de dimensión
-              </p>
             </div>
+            <p className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">
+              <span className="h-1.5 w-1.5 rounded-full bg-neon-green animate-pulse" />
+              Pasa el cursor o toca para cambiar de dimensión
+            </p>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <TeamMemberCard
               id="01"
               name="KARTER CODE"

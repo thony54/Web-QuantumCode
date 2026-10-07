@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-bold mb-6 text-xs uppercase tracking-widest border-l-2 border-gold pl-3">Navegación</h4>
             <ul className="space-y-3 text-sm">
               <li><Link to="/servicios" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-gold">-</span> Servicios</Link></li>
-              <li><Link to="/portafolio" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-gold">-</span> Portafolio</Link></li>
+              <li><Link to="/nosotros" className="text-gray-400 hover:text-white flex items-center group"><span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-gold">-</span> Nosotros</Link></li>
             </ul>
           </div>
           <div>

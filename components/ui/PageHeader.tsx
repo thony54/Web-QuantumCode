@@ -14,7 +14,7 @@ interface PageHeaderProps {
     backgroundImage?: { src: string; srcSet?: string };
 }
 
-/** HUD-style hero shared by the inner pages (Servicios, Portafolio, Nosotros, Contacto). */
+/** HUD-style hero shared by the inner pages (Servicios, Nosotros, Contacto). */
 const PageHeader: React.FC<PageHeaderProps> = ({ path, index, title, description, meta, backgroundImage }) => (
     <header className="relative overflow-hidden border-b border-white/10 pt-32 pb-14 md:pt-44 md:pb-20">
         {backgroundImage && (

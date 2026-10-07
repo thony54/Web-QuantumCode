@@ -33,7 +33,6 @@ const openAccessibility = () => window.A11yWidget?.open();
 const navItems: NavItem[] = [
   { label: 'Inicio', path: '/' },
   { label: 'Servicios', path: '/servicios' },
-  { label: 'Portafolio', path: '/portafolio' },
   { label: 'Nosotros', path: '/nosotros' },
   { label: 'Contacto', path: '/contacto' },
 ];

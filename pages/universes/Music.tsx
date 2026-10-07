@@ -15,6 +15,12 @@ const Music: React.FC = () => {
   const [params, setParams] = useSearchParams();
   const sharedSlug = params.get('pista');
 
+  // The album covers must be seen clean (pixel art above all): no full-screen scanline/noise layers over them
+  useEffect(() => {
+    document.documentElement.classList.add('no-screen-fx');
+    return () => document.documentElement.classList.remove('no-screen-fx');
+  }, []);
+
   // A shared link (?pista=…) lands directly on the player
   useEffect(() => {
     if (!sharedSlug) return;
@@ -159,9 +165,48 @@ const Music: React.FC = () => {
         </div>
       </section>
 
-      {/* ───────── 03 Proyectos ───────── */}
+      {/* ───────── 03 Arte de disco ───────── */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-        <SectionLabel index="03" as="h2" className="mb-4">Proyectos</SectionLabel>
+        <SectionLabel index="03" as="h2" className="mb-12">Arte de disco</SectionLabel>
+
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* The cover is shown clean: nothing over the image */}
+          <div className="relative w-full max-w-md border border-white/15 bg-black p-3 sm:p-4 lg:col-span-5 lg:max-w-none">
+            <HudCorners className="border-neon-blue/60" size="w-5 h-5" />
+            <img
+              src="/assets/images/alien-disco-1024.webp"
+              srcSet="/assets/images/alien-disco-560.webp 560w, /assets/images/alien-disco-1024.webp 1024w"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              width={1024}
+              height={1024}
+              alt="Portada del disco Neural Transición: un alien gris de ojos enormes y negros come una rebanada de pizza con una mano, sobre un fondo de remolinos de nebulosa, estrellas y planetas en blanco y negro, en estilo pixel art."
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+              className="block aspect-square h-auto w-full bg-neutral-950 object-cover"
+            />
+          </div>
+
+          <div className="lg:col-span-7">
+            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-neon-blue">Quantum Code Music // Disco</p>
+            {/* Sized by the column width: "TRANSICIÓN" is ≈11.6 em in Syne Black */}
+            <div className="[container-type:inline-size]">
+              <h3 className="font-display text-[clamp(1.5rem,7.7cqw,3.75rem)] font-black uppercase leading-[0.95] tracking-tighter text-white">
+                Neural
+                <br />
+                Transición
+              </h3>
+            </div>
+            <p className="mt-8 max-w-xl border-l border-gold pl-5 text-sm leading-relaxed text-gray-400 sm:text-base">
+              Diseño de portada del disco Neural Transición, de Quantum Code Music.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 04 Proyectos ───────── */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+        <SectionLabel index="04" as="h2" className="mb-4">Proyectos</SectionLabel>
         <p className="mb-12 max-w-2xl font-mono text-xs uppercase leading-relaxed tracking-[0.15em] text-gray-500">
           Algunos de los proyectos en los que hemos participado.
         </p>

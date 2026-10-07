@@ -18,6 +18,28 @@ const SHORTS = [
   { frame: '096', tc: '00:00:04:00', color: '#00FF41' },
 ];
 
+/** Characters and illustrations of the series' universes. Add one here to show it in section 02. */
+const CHARACTERS = [
+  {
+    name: 'KOTO',
+    kind: 'Personaje de TIWWTM',
+    note: 'Es la muerte misma.',
+    src: '/assets/images/koto.webp',
+    size: 626,
+    color: '#D4AF37',
+    alt: 'KOTO, personaje de TIWWTM: un niño de pelo oscuro sentado en su cama, con las manos en las mejillas, rodeado de monstruos de ojos amarillos que lo observan desde las paredes.',
+  },
+  {
+    name: 'RAT UNIVERSE',
+    kind: 'Crossover de TIWWTM',
+    note: '',
+    src: '/assets/images/rat-universe.webp',
+    size: 1024,
+    color: '#FF003C',
+    alt: 'Ilustración de una rata monstruosa de piel oscura y arrugada que muerde un planeta rojo; al fondo, otro planeta con anillos sobre un cielo verde.',
+  },
+];
+
 const DOCS = [
   { no: '01', color: '#00F0FF', line: 'Historias reales, contadas con la elegancia del cine.' },
   { no: '02', color: '#D4AF37', line: 'Personas, territorios y causas en primer plano.' },
@@ -60,7 +82,7 @@ const Audiovisual: React.FC = () => {
     <div className="min-h-screen bg-black text-white">
       <SEO
         title="Universo Audiovisual | The Incredible World Within the Multiverse | Quantum Code Studio"
-        description="Universo audiovisual de Quantum Code Studio: The Incredible World Within the Multiverse, nuestra serie animada estrella de 12 capítulos escrita por Karter Code, además de cortometrajes y documentales."
+        description="Universo audiovisual de Quantum Code Studio: The Incredible World Within the Multiverse, nuestra serie animada estrella de terror cósmico en 12 capítulos, y Granjas, una nueva serie en escritura, ambas escritas por Karter Code. Además, personajes, cortometrajes y documentales."
         canonicalUrl="/universos/audiovisual"
       />
 
@@ -92,14 +114,17 @@ const Audiovisual: React.FC = () => {
               >
                 <ArrowLeft size={13} /> Volver a Quantum Code
               </button>
-              <h1
-                className="comic-title font-display text-[clamp(2.25rem,9vw,6.5rem)] font-black uppercase leading-[0.9] tracking-tighter text-white"
-                style={accent('#D4AF37')}
-              >
-                AUDIO
-                <br />
-                VISUAL
-              </h1>
+              {/* Never wider than the panel: "VISUAL" is ≈5.7 em, so the size also follows the panel width (1024–1260 px) */}
+              <div className="[container-type:inline-size]">
+                <h1
+                  className="comic-title font-display text-[clamp(2.25rem,min(9vw,16.2cqw),6.5rem)] font-black uppercase leading-[0.9] tracking-tighter text-white"
+                  style={accent('#D4AF37')}
+                >
+                  AUDIO
+                  <br />
+                  VISUAL
+                </h1>
+              </div>
               <p className="comic-caption mt-10 inline-block max-w-lg px-4 py-3 font-mono text-xs font-bold uppercase leading-relaxed tracking-wide sm:text-sm">
                 Series animadas, cortometrajes y documentales. Un universo de viñetas, luz y movimiento.
               </p>
@@ -121,7 +146,7 @@ const Audiovisual: React.FC = () => {
                     <span className="h-2 w-2 animate-pulse rounded-full bg-neon-pink" /> REC
                   </span>
                 </div>
-                <p className="font-mono text-3xl font-bold tabular-nums tracking-widest text-neon-blue sm:text-4xl" aria-hidden="true">
+                <p className="font-mono text-3xl font-bold tabular-nums tracking-widest text-neon-blue lg:text-4xl" aria-hidden="true">
                   {timecode}
                 </p>
                 <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">
@@ -169,14 +194,18 @@ const Audiovisual: React.FC = () => {
                 <div className="mb-5 flex flex-wrap gap-2">
                   <Statusbadge>Serie estrella</Statusbadge>
                   <Statusbadge>12 capítulos</Statusbadge>
+                  <Statusbadge>Terror cósmico</Statusbadge>
                 </div>
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">Serie animada</p>
-                <h3 className="font-display text-2xl font-black uppercase leading-[1.05] tracking-tight text-white sm:text-3xl">
-                  The Incredible World Within the Multiverse
-                </h3>
+                {/* Sized by the column width: "MULTIVERSE" (≈11.6 em in Syne Black) must fit between 1024 and 1440 px */}
+                <div className="[container-type:inline-size]">
+                  <h3 className="font-display text-[clamp(1.1rem,7.8cqw,1.875rem)] font-black uppercase leading-[1.05] tracking-tight text-white">
+                    The Incredible World Within the Multiverse
+                  </h3>
+                </div>
                 <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.3em] text-gold">TIWWTM</p>
                 <p className="mt-6 text-sm leading-relaxed text-gray-300">
-                  La serie estrella de Quantum Code: doce capítulos animados escritos por Karter Code.
+                  La serie estrella de Quantum Code: doce capítulos animados de terror cósmico escritos por Karter Code.
                 </p>
               </div>
 
@@ -190,6 +219,58 @@ const Audiovisual: React.FC = () => {
           </div>
         </motion.article>
 
+        {/* Granjas: still being written. Its concept art is shown clean too (on phones the art comes first) */}
+        <motion.article
+          className="comic-panel mt-12 overflow-hidden hover:transform-none"
+          style={accent('#00FF41')}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="order-2 flex flex-col justify-between border-t-[3px] border-white bg-black p-6 sm:p-8 lg:order-1 lg:col-span-7 lg:border-r-[3px] lg:border-t-0 lg:p-10">
+              <div>
+                <div className="mb-5 flex flex-wrap gap-2">
+                  <Statusbadge>Nueva serie</Statusbadge>
+                  <Statusbadge>Terror cósmico</Statusbadge>
+                </div>
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">Serie animada</p>
+                <div className="[container-type:inline-size]">
+                  <h3 className="font-display text-[clamp(1.5rem,11cqw,3.75rem)] font-black uppercase leading-[0.95] tracking-tighter text-white">
+                    Granjas
+                  </h3>
+                </div>
+                <p className="mt-6 max-w-xl text-sm leading-relaxed text-gray-300">
+                  Una nueva serie animada de terror cósmico, escrita por Karter Code. Todavía está en escritura: este es su arte conceptual.
+                </p>
+              </div>
+
+              <div className="mt-8 border-t border-white/15 pt-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">
+                  Escrita por <span className="text-white">Karter Code</span>
+                </p>
+                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-neon-green">● En escritura</p>
+              </div>
+            </div>
+
+            <div className="order-1 bg-black lg:order-2 lg:col-span-5">
+              <img
+                src="/assets/images/granjas-arte-896.webp"
+                srcSet="/assets/images/granjas-arte-600.webp 600w, /assets/images/granjas-arte-896.webp 896w"
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                width={896}
+                height={1200}
+                alt="Arte conceptual de la serie Granjas: esferas geodésicas unidas por tuberías y raíces, flotando en un cielo cósmico; dentro de cada una hay mundos y criaturas extrañas, y la del centro brilla en rojo."
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                className="block h-auto w-full"
+              />
+            </div>
+          </div>
+        </motion.article>
+
         <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <div className="comic-caption px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em]" style={accent('#00F0FF')}>
             Más series en camino
@@ -198,11 +279,51 @@ const Audiovisual: React.FC = () => {
         </div>
       </section>
 
-      {/* ───────── 02 Shorts ───────── */}
+      {/* ───────── 02 Characters and art ───────── */}
+      <section className="border-t-4 border-white bg-black py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionLabel index="02" as="h2" className="mb-14">Personajes y arte</SectionLabel>
+
+          {/* The art is shown clean: the caption sits below it, never over it */}
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+            {CHARACTERS.map((c, i) => (
+              <motion.figure
+                key={c.name}
+                className="comic-panel overflow-hidden hover:transform-none"
+                style={accent(c.color)}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <img
+                  src={c.src}
+                  width={c.size}
+                  height={c.size}
+                  alt={c.alt}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className="block aspect-square h-auto w-full bg-neutral-950 object-cover"
+                />
+                <figcaption className="border-t-[3px] border-white bg-black p-5 sm:p-6">
+                  <div className="mb-3">
+                    <Statusbadge>{c.kind}</Statusbadge>
+                  </div>
+                  <h3 className="font-display text-2xl font-black uppercase leading-none tracking-tight text-white sm:text-3xl">{c.name}</h3>
+                  {c.note && <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">{c.note}</p>}
+                </figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 03 Shorts ───────── */}
       <section className="relative overflow-hidden border-y-4 border-white bg-dark-card py-20 md:py-28">
         <div className="halftone-lg pointer-events-none absolute -right-24 top-0 h-80 w-80 text-white/[0.06] [mask-image:radial-gradient(circle,black_10%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionLabel index="02" as="h2" className="mb-14">Cortometrajes</SectionLabel>
+          <SectionLabel index="03" as="h2" className="mb-14">Cortometrajes</SectionLabel>
 
           {/* Film strip */}
           <div className="overflow-x-auto no-scrollbar">
@@ -230,9 +351,9 @@ const Audiovisual: React.FC = () => {
         </div>
       </section>
 
-      {/* ───────── 03 Docs ───────── */}
+      {/* ───────── 04 Docs ───────── */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-        <SectionLabel index="03" as="h2" className="mb-14">Documentales</SectionLabel>
+        <SectionLabel index="04" as="h2" className="mb-14">Documentales</SectionLabel>
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {DOCS.map((d, i) => (

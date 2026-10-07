@@ -38,10 +38,3 @@ export interface Testimonial {
   content: string;
   image: string;
 }
-
-export interface PortfolioItem {
-  id: number;
-  title: string;
-  category: 'Design' | 'Web' | 'Audiovisual' | 'Branding';
-  imageUrl: string;
-}

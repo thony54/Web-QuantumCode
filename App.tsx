@@ -12,7 +12,6 @@ import { UniverseTransitionProvider } from './components/universes/UniverseTrans
 const Home = lazy(() => import('./pages/Home'));
 const Services = lazy(() => import('./pages/Services'));
 const About = lazy(() => import('./pages/About'));
-const Portfolio = lazy(() => import('./pages/Portfolio'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
@@ -61,7 +60,8 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/servicios" element={<Services />} />
               <Route path="/nosotros" element={<About />} />
-              <Route path="/portafolio" element={<Portfolio />} />
+              {/* The portfolio now lives inside the universes: keep old links and search results working */}
+              <Route path="/portafolio" element={<Navigate to="/" replace />} />
               <Route path="/contacto" element={<Contact />} />
               <Route path="/universos" element={<Navigate to="/" replace />} />
               <Route path="/universos/musica" element={<MusicUniverse />} />
