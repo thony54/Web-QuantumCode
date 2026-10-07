@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, Globe, Cpu, Clapperboard, Crosshair } from 'lucide-react';
+import { Instagram, Globe, Cpu, Clapperboard, Crosshair, User } from 'lucide-react';
 import GlitchText from '../components/ui/GlitchText';
 import RevealOnScroll from '../components/ui/RevealOnScroll';
 import PageHeader from '../components/ui/PageHeader';
@@ -17,8 +17,9 @@ interface TeamMemberCardProps {
   id: string;
   name: string;
   role: string;
-  image: string;
-  hoverImage: string;
+  /** Sin foto todavía: se muestra un espacio reservado */
+  image?: string;
+  hoverImage?: string;
   socials: Social[];
 }
 
@@ -48,49 +49,68 @@ const getSocialIcon = (type: Social['type']) => {
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ id, name, role, image, hoverImage, socials }) => {
   const [isAlien, setIsAlien] = useState(false);
+  const hasAlien = !!image && !!hoverImage;
 
   return (
     <article
       className="group relative bg-black border border-white/10 hover:border-neon-green/40 transition-colors duration-300"
-      onMouseEnter={() => setIsAlien(true)}
+      onMouseEnter={() => hasAlien && setIsAlien(true)}
       onMouseLeave={() => setIsAlien(false)}
-      onClick={() => setIsAlien((v) => !v)}
+      onClick={() => hasAlien && setIsAlien((v) => !v)}
     >
       <HudCorners className="border-white/25 group-hover:border-neon-green" size="w-4 h-4" />
 
       <div className="relative aspect-[4/5] overflow-hidden bg-dark-card">
-        <img
-          src={image}
-          alt={name}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-        {/* Alternate-dimension portrait, revealed bottom-up by a scan wipe */}
-        <img
-          src={hoverImage}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-center transition-[clip-path] duration-700 ease-out"
-          style={{ clipPath: isAlien ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)' }}
-        />
-        <div
-          aria-hidden="true"
-          className={`pointer-events-none absolute inset-0 transition-transform duration-700 ease-out ${isAlien ? 'translate-y-0' : 'translate-y-full'}`}
-        >
-          <div className={`absolute inset-x-0 top-0 h-px bg-neon-green shadow-[0_0_14px_#00FF41] transition-opacity duration-700 ${isAlien ? 'opacity-0' : 'opacity-100'}`} />
-        </div>
+        {image ? (
+          <>
+            <img
+              src={image}
+              alt={name}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            {/* Alternate-dimension portrait, revealed bottom-up by a scan wipe */}
+            {hoverImage && (
+              <img
+                src={hoverImage}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-[clip-path] duration-700 ease-out"
+                style={{ clipPath: isAlien ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)' }}
+              />
+            )}
+            <div
+              aria-hidden="true"
+              className={`pointer-events-none absolute inset-0 transition-transform duration-700 ease-out ${isAlien ? 'translate-y-0' : 'translate-y-full'}`}
+            >
+              <div className={`absolute inset-x-0 top-0 h-px bg-neon-green shadow-[0_0_14px_#00FF41] transition-opacity duration-700 ${isAlien ? 'opacity-0' : 'opacity-100'}`} />
+            </div>
+          </>
+        ) : (
+          <div
+            role="img"
+            aria-label={`Foto de ${name}: próximamente`}
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-gray-500"
+          >
+            <div aria-hidden="true" className="absolute inset-0 border-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
+            <User aria-hidden="true" size={72} strokeWidth={1} className="relative" />
+            <span aria-hidden="true" className="relative font-mono text-[10px] uppercase tracking-[0.3em]">Foto próximamente</span>
+          </div>
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
 
         <div className="absolute top-5 left-5 right-5 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]">
           <span className="text-white/70">ID_{id}</span>
-          <span className={`flex items-center gap-2 border px-2 py-1 bg-black/60 transition-colors duration-300 ${isAlien ? 'border-neon-green/50 text-neon-green' : 'border-white/20 text-white/70'}`}>
-            <span className={`w-1.5 h-1.5 rounded-full ${isAlien ? 'bg-neon-green' : 'bg-white/60'}`} />
-            {isAlien ? 'MODO: ALIEN' : 'MODO: HUMANO'}
-          </span>
+          {hasAlien && (
+            <span className={`flex items-center gap-2 border px-2 py-1 bg-black/60 transition-colors duration-300 ${isAlien ? 'border-neon-green/50 text-neon-green' : 'border-white/20 text-white/70'}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${isAlien ? 'bg-neon-green' : 'bg-white/60'}`} />
+              {isAlien ? 'MODO: ALIEN' : 'MODO: HUMANO'}
+            </span>
+          )}
         </div>
       </div>
 
@@ -278,14 +298,14 @@ const About: React.FC = () => {
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <TeamMemberCard
               id="01"
-              name="KARTER"
-              role="Fundador y Director"
+              name="KARTER CODE"
+              role="CEO"
               image="/assets/images/karter.webp"
               hoverImage="/assets/images/karter-alien.webp"
               socials={[
                 { type: 'instagram', url: 'https://www.instagram.com/karter_code' },
                 { type: 'tiktok', url: 'https://www.tiktok.com/@karter_code' },
-                { type: 'connexo', url: 'https://app.connexo.tech/KarterCode' }
+                { type: 'connexo', url: 'https://www.connexoapp.com/thony.karter' }
               ]}
             />
             <TeamMemberCard
@@ -298,6 +318,15 @@ const About: React.FC = () => {
                 { type: 'instagram', url: 'https://instagram.com/ema.visual' },
                 { type: 'web', url: 'https://www.emavisual.art/' },
                 { type: 'connexo', url: 'https://app.connexo.tech/ema' }
+              ]}
+            />
+            <TeamMemberCard
+              id="03"
+              name="JUNIORDEV"
+              role="Director de Sistemas"
+              socials={[
+                { type: 'web', url: 'https://juniorz.dev/' },
+                { type: 'connexo', url: 'https://www.connexoapp.com/JuniorDev' }
               ]}
             />
           </div>

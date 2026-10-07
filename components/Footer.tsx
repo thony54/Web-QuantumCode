@@ -117,7 +117,18 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-gray-600">
           <p>ID: 994-221-00 // © {new Date().getFullYear()} Quantum Code</p>
-          <p>Diseñado por <a href="https://www.emavisual.art/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Ema</a> // Ejecutando el Código Cuántico</p>
+          <p>
+            Hecho por Quantum Code ·{' '}
+            <a
+              href="https://www.emavisual.art/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="EmaVisual (se abre en una pestaña nueva)"
+              className="underline decoration-white/20 underline-offset-4 hover:text-gold hover:decoration-gold transition-colors"
+            >
+              EmaVisual
+            </a>
+          </p>
         </div>
       </div>
     </footer>
