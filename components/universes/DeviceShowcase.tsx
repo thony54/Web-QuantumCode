@@ -186,7 +186,7 @@ const PcFrame: React.FC<FrameProps> = ({ project, shots, index, live }) => {
         {live && project.liveUrl ? (
           <ScaledIframe url={project.liveUrl} baseWidth={1440} title={`${project.title} — vista de computador`} />
         ) : shot ? (
-          <ScrollShot shot={shot} alt={`${project.title}: captura en computador ${index + 1}`} sizes="(min-width: 1024px) 700px, 100vw" device="pc" />
+          <ScrollShot key={shot.src} shot={shot} alt={`${project.title}: captura en computador ${index + 1}`} sizes="(min-width: 1024px) 700px, 100vw" device="pc" />
         ) : (
           <PlaceholderArt kind={project.kind} device="pc" />
         )}
@@ -206,7 +206,7 @@ const PhoneFrame: React.FC<FrameProps> = ({ project, shots, index, live }) => {
         {live && project.liveUrl ? (
           <ScaledIframe url={project.liveUrl} baseWidth={390} title={`${project.title} — vista de celular`} />
         ) : shot ? (
-          <ScrollShot shot={shot} alt={`${project.title}: captura en celular ${index + 1}`} sizes="(min-width: 1024px) 260px, 60vw" device="movil" />
+          <ScrollShot key={shot.src} shot={shot} alt={`${project.title}: captura en celular ${index + 1}`} sizes="(min-width: 1024px) 260px, 60vw" device="movil" />
         ) : (
           <PlaceholderArt kind={project.kind} device="movil" />
         )}

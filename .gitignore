@@ -52,3 +52,6 @@ Fotografias/
 # Capturas ORIGINALES de proyectos (pesadas): nunca a git. Solo se sube lo que genera `npm run proyectos`
 proyectos-originales/*
 !proyectos-originales/LEEME.md
+
+# Carpeta de capturas que el usuario deja dentro del proyecto (originales): nunca a git
+Capturas desarrollo/

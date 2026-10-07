@@ -164,6 +164,17 @@ export interface DevProject {
 }
 
 export const devProjects: DevProject[] = [
+  {
+    slug: 'quantum-code-web',
+    title: 'Quantum Code Studio',
+    org: 'Esta web',
+    kind: 'web',
+    description:
+      'El sitio del estudio: un multiverso de áreas con transiciones propias, reproductor de música, galería de fotos, laboratorio de código y proyectos para ver en computador y en celular.',
+    status: 'En producción',
+    stack: ['react', 'typescript', 'tailwind'],
+    links: [{ label: 'quantumcode.art', url: 'https://www.quantumcode.art' }],
+  },
   { slug: 'connexo-clients', title: 'Connexo Clients', org: 'Connexo', kind: 'app', description: 'Aplicación para los clientes de Connexo.' },
   { slug: 'connexo-sellers', title: 'Connexo Sellers', org: 'Connexo', kind: 'app', description: 'Aplicación para los vendedores de Connexo.' },
   { slug: 'easyxplorer-web', title: 'EasyXplorer', org: 'EasyXplorer', kind: 'web', description: 'Sitio web de EasyXplorer.' },

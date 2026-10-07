@@ -19,6 +19,9 @@ const statusStyle: Record<string, string> = {
   'En desarrollo': 'border-gold/60 text-gold',
 };
 
+/** Syne Black is ≈1.13 em per letter: size the title so its longest word fills at most ~88 % of the column */
+const titleCqw = (title: string) => Math.min(11, 88 / (Math.max(...title.split(/\s+/).map((w) => w.length)) * 1.13));
+
 const projectLink = (slug: string) => `https://www.quantumcode.art/universos/desarrollo?proyecto=${encodeURIComponent(slug)}`;
 
 const LinkOut: React.FC<{ label: string; url: string }> = ({ label, url }) => {
@@ -133,7 +136,12 @@ const modeOptions: { id: DeviceMode; label: string; icon: React.ReactNode }[] = 
 ];
 
 const ViewerBody: React.FC<{ project: DevProject; shots?: ProjectShots }> = ({ project, shots }) => {
-  const [mode, setMode] = useState<DeviceMode>('ambos');
+  const hasPc = !!shots?.pc.length;
+  const hasMovil = !!shots?.movil.length;
+  // Only one kind of screenshot (e.g. a desktop app): show just that frame and no switcher. With none yet, show both placeholders.
+  const only: DeviceMode | null = hasPc && !hasMovil ? 'pc' : !hasPc && hasMovil ? 'movil' : null;
+  const [picked, setMode] = useState<DeviceMode>('ambos');
+  const mode = project.liveUrl ? picked : only ?? picked;
   const [live, setLive] = useState(false);
   const color = kindColor[project.kind];
 
@@ -141,7 +149,7 @@ const ViewerBody: React.FC<{ project: DevProject; shots?: ProjectShots }> = ({ p
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-12 lg:px-8 lg:py-12">
       <div className="lg:col-span-8">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-          <div role="group" aria-label="Ver en" className="flex border border-white/20">
+          <div role="group" aria-label="Ver en" className={`flex border border-white/20 ${only && !project.liveUrl ? 'hidden' : ''}`}>
             {modeOptions.map((o) => (
               <button
                 key={o.id}
@@ -192,7 +200,12 @@ const ViewerBody: React.FC<{ project: DevProject; shots?: ProjectShots }> = ({ p
             <span className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] ${statusStyle[project.status]}`}>{project.status}</span>
           )}
         </div>
-        <h2 className="font-display text-[clamp(1.4rem,8.5cqw,2.5rem)] font-black uppercase leading-[1.05] tracking-tight text-white [overflow-wrap:anywhere]">{project.title}</h2>
+        <h2
+          className="font-display font-black uppercase leading-[1.05] tracking-tight text-white [overflow-wrap:anywhere]"
+          style={{ fontSize: `clamp(1.3rem, ${titleCqw(project.title).toFixed(2)}cqw, 2.5rem)` }}
+        >
+          {project.title}
+        </h2>
         {project.org && <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-gray-500">{project.org}</p>}
         <p className="mt-6 border-l pl-5 text-sm leading-relaxed text-gray-300 sm:text-base" style={{ borderColor: color }}>
           {project.description}
