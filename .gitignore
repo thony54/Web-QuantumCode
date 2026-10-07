@@ -55,3 +55,9 @@ proyectos-originales/*
 
 # Carpeta de capturas que el usuario deja dentro del proyecto (originales): nunca a git
 Capturas desarrollo/
+
+# Carpetas de capturas/fotos que el usuario deja dentro del proyecto (originales): NUNCA a git
+# (se colaron "Capturas Audiovisual/" por un git add -A: ahora cualquier carpeta de la raíz que empiece así queda ignorada)
+/Capturas*/
+/Fotografias*/
+/Fotos*/
