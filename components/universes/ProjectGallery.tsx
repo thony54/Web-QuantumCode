@@ -211,6 +211,30 @@ const ViewerBody: React.FC<{ project: DevProject; shots?: ProjectShots }> = ({ p
           {project.description}
         </p>
 
+        {project.madeBy && project.madeBy.length > 0 && (
+          <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] uppercase tracking-[0.2em] text-gray-500">
+            Hecho por
+            {project.madeBy.map((m, i) => (
+              <React.Fragment key={m.name}>
+                {i > 0 && <span aria-hidden="true">·</span>}
+                {m.url ? (
+                  <a
+                    href={m.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${m.name} (se abre en una pestaña nueva)`}
+                    className="inline-flex items-center gap-1 text-white underline decoration-white/30 underline-offset-4 transition-colors hover:text-neon-green hover:decoration-neon-green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neon-green"
+                  >
+                    {m.name} <ArrowUpRight size={12} />
+                  </a>
+                ) : (
+                  <span className="text-white">{m.name}</span>
+                )}
+              </React.Fragment>
+            ))}
+          </p>
+        )}
+
         {project.features && project.features.length > 0 && (
           <ul className="mt-6 space-y-2">
             {project.features.map((f) => (

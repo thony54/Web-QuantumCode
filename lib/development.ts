@@ -147,6 +147,8 @@ export interface DevProject {
   title: string;
   /** Cliente u organización, si aplica */
   org?: string;
+  /** Quién lo hizo, en orden de importancia (opcional). Con `url`, el nombre es un enlace. Ej.: [{ name: 'Quantum Code' }, { name: 'EmaVisual', url: 'https://…' }] */
+  madeBy?: { name: string; url?: string }[];
   kind: ProjectKind;
   description: string;
   status?: 'En producción' | 'Código abierto' | 'En desarrollo';
@@ -168,6 +170,7 @@ export const devProjects: DevProject[] = [
     slug: 'quantum-code-web',
     title: 'Quantum Code Studio',
     org: 'Esta web',
+    madeBy: [{ name: 'Quantum Code' }, { name: 'EmaVisual', url: 'https://www.emavisual.art/' }],
     kind: 'web',
     description:
       'El sitio del estudio: un multiverso de áreas con transiciones propias, reproductor de música, galería de fotos, laboratorio de código y proyectos para ver en computador y en celular.',
