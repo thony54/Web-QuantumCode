@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, Clapperboard, Film, Tv, Video } from 'lucide-react';
+import { ArrowLeft, Clapperboard, Film, Video } from 'lucide-react';
 import { motion } from 'framer-motion';
 import GooeyButton from '../../components/ui/GooeyButton';
 import HudCorners from '../../components/ui/HudCorners';
@@ -10,12 +10,6 @@ import './universes.css';
 
 type Cssc = React.CSSProperties & { ['--c']?: string };
 const accent = (c: string): Cssc => ({ ['--c']: c });
-
-const SERIES = [
-  { no: '01', sfx: '¡ZAP!', color: '#D4AF37', rotate: '-rotate-3' },
-  { no: '02', sfx: '¡BOOM!', color: '#FF003C', rotate: 'rotate-2' },
-  { no: '03', sfx: '¡WHOOSH!', color: '#00F0FF', rotate: '-rotate-2' },
-];
 
 const SHORTS = [
   { frame: '024', tc: '00:00:01:00', color: '#D4AF37' },
@@ -56,11 +50,17 @@ const Audiovisual: React.FC = () => {
   const { travel } = useUniverseTravel();
   const timecode = useTimecode();
 
+  // The series cover must be seen clean: no full-screen scanline/noise layers over it while this page is open
+  useEffect(() => {
+    document.documentElement.classList.add('no-screen-fx');
+    return () => document.documentElement.classList.remove('no-screen-fx');
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white">
       <SEO
-        title="Universo Audiovisual | Series, Cortometrajes y Documentales | Quantum Code"
-        description="Entra al universo audiovisual de Quantum Code: series animadas, cortometrajes y documentales con estética de cómic y elegancia futurista."
+        title="Universo Audiovisual | The Incredible World Within the Multiverse | Quantum Code Studio"
+        description="Universo audiovisual de Quantum Code Studio: The Incredible World Within the Multiverse, nuestra serie animada estrella de 12 capítulos escrita por Karter Code, además de cortometrajes y documentales."
         canonicalUrl="/universos/audiovisual"
       />
 
@@ -139,34 +139,62 @@ const Audiovisual: React.FC = () => {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
         <SectionLabel index="01" as="h2" className="mb-14">Series animadas</SectionLabel>
 
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {SERIES.map((s, i) => (
-            <motion.article
-              key={s.no}
-              className="comic-panel flex aspect-[3/4] flex-col overflow-hidden"
-              style={accent(s.color)}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="halftone relative flex-1 overflow-hidden" style={{ background: s.color, color: 'rgba(0,0,0,0.3)' }}>
-                <span aria-hidden="true" className="absolute -left-2 -top-4 select-none font-display text-[10rem] font-black leading-none text-black/25">
-                  {s.no}
-                </span>
-                <span aria-hidden="true" className={`comic-title absolute bottom-6 right-4 ${s.rotate} font-display text-3xl font-black uppercase text-white sm:text-4xl`} style={accent('#000')}>
-                  {s.sfx}
-                </span>
-                <span className="absolute left-4 top-4"><Statusbadge>Nº {s.no}</Statusbadge></span>
-                <Tv aria-hidden="true" className="absolute right-4 top-4 h-8 w-8 text-black/70" />
+        {/* The star series: the cover is shown clean, with nothing over it */}
+        <motion.article
+          className="comic-panel overflow-hidden hover:transform-none"
+          style={accent('#D4AF37')}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="flex items-center bg-black lg:col-span-8">
+              <img
+                src="/assets/images/tiwwtm-portada-1200.webp"
+                srcSet="/assets/images/tiwwtm-portada-1200.webp 1200w, /assets/images/tiwwtm-portada-2245.webp 2245w"
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                width={2245}
+                height={1063}
+                alt="Portada de la serie The Incredible World Within the Multiverse: el título en letras amarillas y blancas sobre un planeta rojo y una nebulosa."
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                className="block h-auto w-full"
+              />
+            </div>
+
+            <div className="flex flex-col justify-between border-t-[3px] border-white bg-black p-6 sm:p-8 lg:col-span-4 lg:border-l-[3px] lg:border-t-0">
+              <div>
+                <div className="mb-5 flex flex-wrap gap-2">
+                  <Statusbadge>Serie estrella</Statusbadge>
+                  <Statusbadge>12 capítulos</Statusbadge>
+                </div>
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">Serie animada</p>
+                <h3 className="font-display text-2xl font-black uppercase leading-[1.05] tracking-tight text-white sm:text-3xl">
+                  The Incredible World Within the Multiverse
+                </h3>
+                <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.3em] text-gold">TIWWTM</p>
+                <p className="mt-6 text-sm leading-relaxed text-gray-300">
+                  La serie estrella de Quantum Code: doce capítulos animados escritos por Karter Code.
+                </p>
               </div>
-              <div className="border-t-[3px] border-white bg-black p-5">
-                <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">Serie animada · Temp. 1</p>
-                <h3 className="font-display text-xl font-black uppercase leading-tight tracking-tight text-white">Título por revelar</h3>
-                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: s.color }}>● En producción</p>
+
+              <div className="mt-8 border-t border-white/15 pt-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">
+                  Escrita por <span className="text-white">Karter Code</span>
+                </p>
+                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-gold">● En producción</p>
               </div>
-            </motion.article>
-          ))}
+            </div>
+          </div>
+        </motion.article>
+
+        <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <div className="comic-caption px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em]" style={accent('#00F0FF')}>
+            Más series en camino
+          </div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-gray-500">Nuevas historias // próximamente en pantalla</p>
         </div>
       </section>
 
