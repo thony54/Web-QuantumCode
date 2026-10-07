@@ -163,8 +163,8 @@ const Photography: React.FC = () => {
 
   /* ── No full-screen effect layers (scanlines…) over the photos while this page is open ── */
   useEffect(() => {
-    document.documentElement.classList.add('photo-clean');
-    return () => document.documentElement.classList.remove('photo-clean');
+    document.documentElement.classList.add('no-screen-fx');
+    return () => document.documentElement.classList.remove('no-screen-fx');
   }, []);
 
   /* ── Shared photo link (?foto=…) ── */

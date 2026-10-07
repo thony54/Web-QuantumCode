@@ -1,7 +1,7 @@
 import { Music, Clapperboard, Code, PenTool, Camera, Accessibility, LucideIcon } from 'lucide-react';
 
 /** Each kind has its own "magic" screen transition (see UniverseTransition). */
-export type TransitionKind = 'sound' | 'comic' | 'quantum' | 'shutter';
+export type TransitionKind = 'sound' | 'comic' | 'quantum' | 'shutter' | 'code';
 
 export interface Universe {
   slug: string;
@@ -53,8 +53,9 @@ export const universes: Universe[] = [
     tagline: 'Programación y tecnología',
     accent: '#00FF41',
     icon: Code,
-    transition: 'quantum',
-    ready: false,
+    transition: 'code',
+    ready: true,
+    preload: () => import('../pages/universes/Development'),
   },
   {
     slug: 'diseno',

@@ -187,9 +187,9 @@
 /* ───────── LIGHT_VAULT (Fotografía · visor de cámara) ───────── */
 
 /* The photos must be seen clean: the site's full-screen scanline/noise overlays (index.html) are switched off
-   while the photography page is open (it adds this class to <html>). */
-html.photo-clean .scanlines,
-html.photo-clean .bg-noise {
+   while the photography and development pages are open (they add this class to <html>). */
+html.no-screen-fx .scanlines,
+html.no-screen-fx .bg-noise {
   display: none !important;
 }
 
@@ -351,5 +351,76 @@ html.photo-clean .bg-noise {
   .lab-pass {
     animation: none;
     transform: translateX(150%);
+  }
+}
+
+/* ───────── CODE_CORE (Desarrollo · terminal) ───────── */
+@keyframes term-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.term-cursor {
+  animation: term-blink 1.05s steps(1) infinite;
+}
+
+/* The button of the code lab: real focus styles, toggled by the lab's checkboxes */
+.code-lab-btn {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.code-lab-btn--lift:hover {
+  transform: translateY(-3px);
+}
+
+.code-lab-btn--ring:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.code-lab-btn--noring:focus-visible {
+  outline: none;
+}
+
+.code-range {
+  appearance: none;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.code-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 22px;
+  background: #00ff41;
+  border: 0;
+}
+
+.code-range::-moz-range-thumb {
+  width: 14px;
+  height: 22px;
+  border-radius: 0;
+  background: #00ff41;
+  border: 0;
+}
+
+.code-range:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-cursor {
+    animation: none;
+  }
+
+  .code-lab-btn {
+    transition: none;
+  }
+
+  .code-lab-btn--lift:hover {
+    transform: none;
   }
 }

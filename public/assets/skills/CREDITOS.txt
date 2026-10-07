@@ -1,0 +1,2 @@
+Insignias de tecnologías: proyecto skill-icons (github.com/tandpfun/skill-icons), licencia MIT.
+La insignia de shadcn/ui es un dibujo propio. Los nombres y logotipos pertenecen a sus respectivos dueños.

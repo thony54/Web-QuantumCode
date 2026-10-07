@@ -48,3 +48,7 @@ fotos-originales/*
 
 # Carpeta de fotos sin procesar que el usuario copia al proyecto (457 MB): NUNCA a git
 Fotografias/
+
+# Capturas ORIGINALES de proyectos (pesadas): nunca a git. Solo se sube lo que genera `npm run proyectos`
+proyectos-originales/*
+!proyectos-originales/LEEME.md

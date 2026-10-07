@@ -127,12 +127,54 @@ const ShutterWipe: React.FC<{ accent: string }> = ({ accent }) => (
   </div>
 );
 
+/** Falling code: columns of characters rain down, cover the screen and keep falling out. */
+const CODE_GLYPHS = 'ABCDEF0123456789{}<>/;=+*#&$%';
+
+/** Deterministic "random" text per column (no Math.random: it must not change between renders) */
+const codeColumn = (seed: number) => {
+  let n = seed * 9301 + 49297;
+  const rows: string[] = [];
+  for (let r = 0; r < 90; r++) {
+    let row = '';
+    for (let c = 0; c < 3; c++) {
+      n = (n * 9301 + 49297) % 233280;
+      row += CODE_GLYPHS[Math.floor((n / 233280) * CODE_GLYPHS.length)];
+    }
+    rows.push(row);
+  }
+  return rows.join('\n');
+};
+
+const CODE_COLUMNS = 40;
+const CODE_TEXT = Array.from({ length: CODE_COLUMNS }, (_, i) => codeColumn(i + 1));
+
+const CodeWipe: React.FC = () => (
+  <div className="absolute inset-0 flex bg-black/0">
+    {CODE_TEXT.map((text, i) => (
+      <motion.div
+        key={i}
+        className="h-full flex-1 overflow-hidden bg-[#020603]"
+        initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
+        animate={{
+          clipPath: ['inset(0% 0% 100% 0%)', 'inset(0% 0% 0% 0%)', 'inset(0% 0% 0% 0%)', 'inset(100% 0% 0% 0%)'],
+        }}
+        transition={{ duration: DURATION, times: TIMES, delay: ((i * 7) % CODE_COLUMNS) * 0.0045, ease: 'easeInOut' }}
+      >
+        <pre className="m-0 text-center font-mono text-[13px] leading-[1.2] text-neon-green/75 [text-shadow:0_0_6px_rgba(0,255,65,0.6)]">
+          {text}
+        </pre>
+      </motion.div>
+    ))}
+  </div>
+);
+
 const TransitionOverlay: React.FC<{ travel: ActiveTravel }> = ({ travel }) => (
   <div aria-hidden="true" className="fixed inset-0 z-[120] overflow-hidden">
     {travel.kind === 'sound' && <SoundWipe accent={travel.accent} />}
     {travel.kind === 'comic' && <ComicWipe />}
     {travel.kind === 'quantum' && <QuantumWipe accent={travel.accent} />}
     {travel.kind === 'shutter' && <ShutterWipe accent={travel.accent} />}
+    {travel.kind === 'code' && <CodeWipe />}
     {travel.kind !== 'comic' && (
       <motion.div
         className="absolute inset-0 flex items-center justify-center px-6 text-center"
