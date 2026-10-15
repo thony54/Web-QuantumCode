@@ -85,6 +85,7 @@ export const tracks: Track[] = [
   { slug: 'data-horizon', title: 'Data Horizon', year: '2026', duration: '3:36', source: audio('07-data-horizon-preview-v3.mp3') }, // provisional title
   { slug: 'latent-code', title: 'Latent Code', year: '2026', duration: '4:46', source: audio('08-latent-code-preview-v2.mp3') }, // provisional title
   { slug: 'player-one', title: 'Player One', year: '2026', duration: '3:29', tag: 'Videojuego', description: 'Tema original de Project Chaos Dominion, nuestro videojuego en desarrollo.', source: audio('09-player-one-preview.mp3') }, // provisional title
+  { slug: 'gradient-ascent', title: 'Gradient Ascent', year: '2026', duration: '3:18', source: audio('10-gradient-ascent-preview.mp3') }, // provisional title
 ];
 
 export const projects: Project[] = [
